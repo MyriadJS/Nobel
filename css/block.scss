@@ -1,0 +1,32 @@
+:root {
+  --border-size: 1px;
+  --border-color: var(--foreground);
+  --border: var(--border-size) solid var(--border-color);
+}
+
+.page {
+  margin: auto;
+  max-width: calc(100vw - var(--space-xl));
+  width: 1000px;
+}
+
+.border {
+  border: var(--border);
+  border-radius: var(--radius);
+}
+
+.panel {
+  border-radius: var(--radius);
+  padding: var(--space);
+  padding-bottom: var(--space-m);
+}
+
+.color-flip {
+  filter: invert(90);
+  img, .img {
+    filter: invert(1);
+    &::after {
+      filter: invert(90);
+    }
+  }
+}
