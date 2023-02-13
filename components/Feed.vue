@@ -15,10 +15,15 @@
 <style lang="scss">
   div.feed {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4,1fr);
     --gap: var(--space-m);
     gap: var(--gap);
     margin-top: var(--gap);
     padding-bottom: var(--space-xl);
+
+    & > * { grid-column: span 2; }
+    @media only screen and (max-width: 850px) {
+      & > * { grid-column: span 4; }
+    }
   }
 </style>

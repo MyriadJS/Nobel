@@ -2,6 +2,19 @@
   --background: #f3f6ea;
   --foreground: #3e505b;
   --accent: #368f8b;
+
+  --background: #f3f6ea;
+  --foreground: #3e505b;
+  --accent: #368f8b;
+
+  --success: #6BFFB8;
+  --warnings: #CF4D6F;
+
+  --shade00: #6B7A7F;
+  --shade50: #99A3A3;
+  --shade99: #C6CDC6;
+  --shade: var(--shade99);
+  --accent-contrast: var(--background);
 }
 
 html {

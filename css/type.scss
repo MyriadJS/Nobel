@@ -12,7 +12,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Inter", "Flexa", sans-serif;
-  font-size: clamp(12px, 1vw, 18px);
+  font-size: clamp(16px, 1vw, 24px);
 }
 
 body {
@@ -48,7 +48,7 @@ p, button, .bodycopy {
   font-weight: 700;
   line-height: 1.3rem;
   letter-spacing: 0px;
-  max-width: 55ch;
+  max-width: clamp(300px, 30vw, 800px);
   font-variation-settings: var(--font-regular);
   span,
   strong {

@@ -5,5 +5,5 @@ export default defineNuxtConfig({
     cloudinary: {
       baseURL: 'https://res.cloudinary.com/kingfish/image/upload/v1675554521/chomsky/'
     }
-  }
+  },
 })

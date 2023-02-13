@@ -1,5 +1,5 @@
 <template>
-  <div class="page border">
+  <div class="page panel">
     <h1>Title</h1>
     <h2>Title</h2>
     <h3>Title</h3>
@@ -20,14 +20,13 @@
 
 <style lang="scss" scoped>
 .page {
-  padding: var(--space);
   margin-top: var(--space-l);
 }
 
 .content {
-  max-width: 100%;
-  padding-top: var(--space-s);
+  padding-top: var(--space);
+  padding-bottom: var(--space);
   display: grid;
-  gap: var(--space-s);
+  gap: var(--space);
 }
 </style>

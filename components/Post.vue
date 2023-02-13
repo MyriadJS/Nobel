@@ -1,16 +1,14 @@
 <script setup lang="ts">
-import { Post } from '@/types/Post'
-  defineProps<{
-    post: Post
-  }>()
+  import { Post } from '@/types/Post'
+  defineProps<{post: Post}>()
   const avatarSize = ref(30)
   const avatarResolution = ref(30)
 </script>
 
 <template>
-    <div class="post">
+    <div class="post panel">
       <p>{{ post.content }}</p>
-      <div 
+      <div
         class="author" 
         @mouseenter="avatarResolution = 90"
         @mouseleave="avatarResolution = 30"
@@ -27,9 +25,6 @@ import { Post } from '@/types/Post'
   .post {
     position: relative;
     gap: var(--space-s);
-    background: var(--shade);
-    padding: var(--space);
-    padding-bottom: var(--space-m);
     & > p {
       position: relative;
       z-index: 3;

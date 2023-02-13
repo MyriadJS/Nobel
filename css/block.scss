@@ -17,11 +17,12 @@
 
 .panel {
   border-radius: var(--radius);
-  padding: var(--space);
+  padding: var(--space-m);
   padding-bottom: var(--space-m);
+  background-color: var(--shade);
 }
 
-.color-flip {
+.color-flip, html {
   filter: invert(90);
   img, .img {
     filter: invert(1);
