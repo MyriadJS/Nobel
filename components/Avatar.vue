@@ -7,6 +7,7 @@ withDefaults(defineProps<Props>(),{
 
 <template>
   <div class="avatar">
+    <Spinner/>
     <nuxt-img
       provider="cloudinary"
       :src="src"
@@ -17,6 +18,13 @@ withDefaults(defineProps<Props>(),{
 </template>
 
 <style lang="scss" scoped>
+.spinner {
+  position: absolute;
+  z-index: 10;
+  top: 0; left: 0;
+
+}
+
 .avatar {
   position: relative;
   width: calc(v-bind(size) * 1px);

@@ -32,6 +32,7 @@
 </script>
 
 <template>
+  <Spinner/>
   <Typography :post="feed[0]"/>
   <Feed/>
 </template>
