@@ -1,3 +1,9 @@
+<script setup lang="ts">
+  import { Post } from '@/types/Post'
+  defineProps<{post: Post}>()
+  const avatarResolution = ref(200)
+</script>
+
 <template>
   <div class="page panel">
     <h1>Title</h1>
@@ -15,18 +21,34 @@
         or npm package. The layers structure is almost identical to a standard Nuxt 
         application, which makes them easy to author and maintain.</p>
     </div>
+    <div class="author">
+      <Avatar 
+        :src="post.user.author.avatar"
+        :resolution="avatarResolution"
+      />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .page {
   margin-top: var(--space-l);
+  padding-bottom: var(--space);
+}
+
+.author {
+  display: flex;
+  justify-content: center;
+
+  .avatar {
+    //width: calc(v-bind(avatarResolution) * 1px);
+    transform: scale(3);
+  }
 }
 
 .content {
-  padding-top: var(--space);
-  padding-bottom: var(--space);
   display: grid;
   gap: var(--space);
+  padding-top: var(--space);
 }
 </style>

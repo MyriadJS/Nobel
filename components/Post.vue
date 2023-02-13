@@ -6,19 +6,19 @@
 </script>
 
 <template>
-    <div class="post panel">
-      <p>{{ post.content }}</p>
-      <div
-        class="author" 
-        @mouseenter="avatarResolution = 90"
-        @mouseleave="avatarResolution = 30"
-      >
-        <Avatar 
-          :src="post.user.author.avatar"
-          :resolution="avatarResolution"
-        />
-      </div>
+  <div class="post panel">
+    <p>{{ post.content }}</p>
+    <div
+      class="author" 
+      @mouseenter="avatarResolution = 250"
+      @mouseleave="avatarResolution = 30"
+    >
+      <Avatar 
+        :src="post.user.author.avatar"
+        :resolution="avatarResolution"
+      />
     </div>
+  </div>
 </template>
 
 <style lang="scss">
@@ -46,6 +46,7 @@
     position: absolute;
     //background-color: red;
     width: 100%;
+    padding-top: 50px;
 
     .avatar {
       display: flex;
@@ -53,10 +54,11 @@
       align-items: center;
       clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
       transition: .2s;
+      pointer-events:none;
     }
 
     &:hover .avatar {
-      transform: scale(3);
+      transform: scale(7);
       clip-path: polygon(0 0,100% 0,100% 50%,0 50%);
     }
   }

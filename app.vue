@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { feed } from "@/dummydata/posts"
 // import { colorBus } from "myriad-mini"
 // import { getReadable, makeReadable } from 'myriad-mini/engine/primitives/color'
 // import { Myriad } from 'myriad-mini/engine/config'
@@ -31,7 +32,7 @@
 </script>
 
 <template>
-  <Typography/>
+  <Typography :post="feed[0]"/>
   <Feed/>
 </template>
 
