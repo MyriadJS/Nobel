@@ -3,7 +3,7 @@
     <h1>Title</h1>
     <h2>Title</h2>
     <h3>Title</h3>
-    <div class="content">
+    <div class="content post">
       <p>Nuxt layers are a powerful feature that you can use to share and
         reuse <span>partial</span> Nuxt applications within a monorepo, or from a git repository
         or npm package. The layers structure is almost identical to a standard Nuxt 

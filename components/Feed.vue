@@ -22,7 +22,7 @@
     padding-bottom: var(--space-xl);
 
     & > * { grid-column: span 2; }
-    @media only screen and (max-width: 850px) {
+    @media only screen and (max-width: 1250px) {
       & > * { grid-column: span 4; }
     }
   }

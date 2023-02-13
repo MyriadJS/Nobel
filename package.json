@@ -5,10 +5,16 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "story:dev": "histoire dev",
+    "story:build": "histoire build",
+    "story:preview": "histoire preview"
   },
   "devDependencies": {
+    "@histoire/plugin-nuxt": "^0.14.2",
+    "@histoire/plugin-vue": "^0.14.2",
     "@nuxt/image-edge": "^1.0.0-27919678.2f5b64b",
+    "histoire": "^0.14.2",
     "nuxt": "^3.1.2",
     "nuxt-icon": "^0.2.10"
   },

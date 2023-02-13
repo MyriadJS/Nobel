@@ -23,6 +23,11 @@
 
 <style lang="scss">
   .post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
     position: relative;
     gap: var(--space-s);
     & > p {
