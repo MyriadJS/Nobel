@@ -2,10 +2,6 @@
 const props = defineProps<{
   index: number
 }>()
-
-onMounted(() => {
-  console.log(props.index)
-})
 </script>
 
 <template>
@@ -25,27 +21,25 @@ onMounted(() => {
 }
 
 .line {
-  --thickness: 3px;
+  --thickness: 2px;
   position: relative;
-  height: var(--thickness); width: 50px;
+  width: var(--thickness); height: 20px;
   background-color: var(--accent);
   animation: pulse 0.8s ease-in-out calc(v-bind(index) * 0.1s) infinite alternate;
 }
 
 .line .cap {
   position: absolute;
-  top: 0px;
   aspect-ratio: 1/1;
-  height: 100%;
+  width: 100%;
   background-color: var(--foreground);
   border-radius: 50%;
-  transform: scale(2.5);
-  &:nth-of-type(1) { 
-    right: 0px; background-color: var(--shade); }
+  transform: scale(2);
+  &:nth-of-type(1) { bottom: 0px; }
 }
 
 @keyframes pulse {
-  0% { width: var(--thickness); }
-  100% { width: 50px; }
+  0% { height: var(--thickness); }
+  100% { height: 20px; }
 }
 </style>

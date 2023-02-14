@@ -6,28 +6,36 @@ withDefaults(defineProps<Props>(),{
 </script>
 
 <template>
-  <div class="avatar">
-    <Spinner/>
-    <nuxt-img
-      provider="cloudinary"
-      :src="src"
-      :width="resolution ? resolution : size"
-      alt="avatar"
-    />
+  <div class="relative">
+    <Spinner :steps="3" :wobble="true"/>
+    <div class="avatar">
+      <nuxt-img
+        provider="cloudinary"
+        :src="src"
+        :width="resolution ? resolution : size"
+        alt="avatar"
+      />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.relative {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
 .spinner {
   position: absolute;
   z-index: 10;
-  top: 0; left: 0;
-
 }
 
 .avatar {
   position: relative;
   width: calc(v-bind(size) * 1px);
+
   aspect-ratio: 1/1;
   border-radius: 50%;
   overflow: hidden;

@@ -1,11 +1,12 @@
 <script setup lang="ts">
-withDefaults(defineProps<{steps?: number}>(),{
-  steps: 20
+withDefaults(defineProps<{steps?: number, wobble?: boolean}>(),{
+  steps: 20,
+  wobble: false
 })
 </script>
 
 <template>
-  <div class="spinner">
+  <div class="spinner" :class="{wobble: wobble}">
     <Line v-for="step in steps" :index="step"/>
   </div>
   
@@ -13,24 +14,23 @@ withDefaults(defineProps<{steps?: number}>(),{
 
 <style lang="scss" scoped>
 .spinner {
-  margin: 100px;
   display: flex;
-  gap: 12px;
+  gap: 7px;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  //background: var(--shade);
-  //border: solid 3px var(--accent);
+  background: var(--shade);
   border-radius: 50%;
-  --size: 100px;
+  --size: 25px;
   width: var(--size);
   height: var(--size);
-  overflow: hidden;
+}
+
+.spinner.wobble {
   animation: steer 1.6s ease-in-out infinite alternate;
 }
 
 @keyframes steer {
   0% { transform: rotate(90deg); }
-  100% { transform: rotate(90deg); }
+  100% { transform: rotate(-90deg); }
 }
 </style>

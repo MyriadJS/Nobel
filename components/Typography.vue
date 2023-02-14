@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="page panel">
+  <div id="open" class="page panel">
     <h1>Title</h1>
     <h2>Title</h2>
     <h3>Title</h3>
@@ -30,25 +30,25 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-.page {
+<style lang="scss">
+#open.page {
   margin-top: var(--space-l);
-  padding-bottom: var(--space);
+  padding-bottom: 0px;
 }
 
-.author {
+#open .author {
   display: flex;
   justify-content: center;
 
   .avatar {
-    //width: calc(v-bind(avatarResolution) * 1px);
     transform: scale(3);
   }
 }
 
-.content {
+#open .content {
   display: grid;
   gap: var(--space);
   padding-top: var(--space);
+  padding-bottom: var(--space-l);
 }
 </style>

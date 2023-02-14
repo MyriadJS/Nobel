@@ -7,7 +7,8 @@
 
 <template>
   <div class="post panel">
-    <p>{{ post.content }}</p>
+    <p v-if="false">{{ post.content }}</p>
+    <Spinner :steps="40"/>
     <div
       class="author" 
       @mouseenter="avatarResolution = 250"
@@ -44,7 +45,6 @@
     left: 0px;
     bottom: calc((v-bind(avatarSize) / 2 * -1px));
     position: absolute;
-    //background-color: red;
     width: 100%;
     padding-top: 50px;
 
