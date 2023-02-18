@@ -1,14 +1,35 @@
 <script setup lang="ts">
   import { Post } from '@/types/Post'
-  defineProps<{post: Post}>()
+  const props = defineProps<{post: Post}>()
   const avatarSize = ref(30)
   const avatarResolution = ref(30)
+
+  const texts = [
+    "Hey, david! How are you?",
+    "I'm fine, thanks! How are you?",
+    props.post.content,
+    "The layers structure is almost identical to a standard Nuxt application, which makes them easy to author and maintain.",
+    "I'm fine, thanks! How are you?",
+  ]
+
+  const content = ref(texts[0])
+  const { value } = useSwitch(Math.floor(Math.random() * 2000) + 2000)
+
+  function rng(max: number = 11) {
+    return Math.floor(Math.random() * max);
+  }
+
+  watch(value, () => {
+    const index = rng(texts.length)
+    content.value = texts[index]
+  })
 </script>
 
 <template>
   <div class="post panel">
-    <p v-if="false">{{ post.content }}</p>
-    <Spinner :steps="40"/>
+    <Loader :loading="value">
+      <p>{{ content }}</p>
+    </Loader>
     <div
       class="author" 
       @mouseenter="avatarResolution = 250"
@@ -35,6 +56,10 @@
       position: relative;
       z-index: 3;
     }
+  }
+
+  .post.cycle {
+    outline: 1px solid red;
   }
 
   .post .author {
