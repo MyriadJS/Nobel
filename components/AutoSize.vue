@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  const emit = defineEmits(['change'])
+
   const size = ref<HTMLElement>()
   const height = ref(0)
 
@@ -10,6 +12,7 @@
 const myObserver = new ResizeObserver(entries => {
   entries.forEach(entry => {
     height.value = entry.contentRect.height
+    emit('change', height.value)
   });
 });
 </script>

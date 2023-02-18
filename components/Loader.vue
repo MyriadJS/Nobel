@@ -11,7 +11,7 @@
 
 <template>
   <div class="loader" :class="{loading: loading}">
-    <AutoSize>
+    <AutoSize @change="(e) => height = e">
       <slot/>
     </AutoSize>
     <div class="spin">
@@ -22,37 +22,30 @@
 
 <style lang="scss" scoped>
 .loader {
-  box-sizing: content-box;
-
   position: relative;
-
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: var(--space);
-
   transition: 0.4s;
+}
   
-  .spin {
-    position: absolute;
+.loader .spin {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  min-height: calc(v-bind(height) * 1px);
+  opacity: 0;
+  transition: .4s;
+}
 
-    display: flex;
-    align-items: center;
-    min-height: calc(v-bind(height) * 1px);
-    opacity: 0;
-    transition: .4s;
-  }
+.loader.loading .content {
+  opacity: 0.2;
+  filter: blur(2px);
+}
 
-  &.loading {
-    .content {
-      opacity: 1;
-      //filter: blur(2px);
-    }
-
-    .spin {
-      opacity: 0;
-    }
-  }
+.loader.loading .spin {
+  opacity: 1;
 }
 </style>
