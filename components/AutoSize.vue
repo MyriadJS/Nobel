@@ -2,19 +2,7 @@
   const emit = defineEmits(['change'])
 
   const size = ref<HTMLElement>()
-  const height = ref(0)
-
-  onMounted(() => {
-    if(!size.value) return
-    myObserver.observe(size.value)
-  })
-
-const myObserver = new ResizeObserver(entries => {
-  entries.forEach(entry => {
-    height.value = entry.contentRect.height
-    emit('change', height.value)
-  });
-});
+  const { height } = useSize(size, (e) => emit('change', e))
 </script>
 
 <template>
