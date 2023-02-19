@@ -7,7 +7,11 @@ withDefaults(defineProps<Props>(),{
 
 <template>
   <div class="relative">
-    <Spinner :steps="3" :wobble="true"/>
+    <Spinner 
+      :steps="3" 
+      :wobble="true"
+      :dynamic="false"
+    />
     <div class="avatar">
       <nuxt-img
         provider="cloudinary"

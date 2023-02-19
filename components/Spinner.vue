@@ -1,13 +1,20 @@
 <script setup lang="ts">
-withDefaults(defineProps<{steps?: number, wobble?: boolean}>(),{
+withDefaults(defineProps<{steps?: number, wobble?: boolean, dynamic?: boolean}>(),{
   steps: 20,
-  wobble: false
+  wobble: false,
+  dynamic: true
 })
 </script>
 
 <template>
   <div class="spinner" :class="{wobble: wobble}">
-    <Line v-for="step in steps" :index="step"/>
+    <Line 
+      v-for="step in steps" 
+      :index="step"
+      :length="steps"
+      :dynamic="dynamic"
+      :key="step"
+    />
   </div>
   
 </template>

@@ -2,7 +2,6 @@
   interface Props {
     loading: boolean;
     duration?: number;
-    perc?: number;
   }
   const props = defineProps<Props>()
   const loading = toRef(props, 'loading')
@@ -57,7 +56,7 @@
   display: flex;
   align-items: center;
   min-height: calc(v-bind(height) * 1px);
-  opacity: 0;
+  opacity: 0.7;
   transition: .4s;
 }
 
