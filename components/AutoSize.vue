@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <div class="content-wrapper">
+  <div class="AutoSize">
     <div class="size" ref="size">
       <slot/>
     </div>
@@ -14,7 +14,7 @@
 </template>
 
 <style lang="scss" scoped>
-  .content-wrapper {
+  .AutoSize {
     max-height: calc(v-bind(height) * 1px);
     min-height: calc(v-bind(height) * 1px);
     overflow: hidden;

@@ -12,8 +12,9 @@
     "I'm fine, thanks! How are you?",
   ]
 
+  const duration = Math.floor(Math.random() * 2000) + 2000
   const content = ref(texts[0])
-  const { value } = useSwitch(Math.floor(Math.random() * 2000) + 2000)
+  const { value } = useSwitch(duration)
 
   function rng(max: number = 11) {
     return Math.floor(Math.random() * max);
@@ -27,7 +28,7 @@
 
 <template>
   <div class="post panel">
-    <Loader :loading="value">
+    <Loader :loading="value" :duration="duration">
       <p>{{ content }}</p>
     </Loader>
     <div
