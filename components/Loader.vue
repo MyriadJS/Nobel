@@ -5,81 +5,13 @@
     perc?: number;
   }
   const props = defineProps<Props>()
-
-  const animDuration = 500
-  const perc = Math.min(0.5, props.perc || 0.3)
-
-  //progress bar
-  const progress = ref(0)
-  function makeProgress() {
-    if(!props.duration) return
-    progress.value = 0
-    const interval = setInterval(() => {
-      progress.value += 1
-      if(progress.value >= 100) {
-        clearInterval(interval)
-      }
-    }, props.duration / 100)
-  }
-
-  watch(() => props.loading, (loading) => {
-    loading ? makeProgress() : progress.value = 0
-  })
-
-  //other shit
-  const durationFraction = computed(() => {
-    const duration = props.duration
-    if(!duration) return 1
-    const percent = duration * perc
-    const lowest = Math.min(percent, animDuration)
-    return lowest
-  })
-
-  const enterLoading = ref(false)
-  const leaveLoading = ref(false)
-
-  let abortCycle = false
-
-  function loadingCycle() {
-    if(!props.duration) return
-    enterLoading.value = true
-    leaveLoading.value = false
-
-    setTimeout(() => {
-      if(abortCycle) return
-      enterLoading.value = false
-    }, durationFraction.value)
-
-    setTimeout(() => {
-      if(abortCycle) return
-      leaveLoading.value = true
-    }, props.duration - durationFraction.value)
-  }
-
-  function prematureAbort() {
-    leaveLoading.value = true
-    setTimeout(() => {
-      leaveLoading.value = false
-    }, durationFraction.value)
-  }
-
-  function matureTermination() {
-    enterLoading.value = false
-    leaveLoading.value = false
-  }
-
-  function terminateLoading() {
-    progress.value >= 90 
-      ? matureTermination()
-      : prematureAbort()
-  }
-
-  watch(() => props.loading, (loading) => {
-    loading ? loadingCycle() : terminateLoading()
-  })
+  const loading = toRef(props, 'loading')
+  
+  const { progress } = useProgress(loading, props.duration)
+  const { enterLoading, leaveLoading } = useCycle(loading, progress, props.duration)
 
   const classes = computed(() => ({
-    loading: props.loading,
+    loading: loading.value,
     enter: enterLoading.value,
     leave: leaveLoading.value,
   }))
@@ -91,7 +23,6 @@
   <div class="loader" :class="classes">
     <AutoSize @change="(e) => height = e">
       <slot/>
-      <p>{{ progress }}</p>
     </AutoSize>
     <div class="spin">
       <Spinner :steps="40"/>
@@ -108,6 +39,18 @@
   flex-direction: column;
   gap: var(--space);
   transition: 0.4s;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(v-bind(progress) * 1%);
+    height: 100%;
+    background: var(--accent);
+    opacity: 0.2;
+    z-index: 1;
+  }
 }
 
 .loader.loading .AutoSize {
