@@ -29,7 +29,7 @@
 <template>
   <div class="post panel">
     <Loader :loading="value" :duration="duration">
-      <p>{{ content }}</p>
+      <p v-if="false">{{ content }}</p>
     </Loader>
     <div
       class="author" 

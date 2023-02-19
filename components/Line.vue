@@ -5,29 +5,32 @@ const props = defineProps<{
   dynamic: boolean
 }>()
 
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
 function middleHeight() {
   let length = props.length
   let index = props.index
   let dynamic = props.dynamic
-  return dynamic 
-    ? calculateValue(length, index)
-    : length / 2
-}
 
-function calculateValue(length: number, index: number) {
+  return dynamic 
+    ? clamp(centerDistance(length, index) * 20, 10, 10)
+    : length / 2
+} 
+
+function centerDistance(length: number, index: number) {
   // Calculate the distance from the center of the max value
-  const distanceFromCenter = Math.abs(index - (length / 2));
   // Calculate a ratio from 0 to 1 based on the distance from the center
-  const ratio = 1 - (distanceFromCenter / (length / 2));
-  // Multiply the index by the ratio to get the final value
-  return index * ratio;
+  const distanceFromCenter = Math.abs(index - (length / 2));
+  return 1 - (distanceFromCenter / (length / 2));
 }
 
 const line = reactive({
   opacity: middleHeight() * 0.1,
   height: middleHeight() * 2 + "px",
+  width: middleHeight() * 0.15 + "px",
   delay: props.index * 0.1 + "s",
-  capScale: middleHeight() * 0.1
 })
 </script>
 
@@ -49,27 +52,30 @@ const line = reactive({
 }
 
 .line {
-  --thickness: 2px;
-  --height: v-bind('line.height');
   position: relative;
-  width: var(--thickness); 
-  height: var(--height);
+
+  width: v-bind('line.width'); 
+  height: v-bind('line.height');
   background-color: var(--accent);
-  animation: pulse 0.8s ease-in-out v-bind('line.delay') infinite alternate;
+
+  animation: pulse 0.8s ease-in-out infinite alternate;
+  animation-delay: v-bind('line.delay');
 }
 
 .line .cap {
+  --offset: calc(0px - (v-bind('line.width') / 2));
   position: absolute;
   aspect-ratio: 1/1;
   width: 100%;
   background-color: var(--foreground);
   border-radius: 50%;
-  transform: scale(v-bind('line.capScale'));
-  &:nth-of-type(1) { bottom: var(--thickness); }
+  transform: scale(2);
+  &:nth-of-type(2) { top: var(--offset); }
+  &:nth-of-type(1) { bottom: var(--offset); }
 }
 
 @keyframes pulse {
-  0% { height: var(--thickness); }
-  100% { height: var(--height); }
+  0% { height: v-bind('line.width');  }
+  100% { height: v-bind('line.height'); }
 }
 </style>

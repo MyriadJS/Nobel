@@ -16,7 +16,6 @@ withDefaults(defineProps<{steps?: number, wobble?: boolean, dynamic?: boolean}>(
       :key="step"
     />
   </div>
-  
 </template>
 
 <style lang="scss" scoped>
