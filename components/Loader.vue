@@ -6,15 +6,9 @@
   }
   const props = defineProps<Props>()
   const loading = toRef(props, 'loading')
-  
-  const { progress } = useProgress(loading, props.duration)
-  const { enterLoading, leaveLoading } = useCycle(loading, progress, props.duration)
 
-  const classes = computed(() => ({
-    loading: loading.value,
-    enter: enterLoading.value,
-    leave: leaveLoading.value,
-  }))
+  const { progress } = useProgress(loading, props.duration)
+  const { classes } = useCycle(loading, progress, props.duration)
 
   const height = ref(0)
 </script>

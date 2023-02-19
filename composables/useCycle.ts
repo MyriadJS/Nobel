@@ -3,37 +3,37 @@ import { Ref } from 'vue'
 export function useCycle(loading: Ref<boolean>, progress: Ref<number>, duration?: number) {
   const { fraction } = useFraction(duration)
 
-  const enterLoading = ref(false)
-  const leaveLoading = ref(false)
+  const enter = ref(false)
+  const leave = ref(false)
 
   let abortCycle = false
 
   function loadingCycle() {
     if(!duration) return
-    enterLoading.value = true
-    leaveLoading.value = false
+    enter.value = true
+    leave.value = false
 
     setTimeout(() => {
       if(abortCycle) return
-      enterLoading.value = false
+      enter.value = false
     }, fraction.value)
 
     setTimeout(() => {
       if(abortCycle) return
-      leaveLoading.value = true
+      leave.value = true
     }, duration - fraction.value)
   }
 
   function prematureAbort() {
-    leaveLoading.value = true
+    leave.value = true
     setTimeout(() => {
-      leaveLoading.value = false
+      leave.value = false
     }, fraction.value)
   }
 
   function matureTermination() {
-    enterLoading.value = false
-    leaveLoading.value = false
+    enter.value = false
+    leave.value = false
   }
 
   function terminateLoading() {
@@ -46,8 +46,11 @@ export function useCycle(loading: Ref<boolean>, progress: Ref<number>, duration?
     loading ? loadingCycle() : terminateLoading()
   })
 
-  return { 
-    enterLoading, 
-    leaveLoading 
-  }
+  const classes = computed(() => ({
+    loading: loading.value,
+    enter: enter.value,
+    leave: leave.value,
+  }))
+
+  return { enter, leave, classes }
 }
