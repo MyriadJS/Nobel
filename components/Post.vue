@@ -29,7 +29,7 @@
 <template>
   <div class="post panel">
     <Loader :loading="value" :duration="duration">
-      <p v-if="false">{{ content }}</p>
+      <p v-if="true">{{ content }}</p>
     </Loader>
     <div
       class="author" 
@@ -57,10 +57,6 @@
       position: relative;
       z-index: 3;
     }
-  }
-
-  .post.cycle {
-    outline: 1px solid red;
   }
 
   .post .author {

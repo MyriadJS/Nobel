@@ -18,7 +18,8 @@
       <slot/>
     </AutoSize>
     <div class="spin">
-      <Spinner :steps="40"/>
+      <Spinner v-if="true" :steps="40"/>
+      <Bar v-if="false" :progress="progress"/>
     </div>
   </div>
 </template>
@@ -32,18 +33,6 @@
   flex-direction: column;
   gap: var(--space);
   transition: 0.4s;
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(v-bind(progress) * 1%);
-    height: 100%;
-    background: var(--accent);
-    opacity: 0.2;
-    z-index: 1;
-  }
 }
 
 .loader.loading .AutoSize {
@@ -56,7 +45,7 @@
   display: flex;
   align-items: center;
   min-height: calc(v-bind(height) * 1px);
-  opacity: 0.7;
+  opacity: 1;
   transition: .4s;
 }
 

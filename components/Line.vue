@@ -2,7 +2,6 @@
 const props = defineProps<{
   index: number,
   length: number,
-  dynamic: boolean
 }>()
 
 function clamp(value: number, min: number, max: number) {
@@ -12,12 +11,11 @@ function clamp(value: number, min: number, max: number) {
 function middleHeight() {
   let length = props.length
   let index = props.index
-  let dynamic = props.dynamic
 
-  return dynamic 
-    ? clamp(centerDistance(length, index) * 20, 10, 10)
-    : length / 2
-} 
+  return length > 4 
+    ? clamp(centerDistance(length, index) * 20, 0, 30)
+    : clamp(centerDistance(length, index) * 20, 10, 20)
+}
 
 function centerDistance(length: number, index: number) {
   // Calculate the distance from the center of the max value

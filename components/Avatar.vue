@@ -10,7 +10,6 @@ withDefaults(defineProps<Props>(),{
     <Spinner 
       :steps="3" 
       :wobble="true"
-      :dynamic="false"
     />
     <div class="avatar">
       <nuxt-img

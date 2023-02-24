@@ -2,7 +2,6 @@
 withDefaults(defineProps<{steps?: number, wobble?: boolean, dynamic?: boolean}>(),{
   steps: 20,
   wobble: false,
-  dynamic: true
 })
 </script>
 
@@ -12,7 +11,6 @@ withDefaults(defineProps<{steps?: number, wobble?: boolean, dynamic?: boolean}>(
       v-for="step in steps" 
       :index="step"
       :length="steps"
-      :dynamic="dynamic"
       :key="step"
     />
   </div>
@@ -24,12 +22,31 @@ withDefaults(defineProps<{steps?: number, wobble?: boolean, dynamic?: boolean}>(
   gap: 7px;
   justify-content: center;
   align-items: center;
-  background: var(--shade);
-  border-radius: 50%;
+
   --size: 25px;
   width: var(--size);
   height: var(--size);
+  border-radius: 50%;
+  background: var(--shade);
+
+  transition: .4s, opacity .6s;
 }
+
+.loader:not(.loading) .spinner {
+  gap: 0px;
+  opacity: 0;
+}
+
+.loading.enter .spinner {
+  gap: 0px;
+  opacity: 0;
+}
+
+.loading.leave .spinner {
+  gap: 27px;
+  opacity: 0;
+}
+
 
 .spinner.wobble {
   animation: steer 1.6s ease-in-out infinite alternate;
