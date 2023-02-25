@@ -24,7 +24,7 @@ import { User, Post } from '@/types/Post'
       id: "1",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: 'https://pbs.twimg.com/profile_images/1361031516/IMG_0001_400x400.JPG',
+      cover: '',
       reactions: {
         pro: 100,
         con: 100,
@@ -35,7 +35,7 @@ import { User, Post } from '@/types/Post'
       id: "2",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: 'https://pbs.twimg.com/profile_images/1361031516/IMG_0001_400x400.JPG',
+      cover: '',
       reactions: {
         pro: 100,
         con: 100,
@@ -46,7 +46,7 @@ import { User, Post } from '@/types/Post'
       id: "3",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: 'https://pbs.twimg.com/profile_images/1361031516/IMG_0001_400x400.JPG',
+      cover: '',
       reactions: {
         pro: 100,
         con: 100,
@@ -57,11 +57,44 @@ import { User, Post } from '@/types/Post'
       id: "4",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: 'https://pbs.twimg.com/profile_images/1361031516/IMG_0001_400x400.JPG',
+      cover: '',
       reactions: {
         pro: 100,
         con: 100,
         replies: 100,
       }
-    }
+    },
+    {
+      id: "5",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: 'chillgirl_tnjodj.jpg',
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "6",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: '',
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "7",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: '',
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
   ]

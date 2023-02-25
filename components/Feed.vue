@@ -1,5 +1,7 @@
 <script setup lang="ts">
   import { feed } from "@/dummydata/posts"
+  const duration = Math.floor(Math.random() * 2000) + 2000
+  const { value } = useSwitch(duration)
 </script>
 
 <template>
@@ -8,7 +10,20 @@
       v-for="post in feed" 
       :key="post.id"
       :post="post"
-    />
+      :loading="value"
+      :duration="duration"
+    >
+      <PostPicture
+        v-if="post.cover"
+        :post="post"
+        :loading="value"
+      />
+      <PostText
+        v-else
+        :post="post"
+        :loading="value"
+      />
+    </Post>
   </div>
 </template>
 
@@ -20,10 +35,16 @@
     gap: var(--gap);
     margin-top: var(--gap);
     padding-bottom: var(--space-xl);
+  }
 
+  div.feed {
     & > * { grid-column: span 2; }
     @media only screen and (max-width: 1250px) {
       & > * { grid-column: span 4; }
     }
+  }
+
+  div.feed > *:nth-of-type(3) {
+    grid-column: span 4;
   }
 </style>

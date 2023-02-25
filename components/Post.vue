@@ -1,35 +1,14 @@
 <script setup lang="ts">
   import { Post } from '@/types/Post'
-  const props = defineProps<{post: Post}>()
+  defineProps<{post: Post, loading: boolean, duration: number}>()
   const avatarSize = ref(30)
   const avatarResolution = ref(30)
-
-  const texts = [
-    "Hey, david! How are you?",
-    "I'm fine, thanks! How are you?",
-    props.post.content,
-    "The layers structure is almost identical to a standard Nuxt application, which makes them easy to author and maintain.",
-    "I'm fine, thanks! How are you?",
-  ]
-
-  const duration = Math.floor(Math.random() * 2000) + 2000
-  const content = ref(texts[0])
-  const { value } = useSwitch(duration)
-
-  function rng(max: number = 11) {
-    return Math.floor(Math.random() * max);
-  }
-
-  watch(value, () => {
-    const index = rng(texts.length)
-    content.value = texts[index]
-  })
 </script>
 
 <template>
   <div class="post panel">
-    <Loader :loading="value" :duration="duration">
-      <p v-if="true">{{ content }}</p>
+    <Loader :loading="loading" :duration="duration">
+      <slot></slot>
     </Loader>
     <div
       class="author" 
