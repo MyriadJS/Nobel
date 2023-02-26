@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { feed } from "@/dummydata/posts"
   const duration = Math.floor(Math.random() * 2000) + 2000
-  const { value } = useSwitch(duration)
+  const { value } = useSwitch(duration, true)
 </script>
 
 <template>

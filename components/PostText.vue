@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { Post } from '@/types/Post'
-  const props = defineProps<{post: Post, loading: boolean}>()
+  const props = defineProps<{post: Post, loading: boolean, class?: string}>()
 
   const texts = [
     "Hey, david! How are you?",
@@ -23,9 +23,14 @@
 </script>
 
 <template>
-  <p v-if="true">{{ content }}</p>
+  <div class="post-content post-flex" :class="class">
+    <p v-if="post.content">{{ content }}</p>
+    <nuxt-img
+      v-if="post.cover"
+      provider="cloudinary"
+      :src="post.cover"
+      :width="300"
+      alt="avatar"
+    />
+  </div>
 </template>
-
-<style lang="scss">
-
-</style>

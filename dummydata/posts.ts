@@ -19,12 +19,39 @@ import { User, Post } from '@/types/Post'
     },
   }
 
+  const postExample = {
+    id: "1",
+    user: user1,
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+    cover: '',
+    parent: null,
+    reactions: {
+      pro: 100,
+      con: 100,
+      replies: 100,
+    }
+  }
+
+  const otherExample =  {
+    id: "5",
+    user: user1,
+    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+    cover: 'etty-fidele-J1jYLLlRpA4-unsplash_yb3gr4.jpg',
+    parent: postExample,
+    reactions: {
+      pro: 100,
+      con: 100,
+      replies: 100,
+    }
+  }
+
   export const feed: Post[] = [
     {
       id: "1",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
       cover: '',
+      parent: null,
       reactions: {
         pro: 100,
         con: 100,
@@ -36,6 +63,7 @@ import { User, Post } from '@/types/Post'
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
       cover: '',
+      parent: null,
       reactions: {
         pro: 100,
         con: 100,
@@ -47,6 +75,7 @@ import { User, Post } from '@/types/Post'
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
       cover: '',
+      parent: postExample,
       reactions: {
         pro: 100,
         con: 100,
@@ -58,6 +87,7 @@ import { User, Post } from '@/types/Post'
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
       cover: '',
+      parent: null,
       reactions: {
         pro: 100,
         con: 100,
@@ -69,6 +99,7 @@ import { User, Post } from '@/types/Post'
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
       cover: 'chillgirl_tnjodj.jpg',
+      parent: null,
       reactions: {
         pro: 100,
         con: 100,
@@ -80,6 +111,7 @@ import { User, Post } from '@/types/Post'
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
       cover: '',
+      parent: null,
       reactions: {
         pro: 100,
         con: 100,
@@ -91,6 +123,79 @@ import { User, Post } from '@/types/Post'
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
       cover: '',
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "6",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: '',
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "7",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: '',
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "5",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: 'chillgirl_tnjodj.jpg',
+      parent: otherExample,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "1",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: '',
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "2",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: '',
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "3",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: '',
+      parent: postExample,
       reactions: {
         pro: 100,
         con: 100,

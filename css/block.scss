@@ -26,6 +26,14 @@
   background-color: var(--shade);
 }
 
+.post-flex {
+  display: flex;
+  gap: var(--space);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .color-flip, html {
   filter: invert(90);
   img, .img {
