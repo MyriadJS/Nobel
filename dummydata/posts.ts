@@ -23,7 +23,7 @@ import { User, Post } from '@/types/Post'
     id: "1",
     user: user1,
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-    cover: '',
+    cover: [],
     parent: null,
     reactions: {
       pro: 100,
@@ -36,7 +36,7 @@ import { User, Post } from '@/types/Post'
     id: "5",
     user: user1,
     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-    cover: 'etty-fidele-J1jYLLlRpA4-unsplash_yb3gr4.jpg',
+    cover: ['etty-fidele-J1jYLLlRpA4-unsplash_yb3gr4.jpg', 'headshot12_ttdryb.jpg'],
     parent: postExample,
     reactions: {
       pro: 100,
@@ -50,7 +50,7 @@ import { User, Post } from '@/types/Post'
       id: "1",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: '',
+      cover: [],
       parent: null,
       reactions: {
         pro: 100,
@@ -62,7 +62,7 @@ import { User, Post } from '@/types/Post'
       id: "2",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: '',
+      cover: [],
       parent: null,
       reactions: {
         pro: 100,
@@ -74,7 +74,7 @@ import { User, Post } from '@/types/Post'
       id: "3",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: '',
+      cover: [],
       parent: postExample,
       reactions: {
         pro: 100,
@@ -86,7 +86,7 @@ import { User, Post } from '@/types/Post'
       id: "4",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: '',
+      cover: [],
       parent: null,
       reactions: {
         pro: 100,
@@ -98,7 +98,7 @@ import { User, Post } from '@/types/Post'
       id: "5",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: 'chillgirl_tnjodj.jpg',
+      cover: ['chillgirl_tnjodj.jpg'],
       parent: null,
       reactions: {
         pro: 100,
@@ -110,7 +110,7 @@ import { User, Post } from '@/types/Post'
       id: "6",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: '',
+      cover: [],
       parent: null,
       reactions: {
         pro: 100,
@@ -122,7 +122,7 @@ import { User, Post } from '@/types/Post'
       id: "7",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: '',
+      cover: [],
       parent: null,
       reactions: {
         pro: 100,
@@ -134,7 +134,7 @@ import { User, Post } from '@/types/Post'
       id: "6",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: '',
+      cover: [],
       parent: null,
       reactions: {
         pro: 100,
@@ -146,7 +146,7 @@ import { User, Post } from '@/types/Post'
       id: "7",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: '',
+      cover: [],
       parent: null,
       reactions: {
         pro: 100,
@@ -158,7 +158,7 @@ import { User, Post } from '@/types/Post'
       id: "5",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: 'chillgirl_tnjodj.jpg',
+      cover: ['chillgirl_tnjodj.jpg'],
       parent: otherExample,
       reactions: {
         pro: 100,
@@ -170,7 +170,7 @@ import { User, Post } from '@/types/Post'
       id: "1",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: '',
+      cover: [],
       parent: null,
       reactions: {
         pro: 100,
@@ -182,7 +182,7 @@ import { User, Post } from '@/types/Post'
       id: "2",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: '',
+      cover: [],
       parent: null,
       reactions: {
         pro: 100,
@@ -194,8 +194,80 @@ import { User, Post } from '@/types/Post'
       id: "3",
       user: user1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
-      cover: '',
+      cover: [],
       parent: postExample,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "5",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: [],
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "2",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: ['jevgeni-fil-TIkpqtEUMtQ-unsplash_qff7be.jpg', 'chillgirl_tnjodj.jpg', 'headshot12_ttdryb.jpg'],
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "3",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: ['jevgeni-fil-TIkpqtEUMtQ-unsplash_qff7be.jpg', 'chillgirl_tnjodj.jpg', 'etty-fidele-J1jYLLlRpA4-unsplash_yb3gr4.jpg', 'headshot12_ttdryb.jpg'],
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "1",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: [],
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "2",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: [],
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "3",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: ['jevgeni-fil-TIkpqtEUMtQ-unsplash_qff7be.jpg'],
+      parent: null,
       reactions: {
         pro: 100,
         con: 100,
