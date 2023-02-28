@@ -274,4 +274,28 @@ import { User, Post } from '@/types/Post'
         replies: 100,
       }
     },
+    {
+      id: "3",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: ['jevgeni-fil-TIkpqtEUMtQ-unsplash_qff7be.jpg', 'chillgirl_tnjodj.jpg', 'etty-fidele-J1jYLLlRpA4-unsplash_yb3gr4.jpg', 'headshot12_ttdryb.jpg', 'chillgirl_tnjodj.jpg', 'etty-fidele-J1jYLLlRpA4-unsplash_yb3gr4.jpg', 'headshot12_ttdryb.jpg'],
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
+    {
+      id: "3",
+      user: user1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante. Sed euismod, nisl vel ultricies lacinia, nunc nisl aliquam massa, eget aliquam nisl nisl eu ante.',
+      cover: ['jevgeni-fil-TIkpqtEUMtQ-unsplash_qff7be.jpg', 'chillgirl_tnjodj.jpg', 'etty-fidele-J1jYLLlRpA4-unsplash_yb3gr4.jpg', 'headshot12_ttdryb.jpg', 'chillgirl_tnjodj.jpg', 'etty-fidele-J1jYLLlRpA4-unsplash_yb3gr4.jpg', 'headshot12_ttdryb.jpg', 'jevgeni-fil-TIkpqtEUMtQ-unsplash_qff7be.jpg', 'chillgirl_tnjodj.jpg', 'etty-fidele-J1jYLLlRpA4-unsplash_yb3gr4.jpg', 'headshot12_ttdryb.jpg', 'chillgirl_tnjodj.jpg', 'etty-fidele-J1jYLLlRpA4-unsplash_yb3gr4.jpg', 'headshot12_ttdryb.jpg'],
+      parent: null,
+      reactions: {
+        pro: 100,
+        con: 100,
+        replies: 100,
+      }
+    },
   ]
