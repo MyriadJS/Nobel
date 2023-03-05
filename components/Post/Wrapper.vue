@@ -1,12 +1,22 @@
 <script setup lang="ts">
   import { Post } from '@/types/Post'
-  defineProps<{post: Post, loading: boolean, duration: number}>()
+
+  defineProps<{
+    post: Post
+    loading: boolean
+    duration: number
+  }>()
+
   const avatarSize = ref(30)
   const avatarResolution = ref(30)
+
+  function hasContent(post: Post) {
+    return Boolean(post.content || post.cover.length)
+  }
 </script>
 
 <template>
-  <div class="post panel">
+  <div class="post panel" v-if="hasContent(post)">
     <Loading :loading="loading" :duration="duration">
       <slot></slot>
     </Loading>
@@ -22,9 +32,14 @@
       />
     </div>
   </div>
+  <UserChip v-else :author="post.user.author"/>
 </template>
 
 <style lang="scss">
+  #UserChip {
+    grid-column: span 1;
+  }
+
   .post {
     display: flex;
     justify-content: center;
@@ -34,6 +49,7 @@
     padding: 0px;
     position: relative;
     gap: var(--space-s);
+    
     & > p {
       position: relative;
       z-index: 3;

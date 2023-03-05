@@ -7,7 +7,7 @@
 <template>
   <div class="feed page">
     <PostWrapper
-      v-for="post in feed" 
+      v-for="post in feed"
       :key="post.id"
       :post="post"
       :loading="value"
