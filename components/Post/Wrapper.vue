@@ -7,9 +7,9 @@
 
 <template>
   <div class="post panel">
-    <Loader :loading="loading" :duration="duration">
+    <Loading :loading="loading" :duration="duration">
       <slot></slot>
-    </Loader>
+    </Loading>
     <div
       class="author" 
       @mouseenter="avatarResolution = 250"
