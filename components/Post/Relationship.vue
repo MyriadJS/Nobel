@@ -10,6 +10,7 @@
       :post="post.parent" 
       :loading="loading"
       class="quote"
+      :size="50"
     />
     <PostContent
       v-if="post.content" 
@@ -21,13 +22,14 @@
 
 <style lang="scss">
 .post-flex {
-  border: var(--border);
+  //border: var(--border);
 }
 
 .post-flex .quote {
-  border: var(--border);
-  border-radius: var(--radius);
-  padding-top: var(--space-s);
+  border-bottom: var(--border);
+  //border-radius: var(--radius);
+  padding-bottom: var(--space-s);
+  opacity: 0.2;
 }
 
 .post-flex .quote > * {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { Post } from '@/types/Post'
-  const props = defineProps<{post: Post, loading: boolean, class?: string, img?: boolean}>()
+  const props = defineProps<{post: Post, loading: boolean, class?: string, img?: boolean, size?: number}>()
 
   const texts = [
     "Hey, david! How are you?",
@@ -28,6 +28,7 @@
     <PostGallery
       v-if="post.cover.length > 0"
       :images="post.cover"
+      :size="size"
     />
   </div>
 </template>

@@ -1,6 +1,10 @@
 <script setup lang="ts">
-  const props = defineProps<{images: string[]}>()
+  const props = defineProps<{images: string[], size?: number}>()
   const first4 = props.images.slice(0, 4)
+  const imgHeight = computed(() => {
+    if (props.size) return props.size
+    return 300
+  })
 </script>
 
 <template>
@@ -31,8 +35,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   width: 100%;
-  height: 100px;
-  //border: var(--border);
+  height: calc(v-bind(imgHeight) * 1px);
   border-radius: var(--radius);
 }
 

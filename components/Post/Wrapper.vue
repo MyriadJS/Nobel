@@ -16,7 +16,7 @@
       @mouseleave="avatarResolution = 30"
     >
       <UserAvatar
-        v-if="false"
+        v-if="true"
         :src="post.user.author.avatar"
         :resolution="avatarResolution"
       />
