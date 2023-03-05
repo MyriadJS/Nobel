@@ -32,8 +32,8 @@
 </script>
 
 <template>
-  <Typography :post="feed[0]"/>
-  <Feed/>
+  <NobelMain :post="feed[0]"/>
+  <PostFeed/>
 </template>
 
 <style lang="scss">

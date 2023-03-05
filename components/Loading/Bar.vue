@@ -5,9 +5,7 @@ withDefaults(defineProps<{progress: number}>(),{
 </script>
 
 <template>
-  <div class="loadingbar">
-
-  </div>
+  <div class="loadingbar"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -17,7 +15,6 @@ withDefaults(defineProps<{progress: number}>(),{
   background: var(--accent);
   transition: .1s;
 }
-
 
 .loader.loading .loadingbar {
   background-color: red;

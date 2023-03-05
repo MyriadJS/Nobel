@@ -25,7 +25,7 @@
 <template>
   <div class="post-content post-flex" :class="class">
     <p v-if="post.content">{{ content }}</p>
-    <Gallery
+    <PostGallery
       v-if="post.cover.length > 0"
       :images="post.cover"
     />

@@ -6,24 +6,24 @@
 
 <template>
   <div class="feed page">
-    <Post
+    <PostWrapper
       v-for="post in feed" 
       :key="post.id"
       :post="post"
       :loading="value"
       :duration="duration"
     >
-      <PostPicture
+      <PostRelationship
         v-if="post.cover"
         :post="post"
         :loading="value"
       />
-      <PostText
+      <PostContent
         v-else
         :post="post"
         :loading="value"
       />
-    </Post>
+    </PostWrapper>
   </div>
 </template>
 

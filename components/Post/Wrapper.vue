@@ -15,7 +15,8 @@
       @mouseenter="avatarResolution = 250"
       @mouseleave="avatarResolution = 30"
     >
-      <Avatar 
+      <UserAvatar
+        v-if="false"
         :src="post.user.author.avatar"
         :resolution="avatarResolution"
       />
@@ -30,6 +31,7 @@
     align-items: center;
     flex-direction: column;
 
+    padding: 0px;
     position: relative;
     gap: var(--space-s);
     & > p {

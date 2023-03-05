@@ -18,8 +18,8 @@
       <slot/>
     </AutoSize>
     <div class="spin">
-      <Spinner v-if="true" :steps="40"/>
-      <Bar v-if="false" :progress="progress"/>
+      <SpinnerSinewave v-if="true" :steps="40"/>
+      <LoadingBar v-if="false" :progress="progress"/>
     </div>
   </div>
 </template>

@@ -1,8 +1,6 @@
 <script setup lang="ts">
   const props = defineProps<{images: string[]}>()
   const first4 = props.images.slice(0, 4)
-  const maxReached = props.images.length > 9;
-  const amount = maxReached ? "9+" : props.images.length 
 </script>
 
 <template>
@@ -12,6 +10,9 @@
       v-for="image in first4"
       :key="image"
     >
+      <div class="meta" v-if="images.length > 4">
+        <h1>{{ images.length }}</h1>
+      </div>
       <nuxt-img
         provider="cloudinary"
         alt="avatar"
@@ -23,29 +24,50 @@
 </template>
 
 <style lang="scss">
-
 .gallery {
   position: relative;
-
+  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  //gap: var(--space-s);
   width: 100%;
   height: 300px;
-  border: var(--border);
-  //padding: var(--space-s);
+  //border: var(--border);
   border-radius: var(--radius);
-  overflow: hidden;
 }
 
-.gallery.maxReached img:after {
-  content: "9+";
+.gallery.maxReached .image .meta {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gallery.maxReached .image h1 {
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+  user-select: none;
+}
+
+.gallery.maxReached .image .meta::after {
+  content: "";
   position: absolute;
   z-index: 1;
   width: 100%;
   height: 100%;
-  background: var(--accent);
+  background: var(--shade);
+  opacity: 1;
+  opacity: 0.8;
+}
+
+.gallery.maxReached .image:nth-last-child(1) .meta {
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  opacity: 1;
+  //color: var(--accent-contrast);
 }
 
 .gallery .image img {
@@ -57,6 +79,7 @@
 .gallery .image {
   object-fit: cover;
   overflow: hidden;
+  position: relative;
 }
 
 .gallery:has(> :last-child:nth-child(1)) .image {

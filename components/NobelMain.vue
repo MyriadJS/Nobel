@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div id="open" class="page panel">
+  <main id="open" class="page panel">
     <h1>Title</h1>
     <h2>Title</h2>
     <h3>Title</h3>
@@ -27,7 +27,7 @@
         :resolution="avatarResolution"
       />
     </div>
-  </div>
+  </main>
 </template>
 
 <style lang="scss">
