@@ -14,12 +14,6 @@
       :duration="duration"
     >
       <PostRelationship
-        v-if="post.cover"
-        :post="post"
-        :loading="value"
-      />
-      <PostContent
-        v-else
         :post="post"
         :loading="value"
       />

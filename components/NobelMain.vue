@@ -22,7 +22,7 @@
         application, which makes them easy to author and maintain.</p>
     </div>
     <div class="author">
-      <Avatar 
+      <UserAvatar 
         :src="post.user.author.avatar"
         :resolution="avatarResolution"
       />

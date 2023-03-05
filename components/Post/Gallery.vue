@@ -31,7 +31,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   width: 100%;
-  height: 300px;
+  height: 100px;
   //border: var(--border);
   border-radius: var(--radius);
 }
