@@ -60,9 +60,9 @@
       pointer-events:none;
     }
 
-    &:hover .avatar {
-      transform: scale(7);
-      clip-path: polygon(0 0,100% 0,100% 50%,0 50%);
-    }
+    //&:hover .avatar {
+      //transform: scale(7);
+      //clip-path: polygon(0 0,100% 0,100% 50%,0 50%);
+    //}
   }
 </style>

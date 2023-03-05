@@ -33,7 +33,7 @@ interface Reactions {
 export interface Post {
   id: string,
   user: User,
-  content: string,
+  content?: string,
   cover: string[],
   parent: Post | null,
   reactions: Reactions

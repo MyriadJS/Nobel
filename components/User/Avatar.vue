@@ -10,6 +10,7 @@ withDefaults(defineProps<Props>(),{
     <SpinnerSinewave 
       :steps="3" 
       :wobble="true"
+      v-if="false"
     />
     <div class="avatar">
       <nuxt-img

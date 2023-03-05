@@ -1,6 +1,10 @@
 <script setup lang="ts">
-  const props = defineProps<{images: string[], size?: number}>()
-  const first4 = props.images.slice(0, 4)
+  const props = defineProps<{images: string[], size?: number, max?: number}>()
+
+  const max = props.max || 4
+  const maxReached = props.images.length > max
+
+  const sliced = props.images.slice(0, max)
   const imgHeight = computed(() => {
     if (props.size) return props.size
     return 300
@@ -8,13 +12,13 @@
 </script>
 
 <template>
-  <div class="gallery" :class="{maxReached: images.length > 4}">
+  <div class="gallery" :class="{maxReached: maxReached}">
     <div 
       class="image"  
-      v-for="image in first4"
+      v-for="image in sliced"
       :key="image"
     >
-      <div class="meta" v-if="images.length > 4">
+      <div class="meta" v-if="maxReached">
         <h1>{{ images.length }}</h1>
       </div>
       <nuxt-img
@@ -33,7 +37,7 @@
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  //grid-template-rows: 1fr 1fr;
   width: 100%;
   height: calc(v-bind(imgHeight) * 1px);
   border-radius: var(--radius);
@@ -47,7 +51,7 @@
   pointer-events: none;
 }
 
-.gallery.maxReached .image h1 {
+.gallery.maxReached .image .meta h1 {
   opacity: 1;
   position: relative;
   z-index: 2;

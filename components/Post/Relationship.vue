@@ -10,10 +10,9 @@
       :post="post.parent" 
       :loading="loading"
       class="quote"
-      :size="50"
+      size="small"
     />
     <PostContent
-      v-if="post.content" 
       :post="post" 
       :loading="loading"
     />
@@ -29,7 +28,7 @@
   border-bottom: var(--border);
   //border-radius: var(--radius);
   padding-bottom: var(--space-s);
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 .post-flex .quote > * {
