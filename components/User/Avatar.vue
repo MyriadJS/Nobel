@@ -7,7 +7,7 @@ withDefaults(defineProps<Props>(),{
 
 <template>
   <div class="relative">
-    <Spinner 
+    <SpinnerSinewave 
       :steps="3" 
       :wobble="true"
     />
@@ -17,6 +17,7 @@ withDefaults(defineProps<Props>(),{
         :src="src"
         :width="resolution ? resolution : size"
         alt="avatar"
+        v-if="true"
       />
     </div>
   </div>
