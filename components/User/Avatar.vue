@@ -6,13 +6,13 @@ withDefaults(defineProps<Props>(),{
 </script>
 
 <template>
-  <div class="relative">
+  <div class="avatar">
     <SpinnerSinewave 
       :steps="3" 
       :wobble="true"
       v-if="false"
     />
-    <div class="avatar">
+    <div class="avatar-img">
       <nuxt-img
         provider="cloudinary"
         :src="src"
@@ -25,7 +25,7 @@ withDefaults(defineProps<Props>(),{
 </template>
 
 <style lang="scss" scoped>
-.relative {
+.avatar {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +37,7 @@ withDefaults(defineProps<Props>(),{
   z-index: 10;
 }
 
-.avatar {
+.avatar-img {
   position: relative;
   width: calc(v-bind(size) * 1px);
 

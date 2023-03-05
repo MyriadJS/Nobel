@@ -40,7 +40,7 @@
   display: flex;
   justify-content: center;
 
-  .avatar {
+  .avatar-img {
     transform: scale(3);
   }
 }

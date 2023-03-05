@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { Post } from '@/types/Post'
-  const props = defineProps<{post: Post, loading: boolean, class?: string, img?: boolean, size?: string}>()
+  const props = defineProps<{post: Post, loading: boolean, class?: string, img?: boolean, size?: string }>()
 
   const texts = [
     "Hey, david! How are you?",
@@ -20,22 +20,27 @@
     const index = rng(texts.length)
     content.value = texts[index]
   })
+
+  const smallSize = computed(() => {
+    return props.size === 'small'
+  })
 </script>
 
 <template>
-  <div class="post-content post-flex" :class="class">
+  <div class="content-wrapper post-flex" :class="class">
     <p v-if="post.content">{{ content }}</p>
     <PostGallery
       v-if="post.cover.length > 0"
       :images="post.cover"
-      :size="size === 'small' ? 50 : 300"
-      :max="size === 'small' ? 2 : 4"
+      :size="smallSize ? 50 : 300"
+      :max="smallSize ? 2 : 4"
     />
+    <slot/>
   </div>
 </template>
 
 <style lang="scss">
-  .post:has(.post-content img) {
+  .post:has(.content-wrapper img) {
     grid-row: span 3;
   }
 </style>

@@ -51,7 +51,7 @@
     width: 100%;
     padding-top: 50px;
 
-    .avatar {
+    .avatar-img {
       display: flex;
       justify-content: center;
       align-items: center;

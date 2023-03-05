@@ -1,6 +1,8 @@
 <script setup lang="ts">
   import { Post } from '@/types/Post'
   defineProps<{post: Post, loading: boolean, class?: string}>()
+
+  const AvatarSize = 15
 </script>
 
 <template>
@@ -11,7 +13,12 @@
       :loading="loading"
       class="quote"
       size="small"
-    />
+    >
+      <UserAvatar
+        :src="post.parent.user.author.avatar"
+        :size="AvatarSize"
+      />
+    </PostContent>
     <PostContent
       :post="post" 
       :loading="loading"
@@ -20,19 +27,16 @@
 </template>
 
 <style lang="scss">
-.post-flex {
-  //border: var(--border);
-}
-
 .post-flex .quote {
+  position: relative;
   border-bottom: var(--border);
-  //border-radius: var(--radius);
-  padding-bottom: var(--space-s);
+  padding-bottom: var(--space);
+  margin-bottom: var(--space-s);
   opacity: 0.5;
-}
 
-.post-flex .quote > * {
-  //transform: scale(0.5);
-  //opacity: 0.5;
+  .avatar {
+    position: absolute;
+    bottom: calc((v-bind(AvatarSize) / 2) * -1px);
+  }
 }
 </style>
