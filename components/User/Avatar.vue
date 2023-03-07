@@ -1,17 +1,19 @@
 <script setup lang="ts">
-interface Props {src: string, size?: number, resolution?: number}
+interface Props {src: string, size?: number, resolution?: number, loading?: boolean}
 withDefaults(defineProps<Props>(),{
-  size: 30
+  size: 30,
+  loading: false,
 })
 </script>
 
 <template>
   <div class="avatar">
-    <SpinnerSinewave 
-      :steps="3" 
-      :wobble="true"
-      v-if="false"
-    />
+    <div v-if="loading">
+      <SpinnerSinewave
+        :steps="3" 
+        :wobble="true"
+      />
+    </div>
     <div class="avatar-img">
       <nuxt-img
         provider="cloudinary"
