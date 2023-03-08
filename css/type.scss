@@ -19,31 +19,31 @@ body {
   line-height: 1.5;
 }
 
-h1, h2, h3, button {
+h1, .h1, h2, .h2, h3, .h3, button {
   max-width: 55ch;
   text-transform: uppercase;
 }
 
-h1 {
+h1, .h1 {
   font-size: 5rem;
   line-height: 5rem;
   font-variation-settings: var(--font-bold);
 }
 
-h2 {
+h2, .h2 {
   font-size: 3rem;
   line-height: 3rem;
   font-variation-settings: var(--font-bold);
 }
 
-h3 {
+h3, .h3 {
   font-size: 2rem;
   line-height: 2rem;
   letter-spacing: -0.5px;
   font-variation-settings: var(--font-medium);
 }
 
-p, button, .bodycopy {
+p, button, .bodycopy, blockquote {
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.3rem;

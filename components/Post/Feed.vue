@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="feed page">
+  <section class="feed page">
     <PostWrapper
       v-for="post in feed"
       :key="post.id"
@@ -18,11 +18,11 @@
         :loading="value"
       />
     </PostWrapper>
-  </div>
+  </section >
 </template>
 
 <style lang="scss">
-  div.feed {
+  section.feed {
     display: grid;
     grid-template-columns: repeat(4,1fr);
     --gap: var(--space-m);
@@ -31,14 +31,14 @@
     padding-bottom: var(--space-xl);
   }
 
-  div.feed {
+  section.feed {
     & > * { grid-column: span 2; }
     @media only screen and (max-width: 1250px) {
       & > * { grid-column: span 4; }
     }
   }
 
-  div.feed > *:nth-of-type(3) {
+  section.feed > *:nth-of-type(3) {
     grid-column: span 4;
   }
 </style>

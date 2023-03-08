@@ -20,6 +20,9 @@
         reuse Nuxt applications within a monorepo, or from a git repository
         or npm package. The layers structure is almost identical to a standard Nuxt 
         application, which makes them easy to author and maintain.</p>
+      <blockquote cite="https://ruwix.com/">
+        The Rubik's Cube is the World’s best selling puzzle toy.
+      </blockquote> 
     </div>
     <div class="author">
       <UserAvatar 
