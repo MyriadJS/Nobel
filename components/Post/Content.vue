@@ -29,7 +29,7 @@
 <template>
   <div class="content-wrapper post-flex" :class="class">
     <p v-if="post.content">{{ content }}</p>
-    <PostGallery
+    <ImageGallery
       v-if="post.cover.length > 0"
       :images="post.cover"
       :size="smallSize ? 50 : 300"

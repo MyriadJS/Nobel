@@ -14,7 +14,7 @@
 <template>
   <div class="gallery" :class="{maxReached: maxReached}">
     <div 
-      class="image"  
+      class="image"
       v-for="image in sliced"
       :key="image"
     >
