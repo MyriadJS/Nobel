@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      htmlAttrs: { lang: 'en' },
       charset: 'utf-16',
       viewport: 'width=500, initial-scale=1',
       title: 'Nobel',

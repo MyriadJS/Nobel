@@ -46,7 +46,6 @@
     align-items: center;
     flex-direction: column;
 
-    padding: 0px;
     position: relative;
     gap: var(--space-s);
     
