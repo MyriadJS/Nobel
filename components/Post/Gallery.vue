@@ -19,7 +19,7 @@
       :key="image"
     >
       <div class="meta" v-if="maxReached">
-        <h1>{{ images.length }}</h1>
+        <p class="h1">{{ images.length }}</p>
       </div>
       <nuxt-img
         provider="cloudinary"
@@ -51,7 +51,7 @@
   pointer-events: none;
 }
 
-.gallery.maxReached .image .meta h1 {
+.gallery.maxReached .image .meta p.h1 {
   opacity: 1;
   position: relative;
   z-index: 2;
