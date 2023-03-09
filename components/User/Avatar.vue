@@ -1,6 +1,11 @@
 <script setup lang="ts">
-interface Props {src: string, size?: number, resolution?: number, loading?: boolean}
-withDefaults(defineProps<Props>(),{
+interface Props {
+  src: string
+  size?: number
+  resolution?: number
+  loading?: boolean
+}
+withDefaults(defineProps<Props>(), {
   size: 30,
   loading: false,
 })
@@ -9,10 +14,10 @@ withDefaults(defineProps<Props>(),{
 <template>
   <div class="avatar">
     <div v-if="loading">
-      <SpinnerSinewave
+      <!-- <SpinnerSinewave
         :steps="3" 
         :wobble="true"
-      />
+      /> -->
     </div>
     <div class="avatar-img">
       <nuxt-img
@@ -50,7 +55,7 @@ withDefaults(defineProps<Props>(),{
   background-color: var(--background);
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -60,7 +65,7 @@ withDefaults(defineProps<Props>(),{
     background: var(--accent);
     opacity: 0.5;
   }
-  
+
   img {
     width: 100%;
     height: 100%;

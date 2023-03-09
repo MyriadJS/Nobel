@@ -6,6 +6,7 @@
 
 <template>
   <section class="feed page">
+    <UtilDivider/>
     <PostWrapper
       v-for="post in feed"
       :key="post.id"

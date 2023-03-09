@@ -3,6 +3,7 @@
     loading: boolean;
     duration?: number;
   }
+  
   const props = defineProps<Props>()
   const loading = toRef(props, 'loading')
 
@@ -18,7 +19,7 @@
       <slot/>
     </AutoSize>
     <div class="spin">
-      <SpinnerSinewave v-if="true" :steps="40"/>
+      <!-- <SpinnerSinewave v-if="true" :steps="40"/> -->
       <LoadingBar v-if="false" :progress="progress"/>
     </div>
   </div>

@@ -1,7 +1,11 @@
 :root {
   --border-size: 1px;
   --border-color: var(--foreground);
-  --border: var(--border-size) solid var(--border-color);
+  --border-style: solid;
+  --border: 
+    var(--border-size) 
+    var(--border-style)
+    var(--border-color);
 }
 
 .page {

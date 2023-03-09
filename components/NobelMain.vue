@@ -1,7 +1,18 @@
 <script setup lang="ts">
+  import { useEditor, EditorContent } from '@tiptap/vue-3'
+  import StarterKit from '@tiptap/starter-kit'
   import { Post } from '@/types/Post'
+
   defineProps<{post: Post}>()
   const avatarResolution = ref(200)
+
+  const editor = useEditor({
+    content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
+    extensions: [
+      StarterKit,
+    ],
+  })
+
 </script>
 
 <template>
@@ -22,7 +33,9 @@
         application, which makes them easy to author and maintain.</p>
       <blockquote cite="https://ruwix.com/">
         The Rubik's Cube is the World’s best selling puzzle toy.
-      </blockquote> 
+      </blockquote>
+
+      <EditorContent :editor="editor" />
     </div>
     <div class="author">
       <UserAvatar 

@@ -7,12 +7,12 @@ withDefaults(defineProps<{steps?: number, wobble?: boolean, dynamic?: boolean}>(
 
 <template>
   <div class="spinner" :class="{wobble: wobble}">
-    <SpinnerLine 
+    <!-- <SpinnerLine 
       v-for="step in steps" 
       :index="step"
       :length="steps"
       :key="step"
-    />
+    /> -->
   </div>
 </template>
 
