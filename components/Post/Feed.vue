@@ -26,7 +26,7 @@
 
 <style lang="scss">
   .feed #divider {
-    margin-top: var(--space-m);
+    margin-top: var(--space-l);
   }
 
   section.feed {
@@ -45,7 +45,7 @@
     }
   }
 
-  section.feed > *:nth-of-type(3) {
+  section.feed > *:nth-of-type(4) {
     grid-column: span 4;
   }
 </style>
