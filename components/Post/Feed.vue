@@ -6,7 +6,9 @@
 
 <template>
   <section class="feed page">
-    <UtilDivider/>
+    <UtilDivider>
+      <p>{{ feed.length }}</p>
+    </UtilDivider>
     <PostWrapper
       v-for="post in feed"
       :key="post.id"
@@ -23,6 +25,10 @@
 </template>
 
 <style lang="scss">
+  .feed #divider {
+    margin-top: var(--space-m);
+  }
+
   section.feed {
     display: grid;
     grid-template-columns: repeat(4,1fr);

@@ -1,20 +1,20 @@
-<script setup lang="ts">
-withDefaults(defineProps<{text?: string}>(),{
-  text: "",
-})
-</script>
-
 <template>
-  <hr id="divider">
+  <div id="divider">
+    <div class="content">
+      <slot/>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-  hr#divider {
+  #divider {
     position: relative;
+    grid-column: 1 / -1;
+    z-index: -1;
+    
     display: flex;
     justify-content: center;
 
-    grid-column: 1 / -1;
     --border-color: var(--shade);
     border-top: 
       var(--border-style) 
@@ -22,12 +22,15 @@ withDefaults(defineProps<{text?: string}>(),{
       var(--shade);
   }
 
-  hr#divider:after {
+  #divider .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background);
+    padding: 0px var(--space-s);
+    border-radius: var(--radius);
     position: absolute;
-    content: "";
-    display: block;
-    background: red;
-    width: 40px;
-    height: 40px;
+    height: 2rem;
+    top: calc(0px - 2rem / 2);
   }
 </style>
