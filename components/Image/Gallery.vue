@@ -1,32 +1,27 @@
 <script setup lang="ts">
-  const props = defineProps<{images: string[], size?: number, max?: number}>()
+const props = defineProps<{ 
+  images: string[]; 
+  compact?: boolean; 
+  max?: number 
+}>()
 
-  const max = props.max || 4
-  const maxReached = props.images.length > max
+const defaultMax = props.compact ? 2 : 4
+const max = props.max ? props.max : defaultMax
+const maxReached = props.images.length > max
 
-  const sliced = props.images.slice(0, max)
-  const imgHeight = computed(() => {
-    if (props.size) return props.size
-    return 300
-  })
+const sliced = props.images.slice(0, max)
+const imgHeight = computed(() => {
+  return props.compact ? 50 : 300
+})
 </script>
 
 <template>
-  <div class="gallery" :class="{maxReached: maxReached}">
-    <div 
-      class="image"
-      v-for="image in sliced"
-      :key="image"
-    >
+  <div class="gallery" :class="{ maxReached: maxReached }">
+    <div class="image" v-for="image in sliced" :key="image">
       <div class="meta" v-if="maxReached">
         <p class="h1">{{ images.length }}</p>
       </div>
-      <nuxt-img
-        provider="cloudinary"
-        alt="avatar"
-        :src="image"
-        :width="300"
-      />
+      <nuxt-img provider="cloudinary" alt="avatar" :src="image" :width="300" />
     </div>
   </div>
 </template>
@@ -59,7 +54,7 @@
 }
 
 .gallery.maxReached .image .meta::after {
-  content: "";
+  content: '';
   position: absolute;
   z-index: 1;
   width: 100%;
@@ -71,7 +66,7 @@
 
 .gallery.maxReached .image:nth-last-child(1) .meta {
   display: flex;
-  justify-content: center;  
+  justify-content: center;
   align-items: center;
   opacity: 1;
   //color: var(--accent-contrast);

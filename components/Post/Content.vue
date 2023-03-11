@@ -21,7 +21,7 @@
     content.value = texts[index]
   })
 
-  const smallSize = computed(() => {
+  const compact = computed(() => {
     return props.size === 'small'
   })
 </script>
@@ -32,8 +32,7 @@
     <ImageGallery
       v-if="post.cover.length > 0"
       :images="post.cover"
-      :size="smallSize ? 50 : 300"
-      :max="smallSize ? 2 : 4"
+      :compact="compact"
     />
     <slot/>
   </div>
