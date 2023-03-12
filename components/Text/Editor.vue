@@ -14,15 +14,14 @@
       }),
     ],
   })
-
 </script>
 
 <template>
   <EditorContent :editor="editor" />
-  <!-- <ImageGallery
-    v-if="post.cover.length > 0"
-    :images="post.cover"
-  /> -->
+  <UtilUpload />
+  <ImageGallery
+    :images=" ['chillgirl_tnjodj.jpg']"
+  />
   <div class="editor-meta" v-if="editor">
     <p>{{ characterLimit - editor.storage.characterCount.characters()  }}</p>
   </div>

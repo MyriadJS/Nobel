@@ -33,4 +33,8 @@
     height: 2rem;
     top: calc(0px - 2rem / 2);
   }
+
+  #divider .content:empty {
+    display: none;
+  }
 </style>

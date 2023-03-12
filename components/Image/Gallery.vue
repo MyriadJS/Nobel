@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const props = defineProps<{ 
-  images: string[]; 
-  compact?: boolean; 
-  max?: number 
+const props = defineProps<{
+  images: string[]
+  compact?: boolean
+  max?: number
 }>()
 
 const defaultMax = props.compact ? 2 : 4
@@ -21,7 +21,12 @@ const imgHeight = computed(() => {
       <div class="meta" v-if="maxReached">
         <p class="h1">{{ images.length }}</p>
       </div>
-      <nuxt-img provider="cloudinary" alt="avatar" :src="image" :width="300" />
+      <nuxt-img 
+        provider="cloudinary" 
+        alt="avatar" 
+        :src="image" 
+        :width="300" 
+      />
     </div>
   </div>
 </template>
