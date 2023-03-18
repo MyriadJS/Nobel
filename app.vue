@@ -1,8 +1,11 @@
 <script setup lang="ts">
   import { feed } from "@/dummydata/posts"
-  import { colorBus } from "myriad-mini"
-  import { getReadable, makeReadable } from 'myriad-mini/engine/primitives/color'
-  import { Myriad } from 'myriad-mini/engine/config'
+  import {
+    myriad,
+    getReadable,
+    makeReadable,
+    Myriad
+  } from "@myriadjs/core"
 
   function linkColor(m: Myriad) {
     if(!m.foreground) return "black"
@@ -17,7 +20,7 @@
   }
 
   onMounted(() => {
-    colorBus({
+    myriad({
       background: '#0c0915',
       foreground: '#c0aea3',
       accents: ['#c97074'],
