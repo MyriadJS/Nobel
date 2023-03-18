@@ -1,9 +1,12 @@
 <script setup lang="ts">
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   images: string[]
   compact?: boolean
-  max?: number
-}>()
+  max?: number,
+  nuxt?: boolean
+}>(), {
+  nuxt: true
+})
 
 const defaultMax = props.compact ? 2 : 4
 const max = props.max ? props.max : defaultMax
@@ -13,20 +16,21 @@ const sliced = props.images.slice(0, max)
 const imgHeight = computed(() => {
   return props.compact ? 50 : 300
 })
+
+watch(sliced, () => {
+  console.log('slice changed ' + sliced)
+})
 </script>
 
 <template>
   <div class="gallery" :class="{ maxReached: maxReached }">
-    <div class="image" v-for="image in sliced" :key="image">
+    <div class="image" v-for="src in sliced" :key="src">
       <div class="meta" v-if="maxReached">
         <p class="h1">{{ images.length }}</p>
       </div>
-      <nuxt-img 
-        provider="cloudinary" 
-        alt="avatar" 
-        :src="image" 
-        :width="300" 
-      />
+      <ImageTest
+        :src="src" 
+        :nuxt="nuxt"/>
     </div>
   </div>
 </template>

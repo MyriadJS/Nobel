@@ -1,0 +1,35 @@
+<script setup lang="ts">
+const props = withDefaults(defineProps<{
+  src: string
+  compact?: boolean
+  max?: number
+  nuxt?: boolean
+}>(), {
+  alt: "image",
+  width: 300,
+  nuxt: true
+})
+
+onMounted(() => {
+  if(props.nuxt) return
+  console.log("mounted", props.src, props.nuxt)
+})
+</script>
+
+<template>
+  <nuxt-img
+    v-if="nuxt"
+    provider="cloudinary"
+    v-bind="props"
+  />
+  <img
+    v-else
+    v-bind="props"
+  />
+</template>
+
+<style lang="scss">
+img {
+  background-color: var(--shade);
+}
+</style>

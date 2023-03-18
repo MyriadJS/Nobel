@@ -1,16 +1,19 @@
 <script setup lang="ts">
 const input = ref<HTMLInputElement | null>(null)
 const files = ref<null | FileList>(null)
-const { upload, uploading } = useUpload()
+//const { upload, uploading } = useUpload()
 
 async function handleChange(e: Event) {
   const target = e.target as HTMLInputElement
   files.value = target.files
-  console.log(target.files)
-
   //const url = await upload(target.files![0])
   //imgUrl.value = url
 }
+
+const urls = computed(() => {
+  if (!files.value) return []
+  return Array.from(files.value).map((file) => getSrc(file))
+})
 
 function getSrc(imgFile: File) {
   return URL.createObjectURL(imgFile)
@@ -26,13 +29,21 @@ function getSrc(imgFile: File) {
     multiple
     @change="handleChange"
   />
-  <slot :files="files">
+  <slot :urls="urls">
     <div class="images">
+
+      <ImageGallery
+        :images="urls"
+        :nuxt="false"
+        compact
+      />
+
       <img
-        v-for="(file, index) in files" 
-        :key="file.name"
+        v-if="false"
+        v-for="(url, index) in urls" 
+        :key="url"
         :alt="'uploaded image' + index"
-        :src="getSrc(file)"
+        :src="url"
         :width="300"
       />
     </div>

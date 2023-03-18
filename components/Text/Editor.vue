@@ -21,6 +21,7 @@
   <UtilUpload />
   <ImageGallery
     :images=" ['chillgirl_tnjodj.jpg']"
+    compact
   />
   <div class="editor-meta" v-if="editor">
     <p>{{ characterLimit - editor.storage.characterCount.characters()  }}</p>
