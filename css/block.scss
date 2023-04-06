@@ -38,7 +38,7 @@
   align-items: center;
 }
 
-.color-flip, html {
+.color-flip {
   filter: invert(90);
   img, .img {
     filter: invert(1);

@@ -1,5 +1,5 @@
 button {
-  border-radius: 0px;
+  border-radius: var(--radius);
   background: var(--background-10);
   border: none;
   border-top: solid 3px var(--flavor);
@@ -11,11 +11,12 @@ button {
   color: var(--foreground);
   padding: 0rem 2.5rem;
   min-height: 3rem;
-  transition: 0.8s ease-in-out;
+  transition: color 0.2s, background-color 0.2s;
   &:hover {
+    color: var(--background);
     background: var(--foreground-10);
     border-top: solid 0px var(--flavor);
-    transition: .2s ease-in-out;
+    //transition: .2s ease-in-out;
   }
   &:active {
     color: var(--background);

@@ -48,7 +48,12 @@ function getSrc(imgFile: File) {
       />
     </div>
   </slot>
-  <button type="button" @click="() => input?.click()">Change</button>
+
+  <Button 
+    type="button" 
+    @click="() => input?.click()"
+  >
+  </Button>
 </template>
 
 <style lang="scss" scoped>

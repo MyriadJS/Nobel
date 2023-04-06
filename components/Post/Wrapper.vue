@@ -20,11 +20,7 @@
     <Loading :loading="loading" :duration="duration">
       <slot></slot>
     </Loading>
-    <div
-      class="author" 
-      @mouseenter="avatarResolution = 250"
-      @mouseleave="avatarResolution = 30"
-    >
+    <div class="author">
       <UserAvatar
         v-if="true"
         :src="post.user.author.avatar"
