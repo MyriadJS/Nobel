@@ -2,14 +2,10 @@
 </script>
 
 <template>
-  <button 
-    type="button" 
-    v-bind="$attrs"
-  >
-    <div class="icon">
-      <i class="i-pixelarticons:chevron-left" ></i>
-    </div>
-    <p>Change</p>
+  <button type="button" >
+    <Icon icon="i-pixelarticons:chevron-left"/>
+    <slot>Click</slot>
+    <Icon style="opacity: 0;"/>
   </button>
 </template>
 
@@ -22,29 +18,10 @@ button {
   padding: 5px;
 }
 
-.icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: var(--radius);
-
-  background-color: var(--background-20);
-  aspect-ratio: 1/1;
-}
-
-i {
-  display: block;
-  width: 40px;
-}
-
-p {
-  margin: auto;
+button:focus,
+button:active {
+  outline: 2px 
+    var(--border-style)
+    var(--accent);
 }
 </style>
-
-<script>
-export default {
-  inheritAttrs: false
-}
-</script>

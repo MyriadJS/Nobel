@@ -9,7 +9,6 @@ button {
 button {
   cursor: pointer;
   color: var(--foreground);
-  padding: 0rem 2.5rem;
   min-height: 3rem;
   transition: color 0.2s, background-color 0.2s;
   &:hover {

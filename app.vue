@@ -13,6 +13,8 @@
         success: '#00ff00',
         error: '#ff0000',
       }
+    }, {
+      readability: 1,
     })
   })
 </script>

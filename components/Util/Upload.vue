@@ -53,6 +53,7 @@ function getSrc(imgFile: File) {
     type="button" 
     @click="() => input?.click()"
   >
+    Change
   </Button>
 </template>
 

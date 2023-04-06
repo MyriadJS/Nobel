@@ -72,4 +72,6 @@ p, button, .bodycopy, blockquote {
 
 button {
   font-variation-settings: var(--font-semibold);
+  font-weight: 900;
+  text-transform: lowercase;
 }
