@@ -15,11 +15,11 @@
     display: flex;
     justify-content: center;
 
-    --border-color: var(--shade);
+    --border-color: var(--background-10);
     border-top: 
       var(--border-style) 
       var(--border-size) 
-      var(--shade);
+      var(--background-10);
   }
 
   #divider .content {

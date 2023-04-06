@@ -30,6 +30,6 @@ onMounted(() => {
 
 <style lang="scss">
 img {
-  background-color: var(--shade);
+  background-color: var(--background-10);
 }
 </style>

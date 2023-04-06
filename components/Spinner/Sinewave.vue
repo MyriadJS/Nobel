@@ -27,7 +27,7 @@ withDefaults(defineProps<{steps?: number, wobble?: boolean, dynamic?: boolean}>(
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
-  background: var(--shade);
+  background: var(--background-10);
 
   transition: .4s, opacity .6s;
 }
