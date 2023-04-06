@@ -11,23 +11,23 @@
     "story:preview": "histoire preview"
   },
   "devDependencies": {
-    "@histoire/plugin-nuxt": "^0.14.2",
-    "@histoire/plugin-vue": "^0.14.2",
-    "@nuxt/devtools": "^0.1.2",
-    "@nuxt/image-edge": "^1.0.0-27919678.2f5b64b",
-    "eslint-config-prettier": "^8.7.0",
+    "@histoire/plugin-nuxt": "^0.15.9",
+    "@histoire/plugin-vue": "^0.15.8",
+    "@nuxt/devtools": "^0.3.1",
+    "@nuxt/image-edge": "^1.0.0-28008586.381b906",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "histoire": "^0.14.2",
-    "nuxt": "^3.1.2",
-    "nuxt-icon": "^0.2.10"
+    "histoire": "^0.15.9",
+    "nuxt": "^3.3.3",
+    "nuxt-icon": "^0.3.3"
   },
   "dependencies": {
-    "@myriadjs/core": "^0.0.46",
-    "@tiptap/extension-character-count": "^2.0.0-beta.220",
-    "@tiptap/pm": "^2.0.0-beta.220",
-    "@tiptap/starter-kit": "^2.0.0-beta.220",
-    "@tiptap/vue-3": "^2.0.0-beta.220",
-    "@vueuse/nuxt": "^9.12.0",
-    "sass": "^1.58.0"
+    "@myriadjs/core": "^0.0.8",
+    "@tiptap/extension-character-count": "^2.0.2",
+    "@tiptap/pm": "^2.0.2",
+    "@tiptap/starter-kit": "^2.0.2",
+    "@tiptap/vue-3": "^2.0.2",
+    "@vueuse/nuxt": "^9.13.0",
+    "sass": "^1.60.0"
   }
 }
