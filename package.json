@@ -24,6 +24,7 @@
     "nuxt": "^3.3.3"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.2.5",
     "@myriadjs/core": "^0.0.8",
     "@tiptap/extension-character-count": "^2.0.2",
     "@tiptap/pm": "^2.0.2",

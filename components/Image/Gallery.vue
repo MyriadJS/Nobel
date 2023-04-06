@@ -16,10 +16,6 @@ const sliced = props.images.slice(0, max)
 const imgHeight = computed(() => {
   return props.compact ? 50 : 300
 })
-
-watch(sliced, () => {
-  console.log('slice changed ' + sliced)
-})
 </script>
 
 <template>

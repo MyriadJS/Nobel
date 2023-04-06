@@ -18,6 +18,10 @@ const urls = computed(() => {
 function getSrc(imgFile: File) {
   return URL.createObjectURL(imgFile)
 }
+
+onMounted(() => {
+  console.log('mounted', urls);
+})
 </script>
 
 <template>

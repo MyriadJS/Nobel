@@ -53,6 +53,7 @@ p, button, .bodycopy, blockquote {
   letter-spacing: 0px;
   max-width: clamp(300px, 30vw, 800px);
   font-variation-settings: var(--font-regular);
+  color: var(--foreground);
   span,
   strong {
     font-variation-settings: var(--font-bold);
