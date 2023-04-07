@@ -37,6 +37,9 @@ withDefaults(defineProps<Props>(), {
   justify-content: center;
   align-items: center;
   position: relative;
+
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .spinner {
@@ -49,8 +52,6 @@ withDefaults(defineProps<Props>(), {
   width: calc(v-bind(size) * 1px);
 
   aspect-ratio: 1/1;
-  border-radius: 50%;
-  overflow: hidden;
   grid-row: span 2;
   background-color: var(--background);
 

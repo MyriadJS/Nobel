@@ -5,12 +5,12 @@ async function uploadFile(
   const formData: any = new FormData()
   formData.append('file', file)
   formData.append('upload_preset', 'defaultPreset')
-  formData.append('cloud_name', 'indyriot')
-  formData.append('folder', 'riot2')
+  formData.append('cloud_name', 'nobel')
+  formData.append('folder', 'post')
   if(tags) formData.append('tags', tags)
   
   const res = await fetch(
-    'https://api.cloudinary.com/v1_1/indyriot/image/upload',
+    'https://api.cloudinary.com/v1_1/nobel/image/upload',
     {
       method: 'post',
       body: formData,
@@ -24,7 +24,7 @@ export function useUpload() {
   return {
     async upload(file: File) {
       uploading.value = true
-      const result = await uploadFile(file, ['riot2'])
+      const result = await uploadFile(file, ['nobel'])
       uploading.value = false
       return result.secure_url
     },

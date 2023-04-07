@@ -12,7 +12,10 @@ const defaultMax = props.compact ? 2 : 4
 const max = props.max ? props.max : defaultMax
 const maxReached = props.images.length > max
 
-const sliced = props.images.slice(0, max)
+const sliced = computed(() => {
+  return props.images.slice(0, max)
+})
+
 const imgHeight = computed(() => {
   return props.compact ? 50 : 300
 })
@@ -37,10 +40,14 @@ const imgHeight = computed(() => {
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  //grid-template-rows: 1fr 1fr;
   width: 100%;
   height: calc(v-bind(imgHeight) * 1px);
   border-radius: var(--radius);
+}
+
+
+.gallery:empty {
+  display: none;
 }
 
 .gallery.maxReached .image .meta {

@@ -1,17 +1,19 @@
 <script setup lang="ts">
 interface Props {
   intention?: string
+  icon?: string
 }
 
 withDefaults(defineProps<Props>(), {
-  intention: 'click'
+  intention: 'click',
+  icon: 'i-pixelarticons:chevron-left'
 })
 </script>
 
 <template>
   <button type="button">
     <div class="state">
-      <Icon icon="i-pixelarticons:chevron-left"/>
+      <Icon :icon="icon"/>
       <p>{{ intention }}</p>
     </div>
     <slot>Click</slot>
@@ -40,6 +42,7 @@ p {
   background-color: var(--background-20);
   border-radius: var(--btn-inside-radius);
   width: 0%;
+  height: var(--icon-size);
   min-width: var(--icon-size);
   position: absolute;
   overflow: hidden;
@@ -65,7 +68,7 @@ button:hover .state {
 }
 
 button {
-  --padding: var(--space);
+  --padding: var(--space-s);
   --btn-radius: var(--radius);
   --btn-inside-radius: max(calc(var(--btn-radius) - (var(--padding) / 2)), max(var(--space-xs), 2px));
   border-radius: var(--btn-radius);
@@ -77,6 +80,7 @@ button {
   align-items: center;
   padding: 0px 0em;
   max-height: 0px;
+  min-width: 10em;
   overflow: hidden;
 }
 

@@ -19,10 +19,6 @@
 <template>
   <EditorContent :editor="editor" />
   <UtilUpload />
-  <ImageGallery
-    :images=" ['chillgirl_tnjodj.jpg']"
-    compact
-  />
   <div class="editor-meta" v-if="editor">
     <p>{{ characterLimit - editor.storage.characterCount.characters()  }}</p>
   </div>
@@ -30,6 +26,6 @@
 
 <style lang="scss">
 .editor-meta p {
-  color: var(--background);
+  //color: var(--background);
 }
 </style>
