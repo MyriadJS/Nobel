@@ -15,7 +15,7 @@
 
 <template>
   <div class="loader" :class="classes">
-    <AutoSize @change="(e) => height = e">
+    <AutoSize @change="(rect) => height = rect.height">
       <slot/>
     </AutoSize>
     <div class="spin">

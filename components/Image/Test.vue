@@ -9,11 +9,6 @@ const props = withDefaults(defineProps<{
   width: 300,
   nuxt: true
 })
-
-onMounted(() => {
-  if(props.nuxt) return
-  console.log("mounted", props.src, props.nuxt)
-})
 </script>
 
 <template>

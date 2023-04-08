@@ -81,7 +81,6 @@ const imgHeight = computed(() => {
   justify-content: center;
   align-items: center;
   opacity: 1;
-  //color: var(--accent-contrast);
 }
 
 .gallery .image img {

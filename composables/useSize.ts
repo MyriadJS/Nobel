@@ -1,7 +1,8 @@
 import { Ref } from 'vue'
 
-export function useSize(element: Ref<HTMLElement | undefined>, onChange?: (height: number) => void) {
+export function useSize(element: Ref<HTMLElement | undefined>, onChange?: (rect: DOMRectReadOnly) => void) {
   const height = ref(0)
+  const width = ref(300)
   if(!process.client) return { height }
 
   onMounted(() => {
@@ -11,11 +12,12 @@ export function useSize(element: Ref<HTMLElement | undefined>, onChange?: (heigh
 
   const myObserver = new ResizeObserver(entries => {
     entries.forEach(entry => {
-      const h = entry.contentRect.height
-      height.value = h
-      onChange && onChange(h)
+      const rect =  entry.contentRect
+      height.value = rect.height
+      width.value = rect.width      
+      onChange && onChange(rect)
     });
   });
 
-  return { height }
+  return { height, width }
 }

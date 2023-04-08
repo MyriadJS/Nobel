@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { gsap } from "gsap";
+import { Flip } from "gsap/Flip";
+gsap.registerPlugin(Flip);
+
 const input = ref<HTMLInputElement | null>(null)
 const files = ref<File[]>([])
 const layout = ref(true)
@@ -7,9 +11,25 @@ const compact = ref(false)
 //const { upload, uploading } = useUpload()
 //const url = await upload(target.files![0])
 
-async function handleChange(e: Event) {
-  const target = e.target as HTMLInputElement
-  files.value = [...files.value, ...Array.from(target.files!)]
+const images = useFlip()
+
+function handleChange(e: Event) {
+  images.flip(() => {
+    const target = e.target as HTMLInputElement
+    files.value = [...files.value, ...Array.from(target.files!)]
+  })
+}
+
+function changeLayout(bool = !layout.value) {
+  images.flip(() => {
+    layout.value = bool
+  })
+}
+
+function deleteFile(index: number) {
+  images.flip(() => {
+    files.value.splice(index, 1)
+  })
 }
 
 const urls = computed(() => {
@@ -20,29 +40,6 @@ function getSrc(imgFile: File) {
   return URL.createObjectURL(imgFile)
 }
 
-function fileName(file: File) {
-  const name = file.name
-  const index = name.lastIndexOf('.')
-  return name.substring(0, index).substring(0, 17) + '...'
-}
-
-function fileSize(file: File) {
-  return file.size > 1000000
-    ? valueInMB(file)
-    : valueInKB(file)
-}
-
-function valueInKB(file: File) {
-  return Math.floor(file.size / 1000) + 'KB'
-}
-
-function valueInMB(file: File) {
-  return Math.floor(file.size / 1000000) + 'MB'
-}
-
-function removeFile(index: number) {
-  files.value.splice(index, 1)
-}
 </script>
 
 <template>
@@ -62,45 +59,36 @@ function removeFile(index: number) {
           class="focus"
           :class="{active: layout, disabled: !files.length}"
           icon="i-pixelarticons:image" 
-          @click="() => layout = true"
-          @keyup.enter="() => layout = true"
-          :tabindex="files.length ? 0 : -1"
+          @click="() => changeLayout(true)"
+          @keyup.enter="() => changeLayout(true)"
+          :tabindex="files.length && !layout ? 0 : -1"
         />
         <Icon 
           class="focus"
           :class="{active: !layout, disabled: !files.length}"
           icon="i-pixelarticons:view-list" 
-          @click="() => layout = false"
-          @keyup.enter="() => layout = false"
-          :tabindex="files.length ? 0 : -1"
+          @click="() => changeLayout(false)"
+          @keyup.enter="() => changeLayout(false)"
+          :tabindex="files.length && layout ? 0 : -1"
         />
       </div>
-      <div class="images" :class="{empty: !files.length}">
+      <div 
+        class="images" 
+        :class="{empty: !files.length}" 
+        :ref="images.element"
+      >
         <ImageGallery
-          v-if="layout"
+          v-show="layout"
           :images="urls"
           :nuxt="false"
           :compact="compact"
         />
 
-        <div class="files" v-else>
-
-          <div v-for="(file, index) in files" :key="0" class="file">
-            <img :src="getSrc(file)" />
-            <div class="meta">
-              <p>{{ fileName(file) }}</p>
-              <p class="caption">{{ fileSize(file) }} - {{ file.type }}</p>
-            </div>
-            <Icon 
-              class="focus" 
-              icon="i-pixelarticons:close" 
-              @click="() => removeFile(index)" 
-              @keyup.enter="() => removeFile(index)"
-              tabindex="0"
-            />
-          </div>
-
-        </div>
+        <ImageFiles 
+          v-show="!layout"
+          :files="files"
+          @delete="deleteFile"
+        />
       </div>
     </slot>
 
@@ -138,6 +126,8 @@ function removeFile(index: number) {
 }
 
 .layout .icon.active:not(.disabled) {
+  cursor: default;
+  pointer-events: none;
   color: var(--accent);
   background-color: var(--accent-20);
   //outline: var(--border);
@@ -148,41 +138,8 @@ function removeFile(index: number) {
   opacity: 0.2;
 }
 
-.files {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-s);
-  width: 100%;
-}
-
-.file {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  //flex-direction: column;
-  gap: var(--space-s);
-  background: var(--background);
-  padding: var(--space-s);
-  border-radius: var(--radius);
-  width: 100%;
-}
-
-.file .icon {
-  cursor: pointer;
-}
-
-.images {
-  width: 100%;
-}
-
 .images.empty {
   display: none;
-}
-
-img {
-  width: 50px;
-  height: 50px;
-  border-radius: var(--radius);
 }
 
 button {
