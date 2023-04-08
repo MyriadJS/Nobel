@@ -1,3 +1,18 @@
+<script setup lang="ts">
+interface Props {
+  foreground?: string
+  background?: string
+  space?: string 
+}
+
+withDefaults(defineProps<Props>(), {
+  foreground: 'var(--foreground)',
+  background: 'var(--background)',
+  space: 'var(--space-l)'
+})
+
+</script>
+
 <template>
   <div id="divider">
     <div class="content">
@@ -10,23 +25,23 @@
   #divider {
     position: relative;
     grid-column: 1 / -1;
-    z-index: -1;
+    width: 100%;
+    margin: v-bind(space) 0px;
     
     display: flex;
     justify-content: center;
 
-    --border-color: var(--background-10);
     border-top: 
       var(--border-style) 
       var(--border-size) 
-      var(--background-10);
+      v-bind(foreground);
   }
 
   #divider .content {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--background);
+    background: v-bind(background);
     padding: 0px var(--space-s);
     border-radius: var(--radius);
     position: absolute;

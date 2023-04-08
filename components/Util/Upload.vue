@@ -11,23 +11,23 @@ const compact = ref(false)
 //const { upload, uploading } = useUpload()
 //const url = await upload(target.files![0])
 
-const images = useFlip()
+const wrapper = useFlip()
 
 function handleChange(e: Event) {
-  images.flip(() => {
+  wrapper.flip(() => {
     const target = e.target as HTMLInputElement
     files.value = [...files.value, ...Array.from(target.files!)]
   })
 }
 
 function changeLayout(bool = !layout.value) {
-  images.flip(() => {
+  wrapper.flip(() => {
     layout.value = bool
   })
 }
 
 function deleteFile(index: number) {
-  images.flip(() => {
+  wrapper.flip(() => {
     files.value.splice(index, 1)
   })
 }
@@ -39,11 +39,10 @@ const urls = computed(() => {
 function getSrc(imgFile: File) {
   return URL.createObjectURL(imgFile)
 }
-
 </script>
 
 <template>
-  <div class="upload">
+  <div class="upload" :ref="wrapper.element">
     <input
       ref="input"
       accept="image/*"
@@ -52,45 +51,44 @@ function getSrc(imgFile: File) {
       multiple
       @change="handleChange"
     />
-    <slot :urls="urls">
-      <div class="layout">
-        <p class="caption">layout: <span>{{ layout ? "image" : "file"}}</span></p>
-        <Icon 
-          class="focus"
-          :class="{active: layout, disabled: !files.length}"
-          icon="i-pixelarticons:image" 
-          @click="() => changeLayout(true)"
-          @keyup.enter="() => changeLayout(true)"
-          :tabindex="files.length && !layout ? 0 : -1"
-        />
-        <Icon 
-          class="focus"
-          :class="{active: !layout, disabled: !files.length}"
-          icon="i-pixelarticons:view-list" 
-          @click="() => changeLayout(false)"
-          @keyup.enter="() => changeLayout(false)"
-          :tabindex="files.length && layout ? 0 : -1"
-        />
-      </div>
-      <div 
-        class="images" 
-        :class="{empty: !files.length}" 
-        :ref="images.element"
-      >
-        <ImageGallery
-          v-show="layout"
-          :images="urls"
-          :nuxt="false"
-          :compact="compact"
-        />
 
-        <ImageFiles 
-          v-show="!layout"
-          :files="files"
-          @delete="deleteFile"
-        />
-      </div>
-    </slot>
+    <div class="layout" v-if="files.length">
+      <p class="caption">layout: <span>{{ layout ? "image" : "file"}}</span></p>
+      <Icon 
+        class="focus"
+        :class="{active: layout, disabled: !files.length}"
+        icon="i-pixelarticons:image" 
+        @click="() => changeLayout(true)"
+        @keyup.enter="() => changeLayout(true)"
+        :tabindex="files.length && !layout ? 0 : -1"
+      />
+      <Icon 
+        class="focus"
+        :class="{active: !layout, disabled: !files.length}"
+        icon="i-pixelarticons:view-list" 
+        @click="() => changeLayout(false)"
+        @keyup.enter="() => changeLayout(false)"
+        :tabindex="files.length && layout ? 0 : -1"
+      />
+    </div>
+
+    <div 
+      class="images" 
+      :class="{empty: !files.length}"
+    >
+      <ImageGallery
+        v-if="layout"
+        :images="urls"
+        :nuxt="false"
+        :compact="compact"
+      />
+
+      <ImageFiles 
+        v-else
+        :files="files"
+        @delete="deleteFile"
+      />
+    </div>
 
     <Button 
       icon="i-pixelarticons:plus"

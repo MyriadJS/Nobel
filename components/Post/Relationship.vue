@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { Post } from '@/types/Post'
+  import { Post } from '@/types/post'
   defineProps<{post: Post, loading: boolean, class?: string}>()
 
   const AvatarSize = 15

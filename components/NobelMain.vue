@@ -1,8 +1,15 @@
 <script setup lang="ts">
-  import { Post } from '@/types/Post'
-
+  import { Post } from '@/types/post'
   defineProps<{post: Post}>()
   const avatarSize = ref(90)
+
+
+  const text = ref('')
+
+  function handleText(t: string) {
+    text.value = t
+  }
+
 </script>
 
 <template>
@@ -24,12 +31,19 @@
       <blockquote cite="https://ruwix.com/">
         The Rubik's Cube is the World’s best selling puzzle toy.
       </blockquote>
+
       <p>Nuxt layers are a powerful feature that you can use to share and
         reuse Nuxt applications within a monorepo, or from a git repository
         or npm package. The layers structure is almost identical to a standard Nuxt 
         application, which makes them easy to author and maintain.</p>
 
-      <TextEditor/>
+      <UtilDivider
+        foreground="var(--foreground-20)"
+        background="var(--background-10)"
+        space="var(--space)"
+      />
+
+      <TextEditor @text="handleText"/>
     </div>
     <div class="author">
       <UserAvatar
@@ -42,6 +56,10 @@
 </template>
 
 <style lang="scss">
+#open #divider {
+  --border-color: var(--foreground);
+}
+
 #open .avatar {
   position: absolute;
   bottom: calc(v-bind(avatarSize) * -0.5px);
@@ -67,7 +85,8 @@
 }
 
 #open .content > * {
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 </style>
