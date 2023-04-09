@@ -3,7 +3,7 @@
 :root {
   --font-bold: "wght" 900, "wdth" 100;
   --font-semibold: "wght" 800, "wdth" 100;
-  --font-medium: "wght" 500, "wdth" 100;
+  --font-medium: "wght" 700, "wdth" 100;
   --font-regular: "wght" 200, "wdth" 100;
   --font-light: "wght" 100, "wdth" 100;
 }
@@ -44,6 +44,13 @@ h3, .h3 {
   line-height: 2rem;
   letter-spacing: -0.5px;
   font-variation-settings: var(--font-medium);
+}
+
+::-moz-selection,
+::-webkit-selection,
+::selection { 
+  color: var(--accent) !important;
+  background: var(--accent-20) !important;
 }
 
 p, button, .bodycopy, blockquote {
