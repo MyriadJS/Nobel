@@ -1,13 +1,10 @@
 <script setup lang="ts">
   import { useEditor, EditorContent } from '@tiptap/vue-3'
-  import { Editor as TiptapEditor  } from '@tiptap/core'
+  import { Editor, mergeAttributes   } from '@tiptap/core'
   import StarterKit from '@tiptap/starter-kit'
   import CharacterCount from '@tiptap/extension-character-count'
   import Placeholder from '@tiptap/extension-placeholder'
-
-  interface Editor extends TiptapEditor {
-    //dispatch: (transaction: any) => void
-  }
+  import TextStyle from '@tiptap/extension-text-style'
 
   const props = withDefaults(defineProps<{limit?: number, softLimit?: number}>(), {
     limit: 4000,
@@ -18,75 +15,16 @@
     (e: 'text', text: string): void
   }>()
 
-  const currentNodeLength = ref(0)
-
-  //on update check size of current node
-  //if it's over the limit, split the block at the limit and insert overflow text into new block
-
-  function onUpdate({editor}: {editor: Editor}) {
-    emit('text', editor.getHTML())
-
-    const { $head } = editor.state.selection
-    const nodeSize = $head.parent.content.size
-    const offset = $head.parentOffset
-
-    currentNodeLength.value = nodeSize
-
-    splitBlock(editor)
-
-    //if(nodeSize < props.softLimit) return
-    //console.log('limit reached', nodeSize)
-    //editor.commands.enter()
-    //editor.chain().focus().splitBlock().run()
-
-  }
-
-
-  function splitBlock(editor: Editor) {
-    // Get the current block and its content
-    const { state, view } = editor
-
-    const { $from } = state.selection
-    const pos = $from.before()
-    const block = state.doc.nodeAt(pos)
-    if(!block) return
-    const content = block.content
-
-    // Define the character length to split at
-    const charLimit = 10
-
-    // Check if the content exceeds the character limit
-    if (content.size > charLimit) {
-      // Split the block at the desired character length
-      const splitPos = pos + charLimit
-      const tr = state.tr.delete(pos, splitPos).split(splitPos)
-      view.dispatch(tr)
-
-      // Get the new block and its content
-      const newBlock = tr.doc.nodeAt(splitPos)
-      if(!newBlock) return
-      const newContent = newBlock.content
-
-      // Pass the new content to the next block
-      const nextPos = splitPos + newContent.size
-      const nextBlock = tr.doc.nodeAt(nextPos)
-      if(!nextBlock) return
-      const nextContent = nextBlock.content
-      const updatedContent = content.cut(charLimit).append(nextContent)
-
-      // Update the editor's content
-      //const newTr = tr.setNodeMarkup(pos, null, { content: updatedContent })
-      editor.commands.setContent(updatedContent)
-    }
-
-    console.log('ls', editor)
-  }
-
   const editor = useEditor({
-    //content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
     onUpdate,
     extensions: [
       StarterKit,
+      TextStyle.extend({
+        name: 'overflow',
+        renderHTML({ HTMLAttributes }) {
+          return ['span', mergeAttributes(HTMLAttributes, { class: "overflow" }), 0]
+        },
+      }),
       Placeholder.configure({
         placeholder: 'Write something...',
       }),
@@ -95,6 +33,50 @@
       }),
     ],
   })
+
+  const currentNodeLength = ref(0)
+
+  function onUpdate({editor}: {editor: Editor}) {
+    emit('text', editor.getHTML())
+
+    const { $head } = editor.state.selection
+    const nodeSize = $head.parent.content.size
+    currentNodeLength.value = nodeSize
+
+    nextTick(() => markOverflow(editor))
+  }
+
+  function markOverflow(e: Editor) {
+    if(!editor.value) return
+    const { state, view, schema } = editor.value
+    const dispatch = view.dispatch
+    const transaction = state.tr
+
+    function removeMark(from: number, to: number, mark: any) {
+      return dispatch(transaction.removeMark(from, to, mark))
+    }
+
+    function addMark(from: number, to: number, mark: any) {
+      return dispatch(transaction.addMark(from, to, mark))
+    }
+    
+    const current = {
+      start: state.selection.$from.before(),
+      block: state.doc.nodeAt(state.selection.$from.before()),
+      size: state.doc.nodeAt(state.selection.$from.before())?.content.size || 0,
+      end: 0,
+    }
+
+    current.end = current.start + current.size + 1
+    const atLimit = current.size >= props.softLimit
+    const limit = current.start + props.softLimit
+    const inner = Math.min(current.end, limit)
+
+    const overflowMark = schema.marks.overflow.create()
+    
+    removeMark(current.start, inner, overflowMark)
+    atLimit && addMark(limit, current.end, overflowMark)
+  }
 </script>
 
 <template>
@@ -126,6 +108,10 @@
 .controls {
   display: flex;
   gap: var(--space-xs);
+}
+
+span.overflow {
+  color: var(--accent-20);
 }
 
 .ProseMirror {
