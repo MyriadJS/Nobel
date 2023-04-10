@@ -1,13 +1,11 @@
 <script setup lang="ts">
-  import { useEditor, EditorContent } from '@tiptap/vue-3'
-  import { Editor } from '@tiptap/core'
+  import { useEditor, EditorContent, VueNodeViewRenderer  } from '@tiptap/vue-3'
+  import { Editor, Node } from '@tiptap/core'
   import StarterKit from '@tiptap/starter-kit'
   import CharacterCount from '@tiptap/extension-character-count'
   import Placeholder from '@tiptap/extension-placeholder'
-  import Paragraph from '@tiptap/extension-paragraph'
   import { Overflow, validateOverflow } from './Overflow'
-  import Strike from '@tiptap/extension-strike'
-  import { markPasteRule } from '@tiptap/core'
+  import VueComponent from './Component'
 
   const props = withDefaults(defineProps<{limit?: number, softLimit?: number}>(), {
     limit: 4000,
@@ -18,31 +16,23 @@
     (e: 'text', text: string): void
   }>()
 
-  const clearMarksOnPaste = (editor: Editor, event:any) => {
-    event.preventDefault()
-
-    // Get the pasted content
-    const text = event.clipboardData.getData('text/plain')
-
-    // Clear any active marks from the pasted content
-    //const doc = editor.schema.removeMarksFromDoc(editor.state.doc, editor.schema.marks.myCustomMark)
-
-    // Insert the modified content into the editor
-    // const tr = editor.state.tr
-    // const startPos = tr.selection.from
-    // tr.replaceSelection(doc.createText(text))
-    // editor.view.dispatch(tr.scrollIntoView())
-
-    // Move the cursor to the end of the inserted content
-    //const endPos = startPos + text.length
-   // editor.view.dispatch(editor.state.tr.setSelection(TextSelection.create(editor.state.doc, endPos)))
-  }
-
   const editor = useEditor({
+    content: `
+      <p>
+        This is still the text editor you’re used to, but enriched with node views.
+      </p>
+      <vue-post>
+        <p>This is editable.</p>
+      </vue-post>
+      <p>
+        Did you see that? That’s a Vue component. We are really living in the future.
+      </p>
+    `,
     onUpdate,
     extensions: [
       StarterKit,
       Overflow,
+      VueComponent,
       Placeholder.configure({
         placeholder: 'Write something...',
       }),
@@ -90,6 +80,11 @@
       @click="() => editor!.chain().focus().toggleItalic().run()"
       :disabled="!editor.can().chain().focus().toggleItalic().run()"
       :class="{active: editor.isActive('italic')}"
+    />
+
+    <ButtonIcon 
+      icon="i-pixelarticons:add-grid" 
+      @click="() => editor!.commands.setNode('vuePost')"
     />
   </div>
 </template>
