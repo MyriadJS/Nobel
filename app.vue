@@ -1,22 +1,8 @@
 <script setup lang="ts">
-  import { feed, user1 } from "@/dummydata/posts"
-  import {
-    myriad
-  } from "@myriadjs/core"
+  import { user1 } from "@/dummydata/posts"
+  import { useTheme } from "@/composables/useTheme"
 
-  onMounted(() => {
-    myriad({
-      background: '#0c0915',
-      foreground: '#c0aea3',
-      accents: ['#c97074'],
-      custom: {
-        success: '#00ff00',
-        error: '#ff0000',
-      }
-    }, {
-      readability: 1,
-    })
-  })
+  useTheme()
 
   const post = {
     id: "1",

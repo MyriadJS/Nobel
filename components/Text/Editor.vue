@@ -4,7 +4,10 @@
   import StarterKit from '@tiptap/starter-kit'
   import CharacterCount from '@tiptap/extension-character-count'
   import Placeholder from '@tiptap/extension-placeholder'
+  import Paragraph from '@tiptap/extension-paragraph'
   import { Overflow, validateOverflow } from './Overflow'
+  import Strike from '@tiptap/extension-strike'
+  import { markPasteRule } from '@tiptap/core'
 
   const props = withDefaults(defineProps<{limit?: number, softLimit?: number}>(), {
     limit: 4000,
@@ -14,6 +17,26 @@
   const emit = defineEmits<{
     (e: 'text', text: string): void
   }>()
+
+  const clearMarksOnPaste = (editor: Editor, event:any) => {
+    event.preventDefault()
+
+    // Get the pasted content
+    const text = event.clipboardData.getData('text/plain')
+
+    // Clear any active marks from the pasted content
+    //const doc = editor.schema.removeMarksFromDoc(editor.state.doc, editor.schema.marks.myCustomMark)
+
+    // Insert the modified content into the editor
+    // const tr = editor.state.tr
+    // const startPos = tr.selection.from
+    // tr.replaceSelection(doc.createText(text))
+    // editor.view.dispatch(tr.scrollIntoView())
+
+    // Move the cursor to the end of the inserted content
+    //const endPos = startPos + text.length
+   // editor.view.dispatch(editor.state.tr.setSelection(TextSelection.create(editor.state.doc, endPos)))
+  }
 
   const editor = useEditor({
     onUpdate,
