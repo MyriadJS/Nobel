@@ -1,10 +1,10 @@
 <script setup lang="ts">
   import { useEditor, EditorContent } from '@tiptap/vue-3'
-  import { Editor, mergeAttributes   } from '@tiptap/core'
+  import { Editor } from '@tiptap/core'
   import StarterKit from '@tiptap/starter-kit'
   import CharacterCount from '@tiptap/extension-character-count'
   import Placeholder from '@tiptap/extension-placeholder'
-  import TextStyle from '@tiptap/extension-text-style'
+  import { Overflow, validateOverflow } from './Overflow'
 
   const props = withDefaults(defineProps<{limit?: number, softLimit?: number}>(), {
     limit: 4000,
@@ -19,12 +19,7 @@
     onUpdate,
     extensions: [
       StarterKit,
-      TextStyle.extend({
-        name: 'overflow',
-        renderHTML({ HTMLAttributes }) {
-          return ['span', mergeAttributes(HTMLAttributes, { class: "overflow" }), 0]
-        },
-      }),
+      Overflow,
       Placeholder.configure({
         placeholder: 'Write something...',
       }),
@@ -36,46 +31,18 @@
 
   const currentNodeLength = ref(0)
 
-  function onUpdate({editor}: {editor: Editor}) {
-    emit('text', editor.getHTML())
-
+  function countNodeLength(editor: Editor) {
     const { $head } = editor.state.selection
     const nodeSize = $head.parent.content.size
     currentNodeLength.value = nodeSize
-
-    nextTick(() => markOverflow(editor))
   }
 
-  function markOverflow(e: Editor) {
-    if(!editor.value) return
-    const { state, view, schema } = editor.value
-    const dispatch = view.dispatch
-    const transaction = state.tr
-
-    function removeMark(from: number, to: number, mark: any) {
-      return dispatch(transaction.removeMark(from, to, mark))
-    }
-
-    function addMark(from: number, to: number, mark: any) {
-      return dispatch(transaction.addMark(from, to, mark))
-    }
-    
-    const current = {
-      start: state.selection.$from.before(),
-      block: state.doc.nodeAt(state.selection.$from.before()),
-      size: state.doc.nodeAt(state.selection.$from.before())?.content.size || 0,
-      end: 0,
-    }
-
-    current.end = current.start + current.size + 1
-    const atLimit = current.size >= props.softLimit
-    const limit = current.start + props.softLimit
-    const inner = Math.min(current.end, limit)
-
-    const overflowMark = schema.marks.overflow.create()
-    
-    removeMark(current.start, inner, overflowMark)
-    atLimit && addMark(limit, current.end, overflowMark)
+  function onUpdate({editor}: {editor: Editor}) {
+    emit('text', editor.getHTML())
+    countNodeLength(editor)
+    validateOverflow(editor, {
+      limit: 280
+    })
   }
 </script>
 

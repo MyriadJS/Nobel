@@ -12,6 +12,7 @@
   margin: auto;
   max-width: calc(100vw - var(--space-xl));
   width: 1300px;
+  transition: background .4s ease-in-out;
 
   @media (max-width: 300px) {
     max-width: calc(100vw);

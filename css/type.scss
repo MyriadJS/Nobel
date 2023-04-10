@@ -25,6 +25,7 @@ h3, .h3,
 button {
   max-width: 55ch;
   text-transform: uppercase;
+  transition: color .4s ease-in-out;
 }
 
 h1, .h1 {
@@ -61,6 +62,7 @@ p, button, .bodycopy, blockquote {
   max-width: clamp(300px, 30vw, 800px);
   font-variation-settings: var(--font-regular);
   color: var(--foreground);
+  transition: color .4s ease-in-out;
   span,
   strong {
     font-variation-settings: var(--font-bold);
