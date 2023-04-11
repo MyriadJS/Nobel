@@ -1,42 +1,26 @@
 <script setup lang="ts">
   import { Post } from '@/types/post'
-  defineProps<{post: Post, loading: boolean, class?: string}>()
-
-  const AvatarSize = 15
+  const props = defineProps<{post: Post, loading: boolean}>()
+  const content = randomText(props.loading, props.post.content)
+  const contentParent = randomText(props.loading, props.post.parent?.content)
 </script>
 
 <template>
-  <div class="cover post-flex" :class="class">
+  <div class="cover post-flex">
     <PostContent
       v-if="post.parent"
       :post="post.parent" 
       :loading="loading"
-      class="quote"
       size="small"
     >
-      <UserAvatar
-        :src="post.parent.user.author.avatar"
-        :size="AvatarSize"
-      />
+      <p v-if="post.parent">{{ contentParent }}</p>
     </PostContent>
     <PostContent
       :post="post" 
       :loading="loading"
-    />
+    >
+      <slot><p v-if="post.content">{{ content }}</p></slot>
+    </PostContent>
   </div>
 </template>
 
-<style lang="scss">
-.post-flex .quote {
-  position: relative;
-  border-bottom: var(--border);
-  padding-bottom: var(--space);
-  margin-bottom: var(--space-s);
-  opacity: 0.5;
-
-  .avatar {
-    position: absolute;
-    bottom: calc((v-bind(AvatarSize) / 2) * -1px);
-  }
-}
-</style>

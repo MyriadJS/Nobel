@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { Post } from '@/types/Post'
+  import { Post } from '@/types/post'
   const props = defineProps<{post: Post, loading: boolean, class?: string, img?: boolean, size?: string }>()
 
   const texts = [
@@ -24,22 +24,41 @@
   const compact = computed(() => {
     return props.size === 'small'
   })
+
+  const AvatarSize = 15
 </script>
 
 <template>
-  <div class="content-wrapper post-flex" :class="class">
-    <p v-if="post.content">{{ content }}</p>
+  <div class="content-wrapper post-flex" :class="{compact: compact}">
+    <slot><p v-if="post.content">{{ content }}</p></slot>
     <ImageGallery
       v-if="post.cover.length > 0"
       :images="post.cover"
       :compact="compact"
     />
-    <slot/>
+    <UserAvatar
+      v-if="compact"
+      :src="post.user.author.avatar"
+      :size="AvatarSize"
+    />
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .post:has(.content-wrapper img) {
     grid-row: span 3;
+  }
+
+  .content-wrapper.compact {
+    position: relative;
+    border-bottom: var(--border);
+    padding-bottom: var(--space);
+    margin-bottom: var(--space-s);
+    opacity: 0.5;
+
+    .avatar {
+      position: absolute;
+      bottom: calc((v-bind(AvatarSize) / 2) * -1px);
+    }
   }
 </style>

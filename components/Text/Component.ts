@@ -16,11 +16,10 @@ export default Node.create({
   addNodeView() {
     return VueNodeViewRenderer(Component)
   },
-  addCommands() {
-    return {
-      setParagraph: () => ({ commands }) => {
-        return commands.setNode(this.name)
-      },
+  onSelectionUpdate() {
+    console.log('update');
+    return (e: any) => {
+      console.log('selectionUpdate', e);
     }
   },
 })

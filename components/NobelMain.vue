@@ -69,7 +69,7 @@
   --border-color: var(--foreground);
 }
 
-#open .avatar {
+#open > .author .avatar {
   position: absolute;
   bottom: calc(v-bind(avatarSize) * -0.5px);
   outline: solid var(--space-s) var(--background);
@@ -80,20 +80,20 @@
   padding-bottom: 0px;
 }
 
-#open .author {
+#open > .author {
   position: relative;
   display: flex;
   justify-content: center;
 }
 
-#open .content {
+#open > .content {
   display: grid;
   gap: var(--space);
   padding-top: var(--space);
   padding-bottom: var(--space-l);
 }
 
-#open .content > * {
+#open > .content > * {
   margin-left: auto;
   margin-right: auto;
 }
