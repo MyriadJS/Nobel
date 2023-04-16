@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Author } from '@/types/Post'
+import { Author } from '@/types/post'
 interface Props {author: Author}
 withDefaults(defineProps<Props>(),{})
 const avatarSize = 30

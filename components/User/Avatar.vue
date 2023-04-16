@@ -40,6 +40,8 @@ withDefaults(defineProps<Props>(), {
 
   border-radius: 50%;
   overflow: hidden;
+  aspect-ratio: 1/1;
+  width: calc(v-bind(size) * 1px);
 }
 
 .spinner {
@@ -50,8 +52,8 @@ withDefaults(defineProps<Props>(), {
 .avatar-img {
   position: relative;
   width: calc(v-bind(size) * 1px);
-
   aspect-ratio: 1/1;
+  
   grid-row: span 2;
   background-color: var(--background);
 

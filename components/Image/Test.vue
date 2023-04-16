@@ -12,35 +12,19 @@ const props = withDefaults(defineProps<{
 </script>
 
 <template>
-  <picture>
-    <div class="filter"></div>
-    <nuxt-img
-      v-if="nuxt"
-      provider="cloudinary"
-      v-bind="props"
-    />
-    <img
-      v-else
-      v-bind="props"
-    />
-  </picture>
+  <nuxt-img
+    v-if="nuxt"
+    provider="cloudinary"
+    v-bind="props"
+  />
+  <img
+    v-else
+    v-bind="props"
+  />
 </template>
 
 <style lang="scss">
-picture {
-  position: relative;
-}
-
 img {
   background-color: var(--background-10);
-}
-
-.filter {
-  position: absolute;
-  z-index: 10;
-  background-color: var(--accent);
-  opacity: 0.7;
-  width: 100%;
-  height: 100%;
 }
 </style>

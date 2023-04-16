@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { useEditor, EditorContent, VueNodeViewRenderer  } from '@tiptap/vue-3'
-  import { Editor, Node } from '@tiptap/core'
+  import { useEditor, EditorContent, FloatingMenu  } from '@tiptap/vue-3'
+  import { Editor } from '@tiptap/core'
   import StarterKit from '@tiptap/starter-kit'
   import CharacterCount from '@tiptap/extension-character-count'
   import Placeholder from '@tiptap/extension-placeholder'
@@ -43,7 +43,6 @@
   })
 
   const currentNodeLength = ref(0)
-
   function countNodeLength(editor: Editor) {
     const { $head } = editor.state.selection
     const nodeSize = $head.parent.content.size
@@ -57,15 +56,23 @@
       limit: 280
     })
   }
+
+  onBeforeUnmount(() => {
+    if(!editor.value) return
+    editor.value.destroy()
+  })
 </script>
 
 <template>
   <div class="editor-meta" v-if="false">
     <p>{{ softLimit - currentNodeLength }}</p>
   </div>
+  
   <EditorContent :editor="editor" />
 
   <div class="controls" v-if="editor">
+    <TextFloatingMenu :editor="editor" />
+    
     <UtilUpload />
 
     <ButtonIcon 
@@ -82,17 +89,19 @@
       :class="{active: editor.isActive('italic')}"
     />
 
-    <ButtonIcon 
-      icon="i-pixelarticons:add-grid" 
-      @click="() => editor!.commands.setNode('vuePost')"
-    />
   </div>
 </template>
 
 <style lang="scss">
+.tippy-content > div {
+  display: flex;
+  gap: var(--space-xs);
+}
+
 .controls {
   display: flex;
   gap: var(--space-xs);
+  padding-top: var(--space-s);
 }
 
 span.overflow {
