@@ -69,41 +69,11 @@
   </div>
   
   <EditorContent :editor="editor" />
-
-  <div class="controls" v-if="editor">
-    <TextFloatingMenu :editor="editor" />
-    
-    <UtilUpload />
-
-    <ButtonIcon 
-      icon="i-pixelarticons:bitcoin" 
-      @click="() => editor!.chain().focus().toggleBold().run()"
-      :disabled="!editor.can().chain().focus().toggleBold().run()"
-      :class="{active: editor.isActive('bold')}"
-    />
-
-    <ButtonIcon 
-      icon="i-pixelarticons:message-text" 
-      @click="() => editor!.chain().focus().toggleItalic().run()"
-      :disabled="!editor.can().chain().focus().toggleItalic().run()"
-      :class="{active: editor.isActive('italic')}"
-    />
-
-  </div>
+  <TextFloatingMenu :editor="editor" />
+  <TextMenu :editor="editor" />
 </template>
 
 <style lang="scss">
-.tippy-content > div {
-  display: flex;
-  gap: var(--space-xs);
-}
-
-.controls {
-  display: flex;
-  gap: var(--space-xs);
-  padding-top: var(--space-s);
-}
-
 span.overflow {
   color: var(--accent-20);
 }
