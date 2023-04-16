@@ -28,6 +28,6 @@ withDefaults(defineProps<Props>(), {
 
 i {
   display: block;
-  width: 40px;
+  //width: 40px;
 }
 </style>

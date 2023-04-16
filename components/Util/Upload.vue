@@ -3,7 +3,11 @@ import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 gsap.registerPlugin(Flip);
 
-const input = ref<HTMLInputElement | null>(null)
+defineProps<{
+  input: HTMLInputElement | null;
+}>()
+
+//const input = ref<HTMLInputElement | null>(null)
 const files = ref<File[]>([])
 const layout = ref(true)
 const compact = ref(false)
@@ -33,12 +37,9 @@ function deleteFile(index: number) {
 }
 
 const urls = computed(() => {
-  return files.value.map((file) => getSrc(file))
+  return files.value.map((file) => URL.createObjectURL(file))
 })
 
-function getSrc(imgFile: File) {
-  return URL.createObjectURL(imgFile)
-}
 </script>
 
 <template>
@@ -52,11 +53,11 @@ function getSrc(imgFile: File) {
       @change="handleChange"
     />
 
-    <div class="layout" v-if="files.length">
+    <div class="layout" v-if="files.length || true">
       <p class="caption">layout: <span>{{ layout ? "image" : "file"}}</span></p>
       <Icon 
         class="focus"
-        :class="{active: layout, disabled: !files.length}"
+        :class="{active: layout, disabled: !files.length && false}"
         icon="i-pixelarticons:image" 
         @click="() => changeLayout(true)"
         @keyup.enter="() => changeLayout(true)"
@@ -64,7 +65,7 @@ function getSrc(imgFile: File) {
       />
       <Icon 
         class="focus"
-        :class="{active: !layout, disabled: !files.length}"
+        :class="{active: !layout, disabled: !files.length && false}"
         icon="i-pixelarticons:view-list" 
         @click="() => changeLayout(false)"
         @keyup.enter="() => changeLayout(false)"
@@ -104,7 +105,7 @@ function getSrc(imgFile: File) {
 <style lang="scss" scoped>
 .upload {
   display: flex;
-  flex-direction: column;
+  //flex-direction: column;
   gap: var(--space-s);
   width: 100%;
 }
@@ -113,14 +114,16 @@ function getSrc(imgFile: File) {
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  gap: var(--space-s);
+  gap: var(--space-xs);
   background: var(--background);
-  padding: var(--space-s);
+  padding: 0px var(--space-xs);
   border-radius: var(--radius);
+  height: var(--block-size);
 }
 
 .layout .icon {
   cursor: pointer;
+  height: var(--block-inner-size);
 }
 
 .layout .icon.active:not(.disabled) {

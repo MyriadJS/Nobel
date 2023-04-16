@@ -1,11 +1,12 @@
 <script setup lang="ts">
   import { Editor } from '@tiptap/core'
   defineProps<{editor?: Editor}>()
+  const input = ref<HTMLInputElement | null>(null)
 </script>
 
 <template>
   <div class="controls" v-if="editor">    
-    <UtilUpload />
+    <UtilUpload :input="input" />
 
     <ButtonIcon 
       icon="i-mdi:format-bold"  
@@ -19,6 +20,11 @@
       @click="() => editor!.chain().focus().toggleItalic().run()"
       :disabled="!editor.can().chain().focus().toggleItalic().run()"
       :class="{active: editor.isActive('italic')}"
+    />
+
+    <ButtonIcon 
+      icon="i-pixelarticons:plus"
+      @click="() => input?.click()"
     />
 
   </div>

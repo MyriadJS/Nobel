@@ -1,5 +1,7 @@
 :root {
   --block-size: 3em;
+  --block-inner-size: calc(var(--block-size) - var(--space-s));
+
   --border-size: 1px;
   --border-color: var(--foreground);
   --border-style: solid;
