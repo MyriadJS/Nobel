@@ -28,6 +28,6 @@ withDefaults(defineProps<Props>(), {
 
 i {
   display: block;
-  //width: 40px;
+  min-width: var(--block-inner-size);
 }
 </style>
