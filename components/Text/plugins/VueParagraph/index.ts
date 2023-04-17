@@ -16,10 +16,4 @@ export default Node.create({
   addNodeView() {
     return VueNodeViewRenderer(Component)
   },
-  onSelectionUpdate() {
-    console.log('update');
-    return (e: any) => {
-      console.log('selectionUpdate', e);
-    }
-  },
 })

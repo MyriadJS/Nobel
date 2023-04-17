@@ -42,6 +42,7 @@ defineComponent({
   <node-view-wrapper class="vue-component">
     <PostRelationship :post="post" :loading="false">
       <p><node-view-content class="content" /></p>
+      <UploadPreview/>
     </PostRelationship>
   </node-view-wrapper>
 </template>
