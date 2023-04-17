@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { Editor } from '@tiptap/core'
   defineProps<{editor?: Editor}>()
-</script>
+</script> 
 
 <template>
   <div class="controls" v-if="editor">
@@ -13,6 +13,12 @@
       />
     </UploadTrigger>
 
+    <UtilDivider 
+      :vertical="true" 
+      space="0px" 
+      foreground="var(--foreground-20)"
+    />
+ 
     <ButtonIcon 
       icon="i-mdi:format-bold"  
       @click="() => editor!.chain().focus().toggleBold().run()"
@@ -32,6 +38,7 @@
 <style lang="scss">
 .controls {
   display: flex;
+  align-items: center;
   gap: var(--space-xs);
   padding-top: var(--space-s);
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { Post } from '@/types/Post'
+  import { Post } from '@/types/post'
 
   defineProps<{
     post: Post
@@ -52,7 +52,6 @@
   }
 
   .post .author {
-    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;

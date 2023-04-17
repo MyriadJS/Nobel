@@ -2,19 +2,21 @@
 interface Props {
   foreground?: string
   background?: string
-  space?: string 
+  space?: string
+  vertical?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   foreground: 'var(--foreground)',
   background: 'var(--background)',
-  space: 'var(--space-l)'
+  space: 'var(--space-l)',
+  vertical: false,
 })
 
 </script>
 
 <template>
-  <div id="divider">
+  <div id="divider" :class="{vertical: vertical}">
     <div class="content">
       <slot/>
     </div>
@@ -25,17 +27,32 @@ withDefaults(defineProps<Props>(), {
   #divider {
     position: relative;
     grid-column: 1 / -1;
-    width: 100%;
-    margin: v-bind(space) 0px;
     
     display: flex;
     justify-content: center;
-
+  }
+  
+  #divider:not(.vertical) {
+    width: 100%;
+    min-width: var(--block-inner-size);
+    margin: v-bind(space) 0px;
     border-top: 
       var(--border-style) 
       var(--border-size) 
       v-bind(foreground);
   }
+
+  #divider.vertical {
+    height: 100%;
+    min-height: var(--block-inner-size);
+    margin: 0px v-bind(space);
+    border-left: 
+      var(--border-style) 
+      var(--border-size) 
+      v-bind(foreground);
+  }
+
+
 
   #divider .content {
     display: flex;
@@ -45,8 +62,9 @@ withDefaults(defineProps<Props>(), {
     padding: 0px var(--space-s);
     border-radius: var(--radius);
     position: absolute;
-    height: 2rem;
-    top: calc(0px - 2rem / 2);
+    --size: 2rem;
+    height: var(--size);
+    top: calc(0px - var(--size) / 2);
   }
 
   #divider .content:empty {
