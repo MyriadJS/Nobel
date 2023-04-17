@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import { useEditor, EditorContent, FloatingMenu  } from '@tiptap/vue-3'
+  import { useEditor, EditorContent  } from '@tiptap/vue-3'
   import { Editor } from '@tiptap/core'
   import StarterKit from '@tiptap/starter-kit'
   import CharacterCount from '@tiptap/extension-character-count'
   import Placeholder from '@tiptap/extension-placeholder'
-  import { Overflow, validateOverflow } from './Overflow'
-  import VueComponent from './Component'
+  import { Overflow, validateOverflow } from './plugins/Overflow'
+  import VueParagraph from './plugins/VueParagraph'
 
   const props = withDefaults(defineProps<{limit?: number, softLimit?: number}>(), {
     limit: 4000,
@@ -32,7 +32,7 @@
     extensions: [
       StarterKit,
       Overflow,
-      VueComponent,
+      VueParagraph,
       Placeholder.configure({
         placeholder: 'Write something...',
       }),
@@ -64,13 +64,9 @@
 </script>
 
 <template>
-  <div class="editor-meta" v-if="false">
-    <p>{{ softLimit - currentNodeLength }}</p>
-  </div>
-  
-  <EditorContent :editor="editor" />
-  <TextFloatingMenu :editor="editor" />
   <TextMenu :editor="editor" />
+  <EditorContent :editor="editor" />
+  <TextMenuFloating :editor="editor" />
 </template>
 
 <style lang="scss">

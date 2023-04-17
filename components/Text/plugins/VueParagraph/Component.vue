@@ -2,7 +2,6 @@
 import { NodeViewContent, NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
 import { user1 } from "@/dummydata/posts"
 
-
 const post2 = {
   id: "1",
   user: user1,

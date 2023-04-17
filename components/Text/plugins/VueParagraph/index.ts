@@ -1,7 +1,7 @@
 import { mergeAttributes, Node } from '@tiptap/core'
 import { VueNodeViewRenderer } from '@tiptap/vue-3'
 
-import Component from './Post.vue'
+import Component from './Component.vue'
 
 export default Node.create({
   name: 'vuePost',

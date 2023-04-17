@@ -1,4 +1,4 @@
-import TextStyle, { TextStyleOptions } from '@tiptap/extension-text-style'
+import TextStyle from '@tiptap/extension-text-style'
 import { Editor, mergeAttributes } from '@tiptap/core'
 
 export const Overflow = TextStyle.extend({
@@ -27,7 +27,6 @@ export function validateOverflow(editor: Editor, props: { limit: number}) {
     size: state.doc.nodeAt(state.selection.$from.before())?.content.size || 0,
     end: 0,
   }
-
 
   current.end = current.start + current.size + 1
   const atLimit = current.size >= props.limit

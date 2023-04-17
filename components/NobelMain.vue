@@ -3,13 +3,10 @@
   defineProps<{post: Post}>()
   const avatarSize = ref(90)
 
-
   const text = ref('')
-
   function handleText(t: string) {
     text.value = t
   }
-
 </script>
 
 <template>
