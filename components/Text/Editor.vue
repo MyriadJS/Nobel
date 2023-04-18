@@ -18,15 +18,15 @@
 
   const editor = useEditor({
     content: `
-      <p>
+      <vue-post>
         This is still the text editor you’re used to, but enriched with node views.
-      </p>
+      <vue-post>
       <vue-post>
         <p>This is editable.</p>
       </vue-post>
-      <p>
+      <vue-post>
         Did you see that? That’s a Vue component. We are really living in the future.
-      </p>
+        <vue-post>
     `,
     onUpdate,
     extensions: [

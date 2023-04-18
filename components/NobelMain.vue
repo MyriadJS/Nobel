@@ -43,12 +43,6 @@
         or npm package. The layers structure is almost identical to a standard Nuxt 
         application, which makes them easy to author and maintain.</p>
 
-      <UtilDivider
-        foreground="var(--foreground-20)"
-        background="var(--background-10)"
-        space="var(--space)"
-      />
-
       <TextEditor @text="handleText"/>
     </div>
     <div class="author">

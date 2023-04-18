@@ -29,7 +29,6 @@ const post = {
 }
 
 defineProps(nodeViewProps)
-
 defineComponent({
   components: {
     NodeViewContent,

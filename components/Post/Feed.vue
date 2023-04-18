@@ -6,12 +6,12 @@
 
 <template>
   <section class="feed page">
-    <UtilDivider
+    <Divider
       foreground="var(--background-20)"
       background="var(--background)"
     >
       <p>{{ feed.length }}</p>
-    </UtilDivider>
+    </Divider>
     <PostWrapper
       v-for="post in feed"
       :key="post.id"

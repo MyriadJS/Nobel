@@ -4,6 +4,12 @@
 </script> 
 
 <template>
+  <Divider
+    style="margin-bottom: 0px"
+    foreground="var(--foreground-20)"
+    background="var(--background-10)"
+    space="var(--space)"
+  />
   <div class="controls" v-if="editor">
     <UploadTrigger>
       <ButtonIcon 
@@ -13,7 +19,7 @@
       />
     </UploadTrigger>
 
-    <UtilDivider 
+    <Divider 
       :vertical="true" 
       space="0px" 
       foreground="var(--foreground-20)"
@@ -33,6 +39,12 @@
       :class="{active: editor.isActive('italic')}"
     />
   </div>
+  <Divider
+    style="margin-top: 0px"
+    foreground="var(--foreground-20)"
+    background="var(--background-10)"
+    space="var(--space)"
+  />
 </template>
 
 <style lang="scss">
@@ -40,7 +52,6 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  padding-top: var(--space-s);
 }
 </style>
 

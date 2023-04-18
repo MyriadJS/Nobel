@@ -20,7 +20,7 @@ const urls = computed(() => {
 
 <template>
   <div class="upload" :ref="uploadWrapper.element">
-    <div class="layout" v-if="files.length || true">
+    <div class="layout" v-if="files.length && false">
       <p class="caption">layout: <span>{{ layout ? "image" : "file"}}</span></p>
       <Icon
         class="focus"
