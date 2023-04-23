@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { uploadWrapper, files, deleteFile } from './actions';
+import { tempFiles } from './actions';
+
+export const uploadWrapper = useFlip({disabled: false})
 
 const layout = ref(true)
 const compact = ref(false)
@@ -12,10 +14,17 @@ function changeLayout(bool = !layout.value) {
     layout.value = bool
   })
 }
+//todo make file local to this component. Notice when active. When active listen to global file and sync with it
+
+const files = ref<File[]>([])
 
 const urls = computed(() => {
   return files.value.map((file) => URL.createObjectURL(file))
 })
+
+function deleteFile(index: number) {
+  files.value.splice(index, 1)
+}
 </script>
 
 <template>
@@ -40,9 +49,10 @@ const urls = computed(() => {
       />
     </div>
 
-    <div 
+    <div
       class="images" 
       :class="{empty: !files.length}"
+      v-if="urls"
     >
       <ImageGallery
         v-if="layout"

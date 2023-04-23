@@ -24,7 +24,7 @@
       space="0px" 
       foreground="var(--foreground-20)"
     />
- 
+
     <ButtonIcon 
       icon="i-mdi:format-bold"  
       @click="() => editor!.chain().focus().toggleBold().run()"
@@ -51,7 +51,7 @@
 .controls {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: var(--space-xs); 
 }
 </style>
 

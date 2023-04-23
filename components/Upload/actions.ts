@@ -1,15 +1,6 @@
-export const uploadWrapper = useFlip({disabled: false})
-export const files = ref<File[]>([])
+export const tempFiles = ref<File[]>([])
 
-export function onChange(e: Event) {
-  uploadWrapper.flip(() => {
-    const target = e.target as HTMLInputElement
-    files.value = [...files.value, ...Array.from(target.files!)]
-  })
-}
-
-export function deleteFile(index: number) {
-  uploadWrapper.flip(() => {
-    files.value.splice(index, 1)
-  })
+export function addTempFile(e: Event) {
+  const target = e.target as HTMLInputElement
+  tempFiles.value = [...tempFiles.value, ...Array.from(target.files!)]
 }

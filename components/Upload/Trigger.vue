@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onChange } from './actions';
+import { addTempFile } from './actions';
 const input = ref<HTMLInputElement | null>(null)
 </script>
 
@@ -9,7 +9,7 @@ const input = ref<HTMLInputElement | null>(null)
     type="file"
     hidden
     multiple
-    @change="onChange"
+    @change="addTempFile"
     ref="input"
   />
   <div @click="() => input?.click()">

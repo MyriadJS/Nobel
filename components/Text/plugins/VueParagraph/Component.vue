@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { NodeViewContent, NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
+import { getCurrentBlock } from "../Overflow"
 import { user1 } from "@/dummydata/posts"
 
 const post2 = {
@@ -28,12 +29,17 @@ const post = {
   }
 }
 
-defineProps(nodeViewProps)
+const props = defineProps(nodeViewProps)
 defineComponent({
   components: {
     NodeViewContent,
-    NodeViewWrapper,
-  },
+    NodeViewWrapper
+  }
+})
+
+props.editor.on('selectionUpdate', ({ editor }) => {
+  const current = getCurrentBlock(editor)
+  console.log(current.block)
 })
 </script>
 

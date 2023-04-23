@@ -8,6 +8,17 @@ export const Overflow = TextStyle.extend({
   },
 })
 
+export function getCurrentBlock(editor: Editor) {
+  const { state } = editor
+  return {
+    start: state.selection.$from.before(),
+    block: state.doc.nodeAt(state.selection.$from.before()),
+    size: state.doc.nodeAt(state.selection.$from.before())?.content.size || 0,
+    end: 0,
+  }
+
+}
+
 export function validateOverflow(editor: Editor, props: { limit: number}) {
   const { state, view, schema } = editor
   const dispatch = view.dispatch
@@ -21,12 +32,7 @@ export function validateOverflow(editor: Editor, props: { limit: number}) {
     return dispatch(transaction.addMark(from, to, mark))
   }
   
-  const current = {
-    start: state.selection.$from.before(),
-    block: state.doc.nodeAt(state.selection.$from.before()),
-    size: state.doc.nodeAt(state.selection.$from.before())?.content.size || 0,
-    end: 0,
-  }
+  const current = getCurrentBlock(editor)
 
   current.end = current.start + current.size + 1
   const atLimit = current.size >= props.limit
