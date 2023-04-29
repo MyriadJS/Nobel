@@ -18,15 +18,7 @@
 
   const editor = useEditor({
     content: `
-      <vue-post>
-        This is still the text editor you’re used to, but enriched with node views.
-      <vue-post>
-      <vue-post>
-        <p>This is editable.</p>
-      </vue-post>
-      <vue-post>
-        Did you see that? That’s a Vue component. We are really living in the future.
-        <vue-post>
+    <vue-post>This is still the text editor you’re used to, but enriched with node views. This is editable. This is editable. Did you see that? That’s a Vue component. We are really living in the future.</vue-post><vue-post>fsefefeeefdfsefdsfefdfefe</vue-post><vue-post>fdfefseeffefdsdfeefdfdfefd</vue-post>
     `,
     onUpdate,
     extensions: [
@@ -55,6 +47,7 @@
     validateOverflow(editor, {
       limit: 280
     })
+    console.log(editor.getJSON())
   }
 
   onBeforeUnmount(() => {

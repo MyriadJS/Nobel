@@ -12,7 +12,7 @@ export function getCurrentBlock(editor: Editor) {
   const { state } = editor
   return {
     start: state.selection.$from.before(),
-    block: state.doc.nodeAt(state.selection.$from.before()),
+    node: state.doc.nodeAt(state.selection.$from.before()),
     size: state.doc.nodeAt(state.selection.$from.before())?.content.size || 0,
     end: 0,
   }

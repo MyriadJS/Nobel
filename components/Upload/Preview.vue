@@ -1,30 +1,35 @@
 <script setup lang="ts">
-import { tempFiles } from './actions';
+import { useFiles } from './actions';
 
-export const uploadWrapper = useFlip({disabled: false})
+const props = defineProps<{
+  selected?: boolean
+}>()
+
+const uploadWrapper = useFlip({disabled: false})
 
 const layout = ref(true)
 const compact = ref(false)
-
-//const { upload, uploading } = useUpload()
-//const url = await upload(target.files![0])
 
 function changeLayout(bool = !layout.value) {
   uploadWrapper.flip(() => {
     layout.value = bool
   })
 }
-//todo make file local to this component. Notice when active. When active listen to global file and sync with it
 
-const files = ref<File[]>([])
+//const { upload, uploading } = useUpload()
+//const url = await upload(target.files![0])
 
-const urls = computed(() => {
-  return files.value.map((file) => URL.createObjectURL(file))
+const files = useFiles({
+  selected: props.selected
 })
 
 function deleteFile(index: number) {
   files.value.splice(index, 1)
 }
+
+const urls = computed(() => {
+  return files.value.map((file) => URL.createObjectURL(file))
+})
 </script>
 
 <template>

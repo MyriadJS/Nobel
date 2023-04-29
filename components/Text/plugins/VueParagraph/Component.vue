@@ -37,9 +37,11 @@ defineComponent({
   }
 })
 
+let selected = ref(false)
+
 props.editor.on('selectionUpdate', ({ editor }) => {
   const current = getCurrentBlock(editor)
-  console.log(current.block)
+  selected.value = props.getPos() === current.start
 })
 </script>
 
@@ -47,7 +49,7 @@ props.editor.on('selectionUpdate', ({ editor }) => {
   <node-view-wrapper class="vue-component">
     <PostRelationship :post="post" :loading="false">
       <p><node-view-content class="content" /></p>
-      <UploadPreview/>
+      <UploadPreview :selected="selected"/>
     </PostRelationship>
   </node-view-wrapper>
-</template>
+</template>d
