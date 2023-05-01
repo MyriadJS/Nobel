@@ -34,12 +34,12 @@ const urls = computed(() => {
       <p class="caption">layout: <span>{{ layout ? "image" : "file"}}</span></p>
       <div class="buttons">
         
-        <UploadZone @change="$emit('change', $event)">
+        <UploadInput @change="$emit('change', $event)">
           <Icon 
             icon="i-pixelarticons:plus"
             :tabindex="files.length && layout ? 0 : -1"
           />
-        </UploadZone>
+        </UploadInput>
 
         <Divider
           style="margin-bottom: 0px"

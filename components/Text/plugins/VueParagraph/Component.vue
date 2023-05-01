@@ -67,13 +67,15 @@ function deleteFile(index: number) {
     >
       <p><node-view-content class="content" /></p>
       <Divider
-        style="margin-bottom: 0px"
+        v-if="selected"
+        style="margin-bottom: var(--space)"
         foreground="var(--foreground-20)"
         background="var(--background-10)"
         space="var(--space)"
       />
-      <UploadZone @change="addFiles" />
+      <UploadZone v-if="!files.length && selected" @change="addFiles"/>
       <UploadPreview
+        v-if="files.length"
         :files="files" 
         @delete="deleteFile"
         @change="addFiles"

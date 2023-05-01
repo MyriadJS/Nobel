@@ -1,20 +1,20 @@
 <script setup lang="ts">
 interface Props {
-  intention?: string
   icon?: string
+  hover?: string | boolean
 }
 
 withDefaults(defineProps<Props>(), {
-  intention: 'click',
+  hover: 'click',
   icon: 'i-pixelarticons:chevron-left'
 })
 </script>
 
 <template>
   <button type="button">
-    <div class="state">
+    <div class="state" :class="{hover: hover}">
       <Icon :icon="icon"/>
-      <p>{{ intention }}</p>
+      <p>{{hover}}</p>
     </div>
     <slot>Click</slot>
   </button>
@@ -48,7 +48,7 @@ p {
   }
 }
 
-button:hover .state {
+button:hover .hover {
   width: calc(100% - var(--space-s));
 }
 
