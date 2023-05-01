@@ -61,8 +61,7 @@
 <template>
   <TextMenu :editor="editor" />
   <EditorContent 
-    :editor="editor" 
-    @click="onClickInside" 
+    :editor="editor"
     ref="target"
   />
   <TextMenuFloating :editor="editor" />

@@ -68,8 +68,6 @@ function deleteFile(index: number) {
       :class="{selected: selected}"
     >
       <p><node-view-content class="content" /></p>
-      <p>-----</p>
-      <p>{{ editor.storage.awesomeness }} fdddder</p>
       <Divider
         v-if="selected"
         style="margin-bottom: var(--space)"
