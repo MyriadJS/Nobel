@@ -1,5 +1,4 @@
 <script setup lang="ts">
-//import { useFiles } from './actions';
 
 const emit = defineEmits<{
   (e: 'delete', index: number): void
@@ -31,7 +30,7 @@ const urls = computed(() => {
 
 <template>
   <div class="upload" :ref="uploadWrapper.element">
-    <div class="layout" v-if="files.length && false">
+    <div class="layout" v-if="files.length">
       <p class="caption">layout: <span>{{ layout ? "image" : "file"}}</span></p>
       <Icon
         class="focus"

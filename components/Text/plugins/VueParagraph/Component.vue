@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useFiles } from '../../../Upload/actions';
 import { NodeViewContent, NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
 import { getCurrentBlock } from "../Overflow"
 import { user1 } from "@/dummydata/posts"
@@ -45,7 +44,15 @@ props.editor.on('selectionUpdate', ({ editor }) => {
   selected.value = props.getPos() === current.start
 })
 
-const files = useFiles(selected)
+//const files = useFiles(selected)
+
+const files = ref<File[]>([])
+
+function addFiles(e: Event) {
+  const target = e.target as HTMLInputElement
+  files.value = [...files.value, ...Array.from(target.files!)]
+}
+
 function deleteFile(index: number) {
   files.value.splice(index, 1)
 }
@@ -53,8 +60,9 @@ function deleteFile(index: number) {
 
 <template>
   <node-view-wrapper class="vue-component">
-    <PostRelationship :post="post" :loading="false">
+    <PostRelationship :post="post" :loading="false" :class="{selected: selected}">
       <p><node-view-content class="content" /></p>
+      <TextMenuNode @change="addFiles" />
       <UploadPreview 
         :selected="selected" 
         :files="files" 
@@ -62,4 +70,12 @@ function deleteFile(index: number) {
       />
     </PostRelationship>
   </node-view-wrapper>
-</template>d
+</template>
+
+<style lang="scss">
+.selected {
+  background: var(--background);
+  padding: var(--space-m) var(--space-m);
+  border-radius: var(--radius);
+}
+</style>

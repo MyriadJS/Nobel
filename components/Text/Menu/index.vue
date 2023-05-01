@@ -11,20 +11,6 @@
     space="var(--space)"
   />
   <div class="controls" v-if="editor">
-    <UploadTrigger>
-      <ButtonIcon 
-        icon="i-pixelarticons:image"
-        intention="add"
-        type="button"
-      />
-    </UploadTrigger>
-
-    <Divider 
-      :vertical="true" 
-      space="0px" 
-      foreground="var(--foreground-20)"
-    />
-
     <ButtonIcon 
       icon="i-mdi:format-bold"  
       @click="() => editor!.chain().focus().toggleBold().run()"
@@ -47,7 +33,7 @@
   />
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .controls {
   display: flex;
   align-items: center;
