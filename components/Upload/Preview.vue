@@ -5,7 +5,6 @@ const emit = defineEmits<{
 }>()
 
 const props = defineProps<{
-  selected?: boolean,
   files: File[]
 }>()
 

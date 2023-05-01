@@ -60,20 +60,27 @@ function deleteFile(index: number) {
 
 <template>
   <node-view-wrapper class="vue-component">
-    <PostRelationship :post="post" :loading="false" :class="{selected: selected}">
+    <Post
+      :post="post" 
+      :loading="false" 
+      :class="{selected: selected}"
+    >
       <p><node-view-content class="content" /></p>
       <TextMenuNode @change="addFiles" />
-      <UploadPreview 
-        :selected="selected" 
+      <UploadPreview
         :files="files" 
         @delete="deleteFile"
       />
-    </PostRelationship>
+    </Post>
   </node-view-wrapper>
 </template>
 
 <style lang="scss">
-.selected {
+.post-wrapper {
+  transition: padding .4s, background-color .4s;
+}
+
+.post-wrapper.selected {
   background: var(--background);
   padding: var(--space-m) var(--space-m);
   border-radius: var(--radius);

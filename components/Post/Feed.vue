@@ -19,7 +19,7 @@
       :loading="value"
       :duration="duration"
     >
-      <PostRelationship
+      <Post
         :post="post"
         :loading="value"
       />

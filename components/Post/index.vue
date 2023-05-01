@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <div class="cover post-flex">
+  <div class="post-wrapper post-flex">
     <PostContent
       v-if="post.parent"
       :post="post.parent" 
