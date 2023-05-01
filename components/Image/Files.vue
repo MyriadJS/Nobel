@@ -2,6 +2,7 @@
 
 const props = defineProps<{
   files: File[]
+  controls: boolean
 }>()
 
 const emit = defineEmits<{
@@ -45,7 +46,8 @@ function removeFile(index: number) {
         <p>{{ fileName(file) }}</p>
         <p class="caption">{{ fileSize(file) }} - {{ file.type }}</p>
       </div>
-      <Icon 
+      <Icon
+        v-if="controls"
         class="focus" 
         icon="i-pixelarticons:close" 
         @click="() => removeFile(index)" 

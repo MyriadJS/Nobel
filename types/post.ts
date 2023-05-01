@@ -35,6 +35,6 @@ export interface Post {
   user: User,
   content?: string,
   cover: string[],
-  parent: Post | null,
+  parent?: Post | null,
   reactions: Reactions
 }

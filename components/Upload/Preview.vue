@@ -82,6 +82,7 @@ const urls = computed(() => {
 
       <ImageFiles 
         v-else
+        :controls="controls"
         :files="files"
         @delete="emit('delete', $event)"
       />

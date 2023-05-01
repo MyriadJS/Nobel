@@ -68,21 +68,26 @@ function deleteFile(index: number) {
       :class="{selected: selected}"
     >
       <p><node-view-content class="content" /></p>
-      <Divider
-        v-if="selected"
-        style="margin-bottom: var(--space)"
-        foreground="var(--foreground-20)"
-        background="var(--background-10)"
-        space="var(--space)"
-      />
-      <UploadZone v-if="!files.length && selected" @change="addFiles"/>
-      <UploadPreview
-        v-if="files.length"
-        :files="files"
-        :controls="selected"
-        @delete="deleteFile"
-        @change="addFiles"
-      />
+      <div class="footer" contenteditable="false">
+        <Divider
+          v-if="selected"
+          style="margin-bottom: var(--space)"
+          foreground="var(--foreground-20)"
+          background="var(--background-10)"
+          space="var(--space)"
+        />
+        <UploadZone 
+          v-if="!files.length && selected" 
+          @change="addFiles"
+        />
+        <UploadPreview
+          v-if="files.length"
+          :files="files"
+          :controls="selected"
+          @delete="deleteFile"
+          @change="addFiles"
+        />
+      </div>
     </Post>
   </node-view-wrapper>
 </template>

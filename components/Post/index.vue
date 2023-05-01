@@ -12,6 +12,7 @@
       :post="post.parent" 
       :loading="loading"
       size="small"
+      contenteditable="false"
     >
       <p v-if="post.parent">{{ contentParent }}</p>
     </PostContent>
