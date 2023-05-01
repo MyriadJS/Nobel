@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { useFiles } from './actions';
+//import { useFiles } from './actions';
+
+const emit = defineEmits<{
+  (e: 'delete', index: number): void
+}>()
 
 const props = defineProps<{
-  selected?: boolean
+  selected?: boolean,
+  files: File[]
 }>()
 
 const uploadWrapper = useFlip({disabled: false})
@@ -19,16 +24,8 @@ function changeLayout(bool = !layout.value) {
 //const { upload, uploading } = useUpload()
 //const url = await upload(target.files![0])
 
-const files = useFiles({
-  selected: props.selected
-})
-
-function deleteFile(index: number) {
-  files.value.splice(index, 1)
-}
-
 const urls = computed(() => {
-  return files.value.map((file) => URL.createObjectURL(file))
+  return props.files.map((file) => URL.createObjectURL(file))
 })
 </script>
 
@@ -69,7 +66,7 @@ const urls = computed(() => {
       <ImageFiles 
         v-else
         :files="files"
-        @delete="deleteFile"
+        @delete="emit('delete', $event)"
       />
     </div>
 

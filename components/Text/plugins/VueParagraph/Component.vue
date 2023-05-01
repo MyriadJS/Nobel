@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useFiles } from '../../../Upload/actions';
 import { NodeViewContent, NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
 import { getCurrentBlock } from "../Overflow"
 import { user1 } from "@/dummydata/posts"
@@ -43,13 +44,22 @@ props.editor.on('selectionUpdate', ({ editor }) => {
   const current = getCurrentBlock(editor)
   selected.value = props.getPos() === current.start
 })
+
+const files = useFiles(selected)
+function deleteFile(index: number) {
+  files.value.splice(index, 1)
+}
 </script>
 
 <template>
   <node-view-wrapper class="vue-component">
     <PostRelationship :post="post" :loading="false">
       <p><node-view-content class="content" /></p>
-      <UploadPreview :selected="selected"/>
+      <UploadPreview 
+        :selected="selected" 
+        :files="files" 
+        @delete="deleteFile"
+      />
     </PostRelationship>
   </node-view-wrapper>
 </template>d

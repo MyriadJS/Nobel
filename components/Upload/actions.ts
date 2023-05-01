@@ -6,12 +6,15 @@ export function addTempFile(e: Event) {
 }
 
 
-export function useFiles({selected}: {selected: Boolean}) {
+export function useFiles(selected: globalThis.Ref<boolean>) {
   const files = ref<File[]>([])
   watch(tempFiles, (value) => {
-    if(selected || !value.length) return
+    if(selected.value || !value.length) return
     files.value = [...files.value, ...value]
     tempFiles.value = []
+  })
+  watch(selected, (value) => {
+    console.log("rex3", value)
   })
   return files
 }
