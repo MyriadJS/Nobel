@@ -7,6 +7,11 @@ export default Node.create({
   name: 'vuePost',
   group: 'block',
   content: 'inline*',
+  addStorage() {
+    return {
+      awesomeness: 100,
+    }
+  },
   parseHTML() {
     return [{tag: 'vue-post'}]
   },

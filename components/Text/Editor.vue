@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { useEditor, EditorContent  } from '@tiptap/vue-3'
+   import { useEditor, EditorContent  } from '@tiptap/vue-3'
   import { Editor } from '@tiptap/core'
   import StarterKit from '@tiptap/starter-kit'
   import CharacterCount from '@tiptap/extension-character-count'
@@ -15,6 +15,8 @@
   const emit = defineEmits<{
     (e: 'text', text: string): void
   }>()
+
+  const target = ref(null)
 
   const editor = useEditor({
     content: `
@@ -58,7 +60,11 @@
 
 <template>
   <TextMenu :editor="editor" />
-  <EditorContent :editor="editor" />
+  <EditorContent 
+    :editor="editor" 
+    @click="onClickInside" 
+    ref="target"
+  />
   <TextMenuFloating :editor="editor" />
 </template>
 

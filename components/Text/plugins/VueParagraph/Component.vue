@@ -44,7 +44,9 @@ props.editor.on('selectionUpdate', ({ editor }) => {
   selected.value = props.getPos() === current.start
 })
 
-//const files = useFiles(selected)
+props.editor.on('blur', () => {
+  selected.value = false
+})
 
 const files = ref<File[]>([])
 
@@ -66,6 +68,8 @@ function deleteFile(index: number) {
       :class="{selected: selected}"
     >
       <p><node-view-content class="content" /></p>
+      <p>-----</p>
+      <p>{{ editor.storage.awesomeness }} fdddder</p>
       <Divider
         v-if="selected"
         style="margin-bottom: var(--space)"

@@ -20,7 +20,6 @@
 
 <style lang="scss">
 .zone button {
-  //background: var(--background);
   width: 200px;
 }
 </style>
