@@ -9,7 +9,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <button>
+  <button class="icon">
     <Icon :icon="icon"/>
   </button>
 </template>

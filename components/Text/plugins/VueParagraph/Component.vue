@@ -66,10 +66,17 @@ function deleteFile(index: number) {
       :class="{selected: selected}"
     >
       <p><node-view-content class="content" /></p>
-      <TextMenuNode @change="addFiles" />
+      <Divider
+        style="margin-bottom: 0px"
+        foreground="var(--foreground-20)"
+        background="var(--background-10)"
+        space="var(--space)"
+      />
+      <UploadZone @change="addFiles" />
       <UploadPreview
         :files="files" 
         @delete="deleteFile"
+        @change="addFiles"
       />
     </Post>
   </node-view-wrapper>

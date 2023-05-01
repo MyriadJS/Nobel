@@ -1,7 +1,8 @@
 <script setup lang="ts">
 
 const emit = defineEmits<{
-  (e: 'delete', index: number): void
+  (e: 'delete', index: number): void,
+  (e: 'change', event: Event): void
 }>()
 
 const props = defineProps<{
@@ -31,22 +32,39 @@ const urls = computed(() => {
   <div class="upload" :ref="uploadWrapper.element">
     <div class="layout" v-if="files.length">
       <p class="caption">layout: <span>{{ layout ? "image" : "file"}}</span></p>
-      <Icon
-        class="focus"
-        :class="{active: layout, disabled: !files.length && false}"
-        icon="i-pixelarticons:image-multiple" 
-        @click="() => changeLayout(true)"
-        @keyup.enter="() => changeLayout(true)"
-        :tabindex="files.length && !layout ? 0 : -1"
-      />
-      <Icon
-        class="focus"
-        :class="{active: !layout, disabled: !files.length && false}"
-        icon="i-pixelarticons:view-list"
-        @click="() => changeLayout(false)"
-        @keyup.enter="() => changeLayout(false)"
-        :tabindex="files.length && layout ? 0 : -1"
-      />
+      <div class="buttons">
+        
+        <UploadZone @change="$emit('change', $event)">
+          <Icon 
+            icon="i-pixelarticons:plus"
+            :tabindex="files.length && layout ? 0 : -1"
+          />
+        </UploadZone>
+
+        <Divider
+          style="margin-bottom: 0px"
+          foreground="var(--foreground-20)"
+          space="var(--space-s)"
+          :vertical="true"
+        />
+
+        <Icon
+          class="focus"
+          :class="{active: layout, disabled: !files.length}"
+          icon="i-pixelarticons:image-multiple" 
+          @click="() => changeLayout(true)"
+          @keyup.enter="() => changeLayout(true)"
+          :tabindex="files.length && !layout ? 0 : -1"
+        />
+        <Icon
+          class="focus"
+          :class="{active: !layout, disabled: !files.length}"
+          icon="i-pixelarticons:view-list"
+          @click="() => changeLayout(false)"
+          @keyup.enter="() => changeLayout(false)"
+          :tabindex="files.length && layout ? 0 : -1"
+        />
+      </div>
     </div>
 
     <div
@@ -80,11 +98,17 @@ const urls = computed(() => {
   width: 100%;
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: 1fr auto auto;
+.buttons {
+  display: flex;
   align-items: center;
   gap: var(--space-xs);
+}
+
+.layout {
+  display: flex;
+  gap: var(--space-xs);
+  justify-content: space-between;
+  align-items: center;
   background: var(--background);
   padding: 0px var(--space-xs);
   border-radius: var(--radius);
