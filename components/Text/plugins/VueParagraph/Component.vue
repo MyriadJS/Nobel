@@ -44,9 +44,9 @@ props.editor.on('selectionUpdate', ({ editor }) => {
   selected.value = props.getPos() === current.start
 })
 
-props.editor.on('blur', () => {
-  selected.value = false
-})
+// props.editor.on('blur', () => {
+//   selected.value = false
+// })
 
 const files = ref<File[]>([])
 
@@ -78,7 +78,8 @@ function deleteFile(index: number) {
       <UploadZone v-if="!files.length && selected" @change="addFiles"/>
       <UploadPreview
         v-if="files.length"
-        :files="files" 
+        :files="files"
+        :controls="selected"
         @delete="deleteFile"
         @change="addFiles"
       />

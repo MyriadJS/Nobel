@@ -6,7 +6,8 @@ const emit = defineEmits<{
 }>()
 
 const props = defineProps<{
-  files: File[]
+  files: File[],
+  controls: boolean
 }>()
 
 const uploadWrapper = useFlip({disabled: false})
@@ -30,7 +31,7 @@ const urls = computed(() => {
 
 <template>
   <div class="upload" :ref="uploadWrapper.element">
-    <div class="layout" v-if="files.length">
+    <div class="layout" v-if="files.length && controls">
       <p class="caption">layout: <span>{{ layout ? "image" : "file"}}</span></p>
       <div class="buttons">
         
