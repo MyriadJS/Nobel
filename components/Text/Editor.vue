@@ -24,9 +24,9 @@
     `,
     onUpdate,
     extensions: [
+      VueParagraph,
       StarterKit,
       Overflow,
-      VueParagraph,
       Placeholder.configure({
         placeholder: 'Write something...',
       }),
