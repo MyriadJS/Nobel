@@ -44,6 +44,7 @@ props.editor.on('selectionUpdate', ({ editor }) => {
   selected.value = props.getPos() === current.start
 })
 
+//TODO: This should deselct the node when the editor is blurred
 // props.editor.on('blur', () => {
 //   selected.value = false
 // })

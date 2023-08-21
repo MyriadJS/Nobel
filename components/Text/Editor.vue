@@ -1,7 +1,10 @@
 <script setup lang="ts">
-   import { useEditor, EditorContent  } from '@tiptap/vue-3'
+  import { useEditor, EditorContent  } from '@tiptap/vue-3'
   import { Editor } from '@tiptap/core'
-  import StarterKit from '@tiptap/starter-kit'
+  import Document from '@tiptap/extension-document'
+  import Text from '@tiptap/extension-text'
+  import Bold from '@tiptap/extension-bold'
+  import Italic from '@tiptap/extension-italic'
   import CharacterCount from '@tiptap/extension-character-count'
   import Placeholder from '@tiptap/extension-placeholder'
   import { Overflow, validateOverflow } from './plugins/Overflow'
@@ -20,12 +23,17 @@
 
   const editor = useEditor({
     content: `
-    <vue-post>This is still the text editor you’re used to, but enriched with node views. This is editable. This is editable. Did you see that? That’s a Vue component. We are really living in the future.</vue-post><vue-post>fsefefeeefdfsefdsfefdfefe</vue-post><vue-post>fdfefseeffefdsdfeefdfdfefd</vue-post>
+      <vue-post>This is still the text editor you’re used to, but enriched with node views. This is editable. This is editable. Did you see that? That’s a Vue component. We are really living in the future.</vue-post>
+      <vue-post>fsefefeeefdfsefdsfefdfefe</vue-post>
+      <vue-post>fdfefseeffefdsdfeefdfdfefd</vue-post>
     `,
     onUpdate,
     extensions: [
+      Document,
       VueParagraph,
-      StarterKit,
+      Text,
+      Bold,
+      Italic,
       Overflow,
       Placeholder.configure({
         placeholder: 'Write something...',
