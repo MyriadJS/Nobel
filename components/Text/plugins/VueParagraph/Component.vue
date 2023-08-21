@@ -21,7 +21,7 @@ const post = {
   user: user1,
   content: 'Nuxt layers are a powerful feature that you can use to share and reuse Nuxt applications within a monorepo, or from a git repository or npm package. The layers structure is almost identical to a standard Nuxt application, which makes them easy to author and maintain.',
   cover: [],
-  parent: post2,
+  parent: undefined,
   reactions: {
     pro: 100,
     con: 100,
@@ -102,5 +102,9 @@ function deleteFile(index: number) {
   background: var(--background);
   padding: var(--space-m) var(--space-m);
   border-radius: var(--radius);
+}
+
+.post-wrapper .footer {
+  color: var(--accent);
 }
 </style>
