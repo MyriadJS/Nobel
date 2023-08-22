@@ -111,12 +111,12 @@ const expanded = ref(false)
   //background: var(--background-10);
   max-height: 0px;
   overflow: hidden;
-  transition: .4s;
+  transition: .2s;
 }
 
 .post-wrapper .footer .attachment.expanded {
   //background: var(--background-10);
-  max-height: 100px;
+  max-height: 600px;
   //overflow: hidden;
   padding-bottom: var(--space);
 }
