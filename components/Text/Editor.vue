@@ -12,6 +12,7 @@
   import Placeholder from '@tiptap/extension-placeholder'
   import { Overflow, validateOverflow } from './plugins/Overflow'
   import VueParagraph from './plugins/VueParagraph'
+  import { Slugline } from './plugins/Slugline'
 
   const props = withDefaults(defineProps<{limit?: number, softLimit?: number}>(), {
     limit: 4000,
@@ -39,6 +40,7 @@
       Italic,
       Heading,
       Paragraph,
+      Slugline,
       History,
       Overflow,
       Placeholder.configure({
@@ -78,6 +80,7 @@
     ref="target"
   />
   <TextMenuFloating :editor="editor" />
+  <TextMenuBubble :editor="editor" />
 </template>
 
 <style lang="scss">

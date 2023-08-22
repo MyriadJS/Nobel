@@ -1,12 +1,12 @@
 <script setup lang="ts">
-  import { FloatingMenu  } from '@tiptap/vue-3'
+  import { BubbleMenu  } from '@tiptap/vue-3'
   import { Editor } from '@tiptap/core'
 
   defineProps<{editor?: Editor}>()
 </script>
 
 <template>
-  <FloatingMenu :editor="editor" v-if="editor">
+  <BubbleMenu :editor="editor" v-if="editor">
     <ButtonIcon 
       icon="i-mdi:format-header-1"
       @click="() => editor?.chain().focus().toggleHeading({ level: 1 }).run()"
@@ -34,9 +34,9 @@
     />
     <ButtonIcon 
       icon="i-pixelarticons:add-grid" 
-      @click="() => editor!.commands.setNode('Slugline')"
+      @click="() => editor!.commands.setNode('slugline')"
     />
-  </FloatingMenu>
+  </BubbleMenu>
 </template>
 
 <style lang="scss">
