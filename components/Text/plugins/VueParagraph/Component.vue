@@ -44,8 +44,15 @@ props.editor.on('selectionUpdate', ({ editor }) => {
   selected.value = props.getPos() === current.start
 })
 
+const postElement = ref<HTMLElement | null>(null)
+onClickOutside(postElement, () => {
+  console.log("click outside")
+  selected.value = false
+})
+
 //TODO: This should deselct the node when the editor is blurred
 // props.editor.on('blur', () => {
+//   console.log("blur")
 //   selected.value = false
 // })
 
@@ -66,6 +73,7 @@ const expanded = ref(false)
 <template>
   <node-view-wrapper class="vue-component">
     <Post
+      ref="postElement"
       :post="post" 
       :loading="false" 
       :class="{selected: selected}"
