@@ -26,9 +26,9 @@
 
   const editor = useEditor({
     content: `
-      <vue-post>This is still the text editor you’re used to, but enriched with node views. This is editable. This is editable. Did you see that? That’s a Vue component. We are really living in the future.</vue-post>
-      <vue-post>fsefefeeefdfsefdsfefdfefe</vue-post>
-      <vue-post>fdfefseeffefdsdfeefdfdfefd</vue-post>
+      <h1>THE RUBIK'S CUBE IS THE WORLD’S BEST SELLING PUZZLE TOY</h1>
+      <vue-post>Nuxt layers are a powerful feature that you can use to share and reuse partial Nuxt applications within a monorepo, or from a git repository or npm package. The layers structure is almost identical to a standard Nuxt application, which makes them easy to author and maintain.</vue-post>
+      <vue-post>Nuxt applications within a monorepo, or from a git repository or npm package. Nuxt applications within a monorepo, or from a git repository or npm package</vue-post>
     `,
     onUpdate,
     extensions: [
