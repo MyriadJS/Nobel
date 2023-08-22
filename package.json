@@ -39,6 +39,9 @@
     "@myriadjs/core": "^0.0.8",
     "@tiptap/extension-bold": "^2.2.0-rc.3",
     "@tiptap/extension-document": "^2.2.0-rc.3",
+    "@tiptap/extension-heading": "^2.2.0-rc.3",
+    "@tiptap/extension-history": "^2.2.0-rc.3",
+    "@tiptap/extension-paragraph": "^2.2.0-rc.3",
     "gsap": "npm:@gsap/shockingly@^3.11.5"
   }
 }

@@ -24,6 +24,22 @@
       :disabled="!editor.can().chain().focus().toggleItalic().run()"
       :class="{active: editor.isActive('italic')}"
     />
+
+    <Divider 
+      :vertical="true"
+      foreground="var(--foreground-20)"
+      style="margin: 0px;"
+    />
+
+    <ButtonIcon 
+      icon="i-mdi:format-header-1"  
+      @click="() => editor?.commands.undo()"
+    />
+
+    <ButtonIcon 
+      icon="i-mdi:format-header-1"  
+      @click="() => editor?.commands.redo()"
+    />
   </div>
   <Divider
     style="margin-top: 0px"
