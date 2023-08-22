@@ -63,7 +63,6 @@
     validateOverflow(editor, {
       limit: 280
     })
-    console.log(editor.getJSON())
   }
 
   onBeforeUnmount(() => {

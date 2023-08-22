@@ -32,13 +32,15 @@
     />
 
     <ButtonIcon 
-      icon="i-mdi:format-header-1"  
+      icon="i-pixelarticons:corner-up-left"
       @click="() => editor?.commands.undo()"
+      :disabled="!editor?.can().undo()"
     />
 
     <ButtonIcon 
-      icon="i-mdi:format-header-1"  
+      icon="i-pixelarticons:corner-up-right"  
       @click="() => editor?.commands.redo()"
+      :disabled="!editor?.can().redo()"
     />
   </div>
   <Divider

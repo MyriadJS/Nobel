@@ -1,15 +1,23 @@
 <script setup lang="ts">
 interface Props {
   icon?: string
+  active?: boolean
+  disabled?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
-  icon: 'i-pixelarticons:chevron-plus'
+  icon: 'i-pixelarticons:chevron-plus',
+  active: false,
+  disabled: false
 })
 </script>
 
 <template>
-  <button class="icon">
+  <button 
+    class="icon" 
+    :class="{active}"
+    :disabled="disabled"
+  >
     <Icon :icon="icon"/>
   </button>
 </template>

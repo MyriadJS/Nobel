@@ -23,7 +23,6 @@
     "@tiptap/extension-placeholder": "^2.2.0-rc.3",
     "@tiptap/extension-text-style": "^2.2.0-rc.3",
     "@tiptap/pm": "^2.2.0-rc.3",
-    "@tiptap/starter-kit": "^2.2.0-rc.3",
     "@tiptap/vue-3": "^2.2.0-rc.3",
     "@unocss/nuxt": "^0.55.2",
     "@unocss/preset-icons": "^0.55.2",

@@ -21,6 +21,13 @@ button.active {
   color: var(--accent);
 }
 
+button:disabled {
+  background: var(--foreground-10);
+  color: var(--foreground-20);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 button:focus:not(.no-outline),
 button:active:not(.no-outline),
 textarea:focus:not(.no-outline),

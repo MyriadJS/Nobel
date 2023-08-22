@@ -2,16 +2,24 @@
 interface Props {
   icon?: string
   hover?: string | boolean
+  active?: boolean
+  disabled?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   hover: 'click',
-  icon: 'i-pixelarticons:chevron-left'
+  icon: 'i-pixelarticons:chevron-left',
+  active: false,
+  disabled: false
 })
 </script>
 
 <template>
-  <button type="button">
+  <button 
+    type="button"
+    :class="{active}"
+    :disabled="disabled"
+  >
     <div class="state" :class="{hover: hover}">
       <Icon :icon="icon"/>
       <p>{{hover}}</p>
