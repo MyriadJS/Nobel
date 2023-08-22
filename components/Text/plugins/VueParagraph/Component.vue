@@ -107,19 +107,32 @@ const expanded = ref(false)
   padding-bottom: 0px;
 }
 
+.post-wrapper .footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 .post-wrapper .footer .attachment {
   //background: var(--background-10);
   //padding: var(--space-m);
   max-height: 0px;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
   transition: .2s;
 }
 
 .post-wrapper .footer .attachment.expanded {
   //background: var(--background-10);
   max-height: 600px;
-  //overflow: hidden;
+  overflow: hidden;
   padding-bottom: var(--space-m);
+  padding-top: var(--space-xs);
 }
 
 button.divider {

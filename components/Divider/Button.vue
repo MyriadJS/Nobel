@@ -9,7 +9,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <button class="divider">
+  <button class="divider no-outline">
     <Divider
       style=""
       foreground="var(--foreground-20)"
