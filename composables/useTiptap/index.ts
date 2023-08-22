@@ -10,7 +10,7 @@
   import CharacterCount from '@tiptap/extension-character-count'
   import Placeholder from '@tiptap/extension-placeholder'
   import { Overflow, validateOverflow } from './Overflow'
-  import VueParagraph from './VueParagraph'
+  import NobleParagraph from './VueParagraph'
   import { Slugline } from './Slugline'
 
 interface useTiptapProps {
@@ -41,7 +41,7 @@ export function useTiptap({
     onUpdate,
     extensions: [
       Document,
-      VueParagraph,
+      NobleParagraph,
       Text,
       Bold,
       Italic,

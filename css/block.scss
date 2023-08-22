@@ -41,7 +41,12 @@
 .panel {
   border-radius: var(--radius);
   padding: var(--space-m);
-  padding-bottom: var(--space-m);
+  background-color: var(--background-10);
+}
+
+.compact-panel {
+  border-radius: var(--radius);
+  padding: var(--space-s);
   background-color: var(--background-10);
 }
 

@@ -37,7 +37,8 @@ defineComponent({
   }
 })
 
-let selected = ref(false)
+const selected = ref(false)
+const expanded = ref(false)
 
 props.editor.on('selectionUpdate', ({ editor }) => {
   const current = getCurrentBlock(editor)
@@ -47,6 +48,7 @@ props.editor.on('selectionUpdate', ({ editor }) => {
 const postElement = ref<HTMLElement | null>(null)
 onClickOutside(postElement, () => {
   selected.value = false
+  //expanded.value = false
 })
 
 const files = ref<File[]>([])
@@ -60,7 +62,6 @@ function deleteFile(index: number) {
   files.value.splice(index, 1)
 }
 
-const expanded = ref(false)
 </script>
 
 <template>
@@ -105,6 +106,7 @@ const expanded = ref(false)
   background: var(--background);
   padding: var(--space-m) var(--space-m);
   border-radius: var(--radius);
+  padding-top: 0px;
   padding-bottom: 0px;
 }
 
@@ -132,7 +134,7 @@ const expanded = ref(false)
   //background: var(--background-10);
   max-height: 600px;
   overflow: hidden;
-  padding-bottom: var(--space-m);
+  padding-bottom: var(--space);
   padding-top: var(--space-xs);
 }
 

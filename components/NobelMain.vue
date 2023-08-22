@@ -1,30 +1,51 @@
 <script setup lang="ts">
   import { Post } from '@/types/post'
+  import { useTiptap } from '@/composables/useTiptap'
+  import { EditorContent  } from '@tiptap/vue-3'
+
   defineProps<{post: Post}>()
   const avatarSize = ref(90)
 
-  const text = ref('')
-  function handleText(t: string) {
-    text.value = t
-  }
+  const editor = useTiptap({
+    limit: 4000,
+    placeholder: 'Write your post here...',
+    onChange: (e) => {
+      console.log(e.getHTML())
+    },
+  })
+
 </script>
 
 <template>
-  <main id="open" class="page panel">
-    <div class="content post">
-      <TextEditor @text="handleText"/>
-    </div>
-    <div class="author">
-      <UserAvatar
-        :size="avatarSize"
-        :src="post.user.author.avatar"
-        :resolution="200"
-      />
-    </div>
-  </main>
+  <div class="wrapper">
+    <section class="page compact-panel">
+      <TextMenu :editor="editor" />
+    </section>
+    <main id="open" class="page panel">
+      <div class="content post">
+        <EditorContent :editor="editor"/>
+        <TextMenuFloating :editor="editor" />
+        <TextMenuBubble :editor="editor" />
+      </div>
+      <div class="author">
+        <UserAvatar
+          :size="avatarSize"
+          :src="post.user.author.avatar"
+          :resolution="200"
+        />
+      </div>
+    </main>
+  </div>
 </template>
 
 <style lang="scss">
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space);
+  margin-top: var(--space-l);
+}
+
 #open #divider {
   --border-color: var(--foreground);
 }
@@ -36,7 +57,6 @@
 }
 
 #open.page {
-  margin-top: var(--space-l);
   padding-bottom: 0px;
 }
 
@@ -63,4 +83,28 @@
   text-align: center;
 }
 
+//prose mirror
+span.overflow {
+  color: var(--accent-20);
+}
+
+.ProseMirror {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space);
+}
+
+.ProseMirror:focus {
+  outline: none !important;
+  border: none !important;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  color: var(--foreground-20);
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
 </style>
