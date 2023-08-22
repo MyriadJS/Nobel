@@ -1,7 +1,7 @@
 import { mergeAttributes, Node } from '@tiptap/core'
 import { VueNodeViewRenderer } from '@tiptap/vue-3'
 
-import Component from './Component.vue'
+import VueParagraph from '@/components/Text/VueParagraph.vue'
 
 export default Node.create({
   name: 'vuePost',
@@ -14,6 +14,6 @@ export default Node.create({
     return ['vue-post', mergeAttributes(HTMLAttributes), 0]
   },
   addNodeView() {
-    return VueNodeViewRenderer(Component)
+    return VueNodeViewRenderer(VueParagraph)
   },
 })

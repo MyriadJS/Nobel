@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { NodeViewContent, NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
-import { getCurrentBlock } from "../Overflow"
+import { getCurrentBlock } from "@/composables/useTiptap/Overflow"
 import { user1 } from "@/dummydata/posts"
 
 const post2 = {
@@ -46,15 +46,8 @@ props.editor.on('selectionUpdate', ({ editor }) => {
 
 const postElement = ref<HTMLElement | null>(null)
 onClickOutside(postElement, () => {
-  console.log("click outside")
   selected.value = false
 })
-
-//TODO: This should deselct the node when the editor is blurred
-// props.editor.on('blur', () => {
-//   console.log("blur")
-//   selected.value = false
-// })
 
 const files = ref<File[]>([])
 
