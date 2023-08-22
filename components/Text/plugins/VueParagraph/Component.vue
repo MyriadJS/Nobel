@@ -73,7 +73,7 @@ const expanded = ref(false)
       <p><node-view-content class="content" /></p>
       <div class="footer" contenteditable="false" v-if="true">
         <DividerButton 
-          v-if="selected"
+          v-if="selected && !files.length"
           @click="expanded = !expanded"
           :icon="expanded ? 'i-mdi:close' : 'i-mdi:plus'"
         />
@@ -109,6 +109,7 @@ const expanded = ref(false)
 
 .post-wrapper .footer .attachment {
   //background: var(--background-10);
+  //padding: var(--space-m);
   max-height: 0px;
   overflow: hidden;
   transition: .2s;
@@ -118,7 +119,7 @@ const expanded = ref(false)
   //background: var(--background-10);
   max-height: 600px;
   //overflow: hidden;
-  padding-bottom: var(--space);
+  padding-bottom: var(--space-m);
 }
 
 button.divider {
