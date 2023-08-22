@@ -12,7 +12,6 @@ withDefaults(defineProps<Props>(), {
   space: 'var(--space-l)',
   vertical: false,
 })
-
 </script>
 
 <template>

@@ -59,6 +59,8 @@ function addFiles(e: Event) {
 function deleteFile(index: number) {
   files.value.splice(index, 1)
 }
+
+const expanded = ref(false)
 </script>
 
 <template>
@@ -69,25 +71,25 @@ function deleteFile(index: number) {
       :class="{selected: selected}"
     >
       <p><node-view-content class="content" /></p>
-      <div class="footer" contenteditable="false">
-        <Divider
+      <div class="footer" contenteditable="false" v-if="true">
+        <DividerButton 
           v-if="selected"
-          style="margin-bottom: var(--space)"
-          foreground="var(--foreground-20)"
-          background="var(--background-10)"
-          space="var(--space)"
+          @click="expanded = !expanded"
+          :icon="expanded ? 'i-mdi:close' : 'i-mdi:plus'"
         />
-        <UploadZone 
-          v-if="!files.length && selected" 
-          @change="addFiles"
-        />
-        <UploadPreview
-          v-if="files.length"
-          :files="files"
-          :controls="selected"
-          @delete="deleteFile"
-          @change="addFiles"
-        />
+        <div class="attachment" :class="{expanded: expanded}">
+          <UploadZone 
+            v-if="!files.length && selected" 
+            @change="addFiles"
+          />
+          <UploadPreview
+            v-if="files.length"
+            :files="files"
+            :controls="selected"
+            @delete="deleteFile"
+            @change="addFiles"
+          />
+        </div>
       </div>
     </Post>
   </node-view-wrapper>
@@ -102,9 +104,26 @@ function deleteFile(index: number) {
   background: var(--background);
   padding: var(--space-m) var(--space-m);
   border-radius: var(--radius);
+  padding-bottom: 0px;
 }
 
-.post-wrapper .footer {
-  color: var(--accent);
+.post-wrapper .footer .attachment {
+  //background: var(--background-10);
+  max-height: 0px;
+  overflow: hidden;
+  transition: .4s;
+}
+
+.post-wrapper .footer .attachment.expanded {
+  //background: var(--background-10);
+  max-height: 100px;
+  //overflow: hidden;
+  padding-bottom: var(--space);
+}
+
+button.divider {
+  width: 100%;
+  max-width: 100%;
+  background: transparent;
 }
 </style>

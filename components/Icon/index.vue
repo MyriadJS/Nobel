@@ -10,7 +10,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div class="icon">
-    <i :class="icon" ></i>
+    <i :class="icon" />
   </div>
 </template>
 
