@@ -62,7 +62,6 @@ function removeFile(index: number) {
 .files {
   display: flex;
   flex-direction: column;
-  gap: var(--space-s);
   width: 100%;
 }
 

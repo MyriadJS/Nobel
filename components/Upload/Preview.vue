@@ -31,10 +31,13 @@ const urls = computed(() => {
 
 <template>
   <div class="upload" :ref="uploadWrapper.element">
-    <div class="layout" v-if="files.length && controls">
-      <p class="caption">layout: <span>{{ layout ? "image" : "file"}}</span></p>
+    <div
+      class="layout"
+      :class="layout" 
+      v-if="files.length && controls"
+    >
+      <p class="caption"> <span>Files</span></p>
       <div class="buttons">
-        
         <UploadInput @change="$emit('change', $event)">
           <Icon 
             icon="i-pixelarticons:plus"
@@ -45,7 +48,7 @@ const urls = computed(() => {
         <Divider
           style="margin-bottom: 0px"
           foreground="var(--foreground-20)"
-          space="var(--space-s)"
+          space="0px"
           :vertical="true"
         />
 
@@ -57,6 +60,7 @@ const urls = computed(() => {
           @keyup.enter="() => changeLayout(true)"
           :tabindex="files.length && !layout ? 0 : -1"
         />
+
         <Icon
           class="focus"
           :class="{active: !layout, disabled: !files.length}"
@@ -94,6 +98,7 @@ const urls = computed(() => {
 
 <style lang="scss" scoped>
 .upload {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
@@ -107,14 +112,28 @@ const urls = computed(() => {
 }
 
 .layout {
+  position: absolute;
   display: flex;
   gap: var(--space-xs);
   justify-content: space-between;
   align-items: center;
-  background: var(--background);
-  padding: 0px var(--space-xs);
-  border-radius: var(--radius);
   height: var(--block-size);
+  width: 100%;
+}
+
+.layout > * {
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  background-color: var(--background);
+  height: var(--block-inner-size);
+  padding: var(--space-xs);
+}
+
+.layout > *:nth-child(2) {
+  position: relative;
+  z-index: 5;
+  border-bottom-left-radius: var(--radius);
 }
 
 .layout .icon {
@@ -136,5 +155,11 @@ const urls = computed(() => {
 
 .images.empty {
   display: none;
+}
+
+.images .files {
+  position: relative;
+  z-index: 4;
+  margin-top: var(--block-size);
 }
 </style>

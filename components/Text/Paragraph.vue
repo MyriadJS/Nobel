@@ -40,6 +40,8 @@ defineComponent({
 const selected = ref(false)
 const expanded = ref(false)
 
+const cooldown = useCooldown(selected)
+
 props.editor.on('selectionUpdate', ({ editor }) => {
   const current = getCurrentBlock(editor)
   selected.value = props.getPos() === current.start
@@ -47,6 +49,7 @@ props.editor.on('selectionUpdate', ({ editor }) => {
 
 const postElement = ref<HTMLElement | null>(null)
 onClickOutside(postElement, () => {
+  if(cooldown.value) return
   selected.value = false
 })
 
@@ -60,7 +63,6 @@ function addFiles(e: Event) {
 function deleteFile(index: number) {
   files.value.splice(index, 1)
 }
-
 </script>
 
 <template>
@@ -80,7 +82,7 @@ function deleteFile(index: number) {
         />
         <div class="attachment" :class="{expanded: expanded}">
           <UploadZone 
-            v-if="!files.length && selected" 
+            v-if="!files.length && selected"
             @change="addFiles"
           />
           <UploadPreview
@@ -129,7 +131,6 @@ function deleteFile(index: number) {
 
 .post-wrapper .footer .attachment.expanded {
   max-height: 600px;
-  overflow: hidden;
   padding-bottom: var(--space);
   padding-top: var(--space-xs);
 }
