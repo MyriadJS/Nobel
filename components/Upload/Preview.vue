@@ -130,7 +130,7 @@ const urls = computed(() => {
   align-items: center;
   background-color: var(--background);
   height: var(--block-inner-size);
-  padding: 0px var(--space-s) var(--space-s) var(--space-s);
+  padding: 0px var(--space-xs) var(--space-s) var(--space-s);
 }
 
 .layout > *:nth-child(2) {
