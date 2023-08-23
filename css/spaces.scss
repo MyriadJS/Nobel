@@ -13,6 +13,7 @@ $desktop: 1200px;
   
   --inner-radius: 3px;
   --radius: 10px;
+  --outer-radius: calc(var(--radius) + var(--space-s));
 
   @media only screen and (max-width: $tablet) {--space: 12px;}
   @media only screen and (max-width: $mobile) {--space: 6px;}

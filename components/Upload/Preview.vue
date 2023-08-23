@@ -38,6 +38,7 @@ const urls = computed(() => {
     >
       <p class="caption"> <span>Files</span></p>
       <div class="buttons">
+        <Corner side="left" v-if="layout" />
         <UploadInput @change="$emit('change', $event)">
           <Icon 
             icon="i-pixelarticons:plus"
@@ -69,6 +70,8 @@ const urls = computed(() => {
           @keyup.enter="() => changeLayout(false)"
           :tabindex="files.length && layout ? 0 : -1"
         />
+
+        <Corner side="bottom" v-if="layout"/>
       </div>
     </div>
 
@@ -105,6 +108,7 @@ const urls = computed(() => {
 }
 
 .buttons {
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--space-xs);
@@ -126,13 +130,13 @@ const urls = computed(() => {
   align-items: center;
   background-color: var(--background);
   height: var(--block-inner-size);
-  padding: var(--space-xs);
+  padding: 0px var(--space-s) var(--space-s) var(--space-s);
 }
 
 .layout > *:nth-child(2) {
   position: relative;
   z-index: 5;
-  border-bottom-left-radius: var(--radius);
+  border-bottom-left-radius: var(--outer-radius);
 }
 
 .layout .icon {
