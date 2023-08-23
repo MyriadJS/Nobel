@@ -48,7 +48,6 @@ props.editor.on('selectionUpdate', ({ editor }) => {
 const postElement = ref<HTMLElement | null>(null)
 onClickOutside(postElement, () => {
   selected.value = false
-  //expanded.value = false
 })
 
 const files = ref<File[]>([])
@@ -119,8 +118,6 @@ function deleteFile(index: number) {
 }
 
 .post-wrapper .footer .attachment {
-  //background: var(--background-10);
-  //padding: var(--space-m);
   max-height: 0px;
   overflow: hidden;
   width: 100%;
@@ -131,7 +128,6 @@ function deleteFile(index: number) {
 }
 
 .post-wrapper .footer .attachment.expanded {
-  //background: var(--background-10);
   max-height: 600px;
   overflow: hidden;
   padding-bottom: var(--space);
