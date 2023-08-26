@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { user1 } from "@/dummydata/posts"
   import { useTheme } from "@/composables/useTheme"
+  import mask from './mask.js?url'
 
   useTheme()
 
@@ -36,10 +37,15 @@
 
   onMounted(() => {
     rainbowColor(app.value)
+    if(!window) return
+    CSS.paintWorklet.addModule(mask);
   })
 </script>
 
 <template>
+  <div class="test" v-if="false">
+    <div class="mask"></div>
+  </div>
   <div class="app" ref="app">
     <MenuIsland v-if="false"/>
     <LayerLive v-if="false"/>
@@ -50,4 +56,23 @@
 
 <style lang="scss">
 @import "./css";
+
+.test {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: 30rem;
+}
+
+.test .mask {
+  background-color: black;
+  //background-color: paint(smooth-corners);
+  //background: linear-gradient(deeppink, orangered);
+  --smooth-corners: 300;
+  mask-image: paint(smooth-corners);
+  height: 300px;
+  width: 300px;
+  transition: .4s;
+}
 </style>

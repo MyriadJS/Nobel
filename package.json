@@ -23,7 +23,7 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "histoire": "^0.16.5",
-    "nuxt": "^3.6.5",
+    "nuxt": "^3.7.0",
     "sass": "^1.66.1"
   },
   "dependencies": {

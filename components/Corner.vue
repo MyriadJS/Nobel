@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import mask from '../mask.js?url'
+
 const {
   side = 'left',
 } = defineProps<{
   side?: 'left' | 'right' | 'top' | 'bottom'
 }>()
+
+onMounted(() => {
+  if(!window) return
+  CSS.paintWorklet.addModule(mask);
+})
 </script>
 
 <template>
@@ -33,6 +40,8 @@ const {
   width: 100%;
   height: 100%;
   background-color: red;
-  border-top-right-radius: var(--outer-radius);
+  //border-top-right-radius: var(--outer-radius);
+  background: linear-gradient(deeppink, orangered);
+  //mask-image: paint(smooth-corners);
 }
 </style>
