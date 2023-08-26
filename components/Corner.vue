@@ -9,6 +9,8 @@ const {
 
 onMounted(() => {
   if(!window) return
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   CSS.paintWorklet.addModule(mask);
 })
 </script>

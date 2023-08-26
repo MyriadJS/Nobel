@@ -37,8 +37,6 @@
 
   onMounted(() => {
     rainbowColor(app.value)
-    if(!window) return
-    CSS.paintWorklet.addModule(mask);
   })
 </script>
 
@@ -53,28 +51,4 @@
 
 <style lang="scss">
 @import "./css";
-
-.test {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  height: 30rem;
-}
-
-// @property --smooth-corners {
-//   syntax: '<number>';
-//   inherits: false;
-//   initial-value: 50;
-// }
-
-.test .mask {
-  background-color: black;
-  --inverse-radius: 200;
-  --inverse-radius-direction: bottom-left;
-  mask-image: paint(inverse-radius);
-  height: 300px;
-  width: 300px;
-  transition: .4s;
-}
 </style>
