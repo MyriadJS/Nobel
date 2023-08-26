@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { user1 } from "@/dummydata/posts"
   import { useTheme } from "@/composables/useTheme"
-  import mask from './mask.js?url'
 
   useTheme()
 
