@@ -1,4 +1,4 @@
-function cornersxx(width, height) {
+function cornerObj(width, height) {
   return {
     topLeft: [0, 0],
     topRight: [width, 0],
@@ -8,8 +8,7 @@ function cornersxx(width, height) {
 }
 
 function bottomLeft(ctx, width, height, radius) {
-  const { bottomLeft, bottomRight, topLeft, topRight } = cornersxx(width, height)
-
+  const { bottomLeft, bottomRight, topLeft } = cornerObj(width, height)
   ctx.moveTo(...topLeft)
   ctx.arcTo(...bottomLeft, ...bottomRight, radius)
   ctx.lineTo(...bottomLeft)
@@ -17,7 +16,7 @@ function bottomLeft(ctx, width, height, radius) {
 }
 
 function bottomRight(ctx, width, height, radius) {
-  const { bottomLeft, bottomRight, topLeft, topRight } = cornersxx(width, height)
+  const { bottomLeft, bottomRight, topRight } = cornerObj(width, height)
   ctx.moveTo(...topRight)
   ctx.arcTo(...bottomRight, ...bottomLeft, radius)
   ctx.lineTo(...bottomRight)
@@ -25,7 +24,7 @@ function bottomRight(ctx, width, height, radius) {
 }
 
 function topLeft(ctx, width, height, radius) {
-  const { bottomLeft, bottomRight, topLeft, topRight } = cornersxx(width, height)
+  const { bottomLeft, topLeft, topRight } = cornerObj(width, height)
   ctx.moveTo(...bottomLeft)
   ctx.arcTo(...topLeft, ...topRight, radius)
   ctx.lineTo(...topLeft)
@@ -33,27 +32,43 @@ function topLeft(ctx, width, height, radius) {
 }
 
 function topRight(ctx, width, height, radius) {
-  const { bottomLeft, bottomRight, topLeft, topRight } = cornersxx(width, height)
+  const { bottomRight, topLeft, topRight } = cornerObj(width, height)
   ctx.moveTo(...bottomRight)
   ctx.arcTo(...topRight, ...topLeft, radius)
   ctx.lineTo(...topRight)
   ctx.lineTo(...bottomRight)
 }
 
-registerPaint('smooth-corners', class {
+registerPaint('inverse-radius', class {
   static get inputProperties() {
     return [
-        '--smooth-corners'
+        '--inverse-radius',
+        '--inverse-radius-direction'
     ]
   }
-  paint(ctx, sizes, props) {
+  paint(ctx, sizes, props, args) {
     const height = sizes.height
     const width = sizes.width
-    const radius = parseInt(props.get('--smooth-corners').toString());
+    const radius = parseInt(props.get('--inverse-radius').toString());
+    const direction = props.get('--inverse-radius-direction').toString()
 
     ctx.beginPath()
+    ctx.lineWidth = 0
 
-    topLeft(ctx, width, height, radius)
+    switch (direction) {
+      case 'top-left':
+        topLeft(ctx, width, height, radius)
+        break
+      case 'top-right':
+        topRight(ctx, width, height, radius)
+        break
+      case 'bottom-left':
+        bottomLeft(ctx, width, height, radius)
+        break
+      case 'bottom-right':
+        bottomRight(ctx, width, height, radius)
+        break
+    }
 
     ctx.fill()
     ctx.stroke()

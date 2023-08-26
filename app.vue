@@ -43,9 +43,6 @@
 </script>
 
 <template>
-  <div class="test" v-if="false">
-    <div class="mask"></div>
-  </div>
   <div class="app" ref="app">
     <MenuIsland v-if="false"/>
     <LayerLive v-if="false"/>
@@ -65,12 +62,17 @@
   height: 30rem;
 }
 
+// @property --smooth-corners {
+//   syntax: '<number>';
+//   inherits: false;
+//   initial-value: 50;
+// }
+
 .test .mask {
   background-color: black;
-  //background-color: paint(smooth-corners);
-  //background: linear-gradient(deeppink, orangered);
-  --smooth-corners: 300;
-  mask-image: paint(smooth-corners);
+  --inverse-radius: 200;
+  --inverse-radius-direction: bottom-left;
+  mask-image: paint(inverse-radius);
   height: 300px;
   width: 300px;
   transition: .4s;

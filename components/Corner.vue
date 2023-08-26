@@ -15,7 +15,6 @@ onMounted(() => {
 
 <template>
   <div class="corner" :class="side">
-    <div class="mask"></div>
   </div>
 </template>
 
@@ -26,6 +25,11 @@ onMounted(() => {
   height: var(--size);
   aspect-ratio: 1 / 1;
   background-color: var(--background);
+  // background-color: red;
+
+  --inverse-radius: var(--radius);
+  --inverse-radius-direction: top-right;
+  mask-image: paint(inverse-radius);
 }
 
 .corner.left {
@@ -34,14 +38,5 @@ onMounted(() => {
 
 .corner.bottom {
   bottom: calc(var(--size) * -1); right: 0px;
-}
-
-.corner .mask {
-  width: 100%;
-  height: 100%;
-  background-color: red;
-  //border-top-right-radius: var(--outer-radius);
-  background: linear-gradient(deeppink, orangered);
-  //mask-image: paint(smooth-corners);
 }
 </style>
