@@ -46,7 +46,7 @@ registerPaint('inverse-radius', class {
         '--inverse-radius-direction'
     ]
   }
-  paint(ctx, sizes, props, args) {
+  paint(ctx, sizes, props) {
     const height = sizes.height
     const width = sizes.width
     const radius = parseInt(props.get('--inverse-radius').toString());

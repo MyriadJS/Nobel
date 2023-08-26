@@ -53,22 +53,12 @@ const urls = computed(() => {
           :vertical="true"
         />
 
-        <Icon
-          class="focus"
-          :class="{active: layout, disabled: !files.length}"
-          icon="i-pixelarticons:image-multiple" 
-          @click="() => changeLayout(true)"
-          @keyup.enter="() => changeLayout(true)"
-          :tabindex="files.length && !layout ? 0 : -1"
-        />
-
-        <Icon
-          class="focus"
-          :class="{active: !layout, disabled: !files.length}"
-          icon="i-pixelarticons:view-list"
-          @click="() => changeLayout(false)"
-          @keyup.enter="() => changeLayout(false)"
+        <Switch
+          :value="true"
+          :onChange="(value) => changeLayout(value)"
           :tabindex="files.length && layout ? 0 : -1"
+          onIcon="i-pixelarticons:image-multiple" 
+          offIcon="i-pixelarticons:view-list"
         />
 
         <Corner side="bottom" v-if="layout"/>

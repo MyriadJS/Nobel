@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import mask from '../mask.js?url'
+import inverseRadius from '../mask.js?url'
 
 const {
   side = 'left',
@@ -11,13 +11,12 @@ onMounted(() => {
   if(!window) return
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  CSS.paintWorklet.addModule(mask);
+  CSS.paintWorklet.addModule(inverseRadius);
 })
 </script>
 
 <template>
-  <div class="corner" :class="side">
-  </div>
+  <div class="corner" :class="side" />
 </template>
 
 <style lang="scss" scoped>
@@ -27,8 +26,7 @@ onMounted(() => {
   height: var(--size);
   aspect-ratio: 1 / 1;
   background-color: var(--background);
-  // background-color: red;
-
+  
   --inverse-radius: var(--radius);
   --inverse-radius-direction: top-right;
   mask-image: paint(inverse-radius);
