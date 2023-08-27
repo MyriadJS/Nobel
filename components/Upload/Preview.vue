@@ -39,11 +39,17 @@ const urls = computed(() => {
       <p class="caption"> <span>Files</span></p>
       <div class="buttons">
         <Corner side="left" v-if="layout" />
-        <UploadInput @change="$emit('change', $event)">
-          <Icon 
-            icon="i-pixelarticons:plus"
-            :tabindex="files.length && layout ? 0 : -1"
-          />
+        <UploadInput
+          :interactive="false"
+          @change="$emit('change', $event)"
+        >
+          <template #default="{onClick}">
+            <ButtonIcon
+              icon="i-pixelarticons:plus"
+              :tabindex="files.length && layout ? 0 : -1"
+              @click="onClick"
+            />
+          </template>
         </UploadInput>
 
         <Divider

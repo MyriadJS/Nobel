@@ -1,9 +1,19 @@
 <script setup lang="ts">
+  const {
+    interactive = true
+  } = defineProps<{
+    interactive?: boolean
+  }>()
+
   defineEmits<{
     (e: 'change', event: Event): void
   }>()
 
   const input = ref<HTMLInputElement | null>(null)
+
+  function onClick() {
+    input?.value?.click()
+  }
 </script> 
 
 <template>
@@ -16,8 +26,8 @@
       @change="$emit('change', $event)"
       ref="input"
     />
-    <div @click="() => input?.click()">
-      <slot>
+    <div @click="() => interactive && onClick()">
+      <slot :onClick="onClick">
         <ButtonIcon
           icon="i-pixelarticons:plus"
           type="button"

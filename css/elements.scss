@@ -18,26 +18,26 @@ button:not(.plain) {
   max-height: var(--block-inner-size);
 }
 
-button:not(.plain).primary {
+button.primary {
   min-width: var(--block-size);
   min-height: var(--block-size);
   max-height: var(--block-size);
 }
 
-button:not(.plain).active {
+button.active {
   background: var(--accent-20);
   color: var(--accent);
 }
 
-button:not(.plain):disabled {
+button:disabled {
   background: var(--foreground-10);
   color: var(--foreground-20);
   cursor: not-allowed;
   pointer-events: none;
 }
 
-button.plain:focus
-button.plain:active {
+button:focus
+button:active {
   outline: 0px;
 }
 
@@ -47,7 +47,7 @@ textarea:focus:not(.plain),
 textarea:active:not(.plain),
 .focus:focus:not(.plain),
 .focus:active:not(.plain) {
-  outline: 2px 
+  outline: 2px
     var(--border-style)
     var(--accent);
 }
