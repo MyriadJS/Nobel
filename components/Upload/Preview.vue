@@ -1,8 +1,7 @@
 <script setup lang="ts">
-
 const emit = defineEmits<{
-  (e: 'delete', index: number): void,
   (e: 'change', event: Event): void
+  (e: 'delete', index: number): void
 }>()
 
 const props = defineProps<{
