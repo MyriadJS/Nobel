@@ -15,7 +15,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <button 
+  <button
     type="button"
     :class="{active}"
     :disabled="disabled"

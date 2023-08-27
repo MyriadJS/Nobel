@@ -13,7 +13,7 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <button 
+  <button
     class="icon" 
     :class="{active}"
     :disabled="disabled"

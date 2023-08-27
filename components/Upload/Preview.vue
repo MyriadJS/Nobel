@@ -54,7 +54,7 @@ const urls = computed(() => {
         />
 
         <Switch
-          :value="true"
+          :value="layout"
           :onChange="(value) => changeLayout(value)"
           :tabindex="files.length && layout ? 0 : -1"
           onIcon="i-pixelarticons:image-multiple" 

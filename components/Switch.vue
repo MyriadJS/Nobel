@@ -22,21 +22,12 @@ function toggleSwitch(value = !toggle.value) {
 </script>
 
 <template>
-  <Icon
-    v-if="toggle"
-    class="focus"
-    :icon="onIcon" 
-    :tabindex="tabIndex"
-    @click="() => toggleSwitch(false)"
-    @keyup.enter="() => toggleSwitch(false)"
-  />
-
-  <Icon
-    v-else
-    class="focus"
-    :icon="offIcon"
-    :tabindex="tabIndex"
-    @click="() => toggleSwitch(true)"
-    @keyup.enter="() => toggleSwitch(true)"
-  />
+  <button
+    class=""
+    :tabindex="tabIndex"     
+    @click="() => toggleSwitch()"
+  >
+    <Icon v-if="toggle" :icon="onIcon"/>
+    <Icon v-else :icon="offIcon" />
+  </button>
 </template>

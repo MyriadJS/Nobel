@@ -11,6 +11,7 @@
         icon="i-pixelarticons:image"
         :hover="false"
         type="button"
+        class="primary"
       >
         Add Image
       </Button>

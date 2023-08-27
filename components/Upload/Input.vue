@@ -18,9 +18,8 @@
     />
     <div @click="() => input?.click()">
       <slot>
-        <ButtonIcon 
-          icon="i-pixelarticons:image"
-          intention="add"
+        <ButtonIcon
+          icon="i-pixelarticons:plus"
           type="button"
         />
       </slot>

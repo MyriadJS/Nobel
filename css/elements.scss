@@ -1,39 +1,52 @@
 button {
-  background: var(--background-10);
+  background: transparent;
   cursor: pointer;
+  border: none;
+  outline: none;
+  padding: 0px;
+}
 
+button:not(.plain) {
+  background: var(--background-10);
+  border-radius: var(--radius);
+  border: 0px
+    var(--border-style)
+    var(--foreground-20);
+
+  min-width: var(--block-inner-size);
+  min-height: var(--block-inner-size);
+  max-height: var(--block-inner-size);
+}
+
+button:not(.plain).primary {
   min-width: var(--block-size);
   min-height: var(--block-size);
   max-height: var(--block-size);
-  height: var(--block-size);
-
-  border-radius: var(--radius);
-
-  border:
-    var(--border-size) 
-    var(--border-style)
-    var(--foreground-20);
-  border: none;
 }
 
-button.active {
+button:not(.plain).active {
   background: var(--accent-20);
   color: var(--accent);
 }
 
-button:disabled {
+button:not(.plain):disabled {
   background: var(--foreground-10);
   color: var(--foreground-20);
   cursor: not-allowed;
   pointer-events: none;
 }
 
-button:focus:not(.no-outline),
-button:active:not(.no-outline),
-textarea:focus:not(.no-outline),
-textarea:active:not(.no-outline),
-.focus:focus:not(.no-outline),
-.focus:active:not(.no-outline) {
+button.plain:focus
+button.plain:active {
+  outline: 0px;
+}
+
+button:focus:not(.plain),
+button:active:not(.plain),
+textarea:focus:not(.plain),
+textarea:active:not(.plain),
+.focus:focus:not(.plain),
+.focus:active:not(.plain) {
   outline: 2px 
     var(--border-style)
     var(--accent);
