@@ -1,8 +1,10 @@
 <script setup lang="ts">
   const {
-    interactive = true
+    interactive = true,
+    icon = 'i-pixelarticons:plus'
   } = defineProps<{
     interactive?: boolean
+    icon?: string
   }>()
 
   defineEmits<{
@@ -29,8 +31,9 @@
     <div @click="() => interactive && onClick()">
       <slot :onClick="onClick">
         <ButtonIcon
-          icon="i-pixelarticons:plus"
+          :icon="icon"
           type="button"
+          @click="() => !interactive && onClick()"
         />
       </slot>
     </div>

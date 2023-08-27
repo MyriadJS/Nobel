@@ -42,15 +42,7 @@ const urls = computed(() => {
         <UploadInput
           :interactive="false"
           @change="$emit('change', $event)"
-        >
-          <template #default="{onClick}">
-            <ButtonIcon
-              icon="i-pixelarticons:plus"
-              :tabindex="files.length && layout ? 0 : -1"
-              @click="onClick"
-            />
-          </template>
-        </UploadInput>
+        />
 
         <Divider
           style="margin-bottom: 0px"
@@ -62,7 +54,6 @@ const urls = computed(() => {
         <Switch
           :value="layout"
           :onChange="(value) => changeLayout(value)"
-          :tabindex="files.length && layout ? 0 : -1"
           onIcon="i-pixelarticons:image-multiple" 
           offIcon="i-pixelarticons:view-list"
         />
