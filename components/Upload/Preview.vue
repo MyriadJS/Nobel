@@ -1,31 +1,31 @@
 <script setup lang="ts">
-const emit = defineEmits<{
-  (e: 'change', event: Event): void
-  (e: 'delete', index: number): void
-}>()
+  const emit = defineEmits<{
+    (e: 'change', event: Event): void
+    (e: 'delete', index: number): void
+  }>()
 
-const props = defineProps<{
-  files: File[],
-  controls: boolean
-}>()
+  const props = defineProps<{
+    files: File[],
+    controls: boolean
+  }>()
 
-const uploadWrapper = useFlip({disabled: false})
+  const uploadWrapper = useFlip({disabled: false})
 
-const layout = ref(true)
-const compact = ref(false)
+  const layout = ref(true)
+  const compact = ref(false)
 
-function changeLayout(bool = !layout.value) {
-  uploadWrapper.flip(() => {
-    layout.value = bool
+  function changeLayout(bool = !layout.value) {
+    uploadWrapper.flip(() => {
+      layout.value = bool
+    })
+  }
+
+  //const { upload, uploading } = useUpload()
+  //const url = await upload(target.files![0])
+
+  const urls = computed(() => {
+    return props.files.map((file) => URL.createObjectURL(file))
   })
-}
-
-//const { upload, uploading } = useUpload()
-//const url = await upload(target.files![0])
-
-const urls = computed(() => {
-  return props.files.map((file) => URL.createObjectURL(file))
-})
 </script>
 
 <template>

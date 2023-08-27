@@ -1,17 +1,12 @@
 <script setup lang="ts">
-  const emit = defineEmits<{
+  defineEmits<{
     (e: 'change', event: Event): void
   }>()
-
-
-function onChange (event: Event) {
-  emit('change', event)
-}
 </script> 
 
 <template>
   <div class="zone">
-    <UploadInput @change="(e) => onChange(e)">
+    <UploadInput @change="$emit('change', $event)">
       <template #default="{onClick}">
         <Button
           icon="i-pixelarticons:image"

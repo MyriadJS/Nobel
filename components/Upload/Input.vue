@@ -1,13 +1,10 @@
 <script setup lang="ts">
-  const emit = defineEmits<{
+  defineEmits<{
     (e: 'change', event: Event): void
   }>()
 
   const input = ref<HTMLInputElement | null>(null)
   const onClick = () => input?.value?.click()
-  const onChange = (event: Event) => {
-    emit('change', event)
-  }
 </script> 
 
 <template>
@@ -17,7 +14,7 @@
       type="file"
       hidden
       multiple
-      @change="(e) => onChange(e)"
+      @change="$emit('change', $event)"
       ref="input"
     />
     <slot :onClick="onClick">
