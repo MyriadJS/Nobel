@@ -16,10 +16,12 @@ const props = withDefaults(defineProps<{
     v-if="nuxt"
     provider="cloudinary"
     v-bind="props"
+    width="150"
   />
   <img
     v-else
     v-bind="props"
+    width="150"
   />
 </template>
 

@@ -8,7 +8,11 @@
     "postinstall": "nuxt prepare",
     "story:dev": "histoire dev",
     "story:build": "histoire build",
-    "story:preview": "histoire preview"
+    "story:preview": "histoire preview",
+    "introspect": "drizzle-kit introspect:mysql",
+    "db:push": "drizzle-kit push:mysql --config ./drizzle.config.ts",
+    "db:generate": "drizzle-kit generate:mysql",
+    "studio": "drizzle-kit studio"
   },
   "devDependencies": {
     "@floating-ui/dom": "^1.5.3",
@@ -36,9 +40,11 @@
     "@unocss/preset-icons": "^0.56.5",
     "@vue-macros/nuxt": "^1.7.6",
     "@vueuse/nuxt": "^10.5.0",
+    "drizzle-kit": "^0.19.13",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "histoire": "^0.17.2",
+    "mysql2": "^3.6.1",
     "nuxt": "^3.7.4",
     "sass": "^1.69.3"
   },
@@ -46,7 +52,9 @@
     "@iconify-json/mdi": "^1.1.54",
     "@iconify-json/pixelarticons": "^1.1.7",
     "@myriadjs/core": "^0.0.8",
+    "@planetscale/database": "^1.11.0",
     "@umbrajs/core": "^0.0.27",
+    "drizzle-orm": "^0.28.6",
     "gsap": "npm:@gsap/shockingly@^3.11.5"
   }
 }
