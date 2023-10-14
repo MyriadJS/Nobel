@@ -1,38 +1,33 @@
 import {
   myriad
 } from "@myriadjs/core"
+import { umbra } from "@umbrajs/core"
 
-const settings = {
-  readability: 1,
+const success = {
+  name: 'success',
+  color: '#00ff00',
+}
+
+const error = {
+  name: 'error',
+  color: '#ff0000',
 }
 
 const lightTheme = {
   background: '#ebe3d9',
   foreground: '#0c0915',
-  accents: ['#c97074'],
-  custom: {
-    success: '#00ff00',
-    error: '#ff0000',
-  }
+  accents: ['#c97074', success, error],
 }
 
 const darkTheme = {
   background: '#0c0915',
   foreground: '#c0aea3',
-  accents: ['#c97074'],
-  custom: {
-    success: '#00ff00',
-    error: '#ff0000',
-  }
+  accents: ['#c97074', success, error],
 }
 
 const theme = ref(darkTheme)
 
-export const useTheme = () => {
-  watch(theme, (val) => {
-    myriad(val, settings)
-  })
-
+function darkToggle() {
   if(process.client) {
     document.addEventListener("keydown", function(event) {
       if (event.altKey && (event.key === 't')) {
@@ -41,9 +36,18 @@ export const useTheme = () => {
       }
     });
   }
+}
 
+export function useTheme(element?: HTMLElement) {
+  watch(theme, (val) => {
+    const html = document.querySelector('html')
+    if(!html) return
+    umbra(val).apply()
+  })
+  
   onMounted(() => {
-    myriad(theme.value, settings)
+    darkToggle()
+    umbra(theme.value).apply()
   })
 
   return theme

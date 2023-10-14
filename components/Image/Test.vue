@@ -6,7 +6,7 @@ const props = withDefaults(defineProps<{
   nuxt?: boolean
 }>(), {
   alt: "image",
-  width: 300,
+  width: 30,
   nuxt: true
 })
 </script>

@@ -2,8 +2,6 @@
   import { user1 } from "@/dummydata/posts"
   import { useTheme } from "@/composables/useTheme"
 
-  useTheme()
-
   const post = {
     id: "1",
     user: user1,
@@ -16,7 +14,8 @@
       replies: 100,
     }
   }
-
+  useTheme()
+  
   const colorIndex = ref(0)
   const app = ref<HTMLElement | null>(null)
 
@@ -41,7 +40,8 @@
 
 <template>
   <div class="app" ref="app">
-    <MenuIsland v-if="false"/>
+    <Hero/>
+    <MenuIsland v-if="true"/>
     <LayerLive v-if="false"/>
     <NobelMain :post="post"/>
     <PostFeed/>

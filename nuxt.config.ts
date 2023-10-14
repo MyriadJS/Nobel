@@ -1,17 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
+    "@nuxt/ui",
     '@nuxt/image-edge',
     '@nuxt/devtools',
     '@unocss/nuxt',
     '@vue-macros/nuxt',
     '@vueuse/nuxt'
   ],
+
   image: {
     cloudinary: {
       baseURL: 'https://res.cloudinary.com/kingfish/image/upload/v1675554521/chomsky/'
     }
   },
+
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
@@ -21,6 +24,12 @@ export default defineNuxtConfig({
       meta: [
         { name: 'description', content: 'Social media if it was good' }
       ],
+    }
+  },
+
+  devtools: {
+    timeline: {
+      enabled: true
     }
   }
 })

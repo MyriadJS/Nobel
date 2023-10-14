@@ -20,7 +20,7 @@ withDefaults(defineProps<Props>(), {
     :class="{active}"
     :disabled="disabled"
   >
-    <div class="state" :class="{hover: hover}">
+    <div class="state" :class="{hover: hover}" v-if="icon">
       <Icon :icon="icon"/>
       <p>{{hover}}</p>
     </div>
