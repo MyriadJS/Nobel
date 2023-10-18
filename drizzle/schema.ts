@@ -1,40 +1,42 @@
-import { mysqlTable, mysqlSchema, AnyMySqlColumn, primaryKey, unique, int, varchar, index } from "drizzle-orm/mysql-core"
+import { mysqlTable, mysqlSchema, AnyMySqlColumn, primaryKey, unique, int, varchar, timestamp } from "drizzle-orm/mysql-core"
 import { sql } from "drizzle-orm"
 
 
 export const authors = mysqlTable("authors", {
 	id: int("id").autoincrement().notNull(),
-	author: varchar("author", { length: 255 }).notNull(),
+	email: varchar("email", { length: 255 }).notNull(),
 },
 (table) => {
 	return {
 		authorsId: primaryKey(table.id),
-		author: unique("author").on(table.author),
+		author: unique("author").on(table.email),
 	}
 });
 
-export const categories = mysqlTable("categories", {
+export const files = mysqlTable("files", {
 	id: int("id").autoincrement().notNull(),
-	category: varchar("category", { length: 255 }).notNull(),
+	file: varchar("file", { length: 255 }).notNull(),
+	createdAt: timestamp("created_at", { mode: 'string' }).defaultNow().notNull(),
+	postId: int("post_id"),
+	avatarId: int("avatar_id"),
 },
 (table) => {
 	return {
-		categoriesId: primaryKey(table.id),
-		category: unique("category").on(table.category),
+		filesId: primaryKey(table.id),
+		url: unique("url").on(table.file),
 	}
 });
 
-export const quotes = mysqlTable("quotes", {
-	id: int("id").autoincrement().notNull(),
-	quote: varchar("quote", { length: 255 }).notNull(),
-	authorId: int("author_id").notNull(),
-	categoryId: int("category_id").notNull(),
+export const post = mysqlTable("post", {
+	id: varchar("id", { length: 50 }).notNull(),
+	title: varchar("title", { length: 255 }).notNull(),
+	content: varchar("content", { length: 255 }).notNull(),
+	createdAt: timestamp("created_at", { mode: 'string' }).defaultNow().notNull(),
+	updatedAt: timestamp("updated_at", { mode: 'string' }).defaultNow().notNull(),
 },
 (table) => {
 	return {
-		authorIdIdx: index("author_id_idx").on(table.authorId),
-		categoryIdIdx: index("category_id_idx").on(table.categoryId),
-		quotesId: primaryKey(table.id),
-		quote: unique("quote").on(table.quote),
+		postId: primaryKey(table.id),
+		title: unique("title").on(table.title),
 	}
 });

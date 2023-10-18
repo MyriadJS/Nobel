@@ -1,12 +1,11 @@
 <script setup lang="ts">
 const { data } = await useFetch('/api/test')
-
-
+const open = ref(false)
 </script>
 
 <template>
 
-  <div id="menu" class="island rounded center">
+  <div id="menu" class="island rounded center" :class="{open}">
     <div class="menu_panel rounded">
       <Button icon="">Settings</Button>
       <Button icon="">Profile</Button>
@@ -16,7 +15,7 @@ const { data } = await useFetch('/api/test')
       <Button icon="">
         <UserAvatar src="chillgirl_tnjodj.jpg"/>
       </Button>
-      <Button icon="">
+      <Button icon="" @click="open = !open">
         Menu
       </Button>
     </div>
@@ -44,6 +43,10 @@ const { data } = await useFetch('/api/test')
     transition: width 0.2s ease-in-out;
   }
 
+  #menu.open {
+    width: 20em;
+  }
+
   #menu .main {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -63,6 +66,14 @@ const { data } = await useFetch('/api/test')
     flex-direction: column;
     gap: var(--space-xs);
     background-color: var(--background-20);
+    max-height: 0px;
+    overflow: hidden;
+    padding: 0px;
+    transition: .2s ease-in-out;
+  }
+
+  #menu.open .menu_panel {
+    max-height: 50vh;
   }
   
   .haze {

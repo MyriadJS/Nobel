@@ -1,29 +1,27 @@
 {
+  "id": "00000000-0000-0000-0000-000000000000",
+  "prevId": "",
   "version": "5",
   "dialect": "mysql",
-  "id": "36c9395d-ed7d-40d2-a457-77a8497748b9",
-  "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "authors": {
       "name": "authors",
       "columns": {
         "id": {
+          "autoincrement": true,
           "name": "id",
           "type": "int",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": true
+          "notNull": true
         },
-        "author": {
-          "name": "author",
+        "email": {
+          "autoincrement": false,
+          "name": "email",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         }
       },
-      "indexes": {},
-      "foreignKeys": {},
       "compositePrimaryKeys": {
         "authors_id": {
           "name": "authors_id",
@@ -32,114 +30,132 @@
           ]
         }
       },
+      "indexes": {},
+      "foreignKeys": {},
       "uniqueConstraints": {
         "author": {
           "name": "author",
           "columns": [
-            "author"
+            "email"
           ]
         }
       }
     },
-    "categories": {
-      "name": "categories",
+    "files": {
+      "name": "files",
       "columns": {
         "id": {
+          "autoincrement": true,
           "name": "id",
           "type": "int",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": true
+          "notNull": true
         },
-        "category": {
-          "name": "category",
+        "file": {
+          "autoincrement": false,
+          "name": "file",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
+        },
+        "created_at": {
+          "default": "now()",
+          "autoincrement": false,
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "post_id": {
+          "autoincrement": false,
+          "name": "post_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "avatar_id": {
+          "autoincrement": false,
+          "name": "avatar_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "compositePrimaryKeys": {
+        "files_id": {
+          "name": "files_id",
+          "columns": [
+            "id"
+          ]
         }
       },
       "indexes": {},
       "foreignKeys": {},
-      "compositePrimaryKeys": {
-        "categories_id": {
-          "name": "categories_id",
-          "columns": [
-            "id"
-          ]
-        }
-      },
       "uniqueConstraints": {
-        "category": {
-          "name": "category",
+        "url": {
+          "name": "url",
           "columns": [
-            "category"
+            "file"
           ]
         }
       }
     },
-    "quotes": {
-      "name": "quotes",
+    "post": {
+      "name": "post",
       "columns": {
         "id": {
+          "autoincrement": false,
           "name": "id",
-          "type": "int",
+          "type": "varchar(50)",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": true
+          "notNull": true
         },
-        "quote": {
-          "name": "quote",
+        "title": {
+          "autoincrement": false,
+          "name": "title",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
-        "author_id": {
-          "name": "author_id",
-          "type": "int",
+        "content": {
+          "autoincrement": false,
+          "name": "content",
+          "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
         },
-        "category_id": {
-          "name": "category_id",
-          "type": "int",
+        "created_at": {
+          "default": "now()",
+          "autoincrement": false,
+          "name": "created_at",
+          "type": "timestamp",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
+          "notNull": true
+        },
+        "updated_at": {
+          "default": "now()",
+          "autoincrement": false,
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
         }
       },
-      "indexes": {
-        "author_id_idx": {
-          "name": "author_id_idx",
-          "columns": [
-            "author_id"
-          ],
-          "isUnique": false
-        },
-        "category_id_idx": {
-          "name": "category_id_idx",
-          "columns": [
-            "category_id"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {},
       "compositePrimaryKeys": {
-        "quotes_id": {
-          "name": "quotes_id",
+        "post_id": {
+          "name": "post_id",
           "columns": [
             "id"
           ]
         }
       },
+      "indexes": {},
+      "foreignKeys": {},
       "uniqueConstraints": {
-        "quote": {
-          "name": "quote",
+        "title": {
+          "name": "title",
           "columns": [
-            "quote"
+            "title"
           ]
         }
       }
