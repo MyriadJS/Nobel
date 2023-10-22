@@ -27,8 +27,6 @@ img {
 }
 
 .hero-text {
-  font-size: 1.2rem;
-  line-height: 1.5;
   font-weight: 900;
   color: var(--foreground);
   font-variation-settings: var(--font-medium);
