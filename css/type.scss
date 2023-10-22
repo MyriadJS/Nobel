@@ -24,7 +24,7 @@ h2, .h2,
 h3, .h3, 
 button {
   max-width: clamp(100px, 100vw, 55ch);
-  text-transform: uppercase;
+  text-transform: capitalize;
   transition: color .4s ease-in-out;
 }
 
@@ -43,11 +43,11 @@ h2, .h2 {
 }
 
 h3, .h3 {
-  --size: clamp(1.5rem, 4vw, 2rem);
+  --size: clamp(1rem, 4vw, 1.5rem);
   font-size: var(--size);
   line-height: var(--size);
   letter-spacing: -0.5px;
-  font-variation-settings: var(--font-medium);
+  font-variation-settings: var(--font-bold);
 }
 
 ::-moz-selection,
