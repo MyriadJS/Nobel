@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { data } = await useFetch('/api/test')
 const open = ref(false)
-const island = ref<HTMLDivElement | null>(null)
+const main = ref<HTMLDivElement | null>(null)
 const islandWidth = ref<false | number>(false)
 
 const width = computed(() => {
@@ -9,21 +9,21 @@ const width = computed(() => {
   return islandWidth.value + 'px'
 })
 
-const panelWidth = computed(() => {
-  if (!islandWidth.value) return '0px'
-  return islandWidth.value + 'px'
+onMounted(() => {
+  if(!main.value) return
+  islandWidth.value = main.value?.offsetWidth
 })
 
 function handleClick() {
   open.value = !open.value
   if (!open.value) return
-  if (!island.value) return
-  islandWidth.value = island.value.offsetWidth
+  if (!main.value) return
+  islandWidth.value = main.value.offsetWidth
 }
 </script>
 
 <template>
-  <div id="island" class="island i-length rounded center" :class="{open}" ref="island">
+  <div id="island" class="island i-length rounded center" :class="{open}">
     <div class="menu_panel">
       <div class="panel rounded">
         <Button icon="">Settings</Button>
@@ -31,7 +31,7 @@ function handleClick() {
         <Button icon="">Logout</Button>
       </div>
     </div>
-    <div class="main">
+    <div class="main" ref="main">
       <Button icon="" @click="() => handleClick()">
         <UserAvatar src="chillgirl_tnjodj.jpg"/>
       </Button>
@@ -61,6 +61,8 @@ function handleClick() {
   #island {
     display: flex;
     flex-direction: column;
+    align-items: center;
+
     position: fixed;
     bottom: var(--space-s);
     background: var(--foreground);
@@ -73,6 +75,7 @@ function handleClick() {
     justify-content: center;
     align-items: center;
     padding: var(--space-xs) var(--space-xs);
+    width: min-content;
   }
 
   #island .main button {
@@ -82,6 +85,7 @@ function handleClick() {
   }
 
   #island .menu_panel {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: var(--space-xs);
@@ -89,6 +93,8 @@ function handleClick() {
     padding: 0px var(--space-xs);
     padding-bottom: 0px;
     max-height: 0px;
+    width: 100%;
+
     overflow: hidden;
     transition: max-height .2s, padding .1s .1s;
   }
