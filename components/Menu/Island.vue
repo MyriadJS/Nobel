@@ -1,19 +1,30 @@
 <script setup lang="ts">
 const { data } = await useFetch('/api/test')
 const open = ref(false)
+const island = ref<HTMLDivElement | null>(null)
+const islandWidth = ref<false | number>(false)
+
+const width = computed(() => {
+  if (!islandWidth.value) return 'auto'
+  return islandWidth.value + 'px'
+})
+
+const panelWidth = computed(() => {
+  if (!islandWidth.value) return '0px'
+  return islandWidth.value + 'px'
+})
+
+function handleClick() {
+  open.value = !open.value
+  if (!open.value) return
+  if (!island.value) return
+  islandWidth.value = island.value.offsetWidth
+}
 </script>
 
 <template>
-
-  <div id="island" class="island rounded center" :class="{open}">
+  <div id="island" class="island i-length rounded center" :class="{open}" ref="island">
     <div class="menu_panel">
-      <div class="tabs rounded" v-if="false">
-        <div class="tab rounded">
-          <h3><UIcon name="i-heroicons-eye" class="icon" style="transform: translateY(4px)"  /> Settings</h3>
-        </div>
-        <Button icon="i-heroicons-eye" />
-        <Button icon="i-heroicons-eye" />
-      </div>
       <div class="panel rounded">
         <Button icon="">Settings</Button>
         <Button icon="">Profile</Button>
@@ -21,15 +32,15 @@ const open = ref(false)
       </div>
     </div>
     <div class="main">
-      <Button icon="">
+      <Button icon="" @click="() => handleClick()">
         <UserAvatar src="chillgirl_tnjodj.jpg"/>
       </Button>
-      <Button icon="" @click="open = !open">
+      <Button icon="" @click="() => handleClick()" v-if="false">
         Menu
       </Button>
     </div>
   </div>
-  <div class="haze center"></div>
+  <div class="haze i-length center" :class="{open}"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -38,26 +49,26 @@ const open = ref(false)
     transform: translate(-50%, 0);
   }
 
-  #island {
-    display: flex;
-    flex-direction: column;
-    //gap: var(--space-xs);
-
-    position: fixed;
-    bottom: var(--space-s);
-    width: 10em;
-    background: var(--foreground);
-    z-index: 100;
-    transition: width 0.2s ease-in-out;
+  .i-length {
+    width: v-bind(width);
+    transition: 0.2s ;
   }
 
-  #island.open {
+  .i-length.open {
     width: 20em;
   }
 
+  #island {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: var(--space-s);
+    background: var(--foreground);
+    z-index: 100;
+  }
+
   #island .main {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
     gap: var(--space-xs);
     justify-content: center;
     align-items: center;
@@ -89,26 +100,6 @@ const open = ref(false)
     transition: max-height .2s, padding .1s;
   }
 
-  #island .menu_panel .tabs {
-    display: flex;
-    gap: var(--space-xs);
-    
-    background-color: var(--base-40);
-    color: var(--background);
-    padding: var(--space-xs);
-  }
-
-  #island .menu_panel .tabs .tab {
-    display: flex;
-    gap: var(--space-xs);
-    align-items: center;
-    
-    background: var(--base-20);
-    color: var(--foreground);
-    padding: var(--space-xs);
-    flex-grow: 1;
-  }
-
   #island .panel {
     display: flex;
     flex-direction: column;
@@ -120,14 +111,12 @@ const open = ref(false)
   .haze {
     position: fixed;
     bottom: var(--space-s);
-    width: 10em;
     height: 3rem;
     background: var(--accent);
     box-shadow: -0px 22px 105px 18px var(--accent);
     border-radius: 12rem;
     z-index: 99;
     opacity: 0.4;
-    transition: .2s ease-in-out;
   }
 
   #island:hover ~ .haze {

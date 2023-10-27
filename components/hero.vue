@@ -22,14 +22,11 @@ img {
   border-radius: var(--radius);
 }
 
-.hero h1 {
-  letter-spacing: 0.05em;
-}
-
 .hero-text {
   font-weight: 900;
   color: var(--foreground);
   font-variation-settings: var(--font-medium);
+  text-wrap: balance;
   .icon {
     transform: translateY(2px);
   }

@@ -14,11 +14,15 @@
 .page {
   margin: auto;
   max-width: calc(100vw - var(--space-xl));
-  width: 1600px;
+  width: 2400px;
   transition: background .4s ease-in-out;
 
   @media (max-width: 500px) {
     max-width: calc(100vw);
+  }
+
+  @media (max-width: 2000px) {
+    width: 1300px;
   }
 }
 

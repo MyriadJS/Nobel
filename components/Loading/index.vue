@@ -15,9 +15,9 @@
 
 <template>
   <div class="loader" :class="classes">
-    <AutoSize @change="(rect) => height = rect.height">
+    <!-- <AutoSize @change="(rect) => height = rect.height"> -->
       <slot/>
-    </AutoSize>
+    <!-- </AutoSize> -->
     <div class="spin">
       <!-- <SpinnerSinewave v-if="true" :steps="40"/> -->
       <LoadingBar v-if="false" :progress="progress"/>
