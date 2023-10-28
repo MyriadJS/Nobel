@@ -1,4 +1,4 @@
-import { useTiptap, useEditor } from '@/composables/useTiptap'
+import { useTiptap } from '@/composables/useTiptap'
 
 export const useEditor = () => {
   const editor = useTiptap({
@@ -6,8 +6,6 @@ export const useEditor = () => {
     placeholder: 'Write your post here...',
   })
   
-  const limit = shallowRef(4000)
-
   return useState('editor', () => editor)
 }
 

@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia'
 import { useEditor as tiptap  } from '@tiptap/vue-3'
 import { Editor } from '@tiptap/core'
 import Document from '@tiptap/extension-document'
@@ -13,26 +12,6 @@ import Placeholder from '@tiptap/extension-placeholder'
 import { Overflow, validateOverflow } from './Overflow'
 import NobleParagraph from './VueParagraph'
 import { Slugline } from './Slugline'
-
-export const useEditor = defineStore('editor', () => {
-  const editor = shallowRef<Editor | undefined>()
-
-  onMounted(() => {
-    editor.value = useTiptap({
-      limit: 4000,
-      placeholder: 'Write your post here...',
-    }).value
-    
-    watch(editor, (editor) => {
-      console.log("rexex:", editor)
-    })
-  })
-
-
-  return {
-    editor
-  }
-})
 
 interface useTiptapProps {
   limit?: number
