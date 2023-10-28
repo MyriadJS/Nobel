@@ -35,9 +35,6 @@ function handleClick() {
       <Button icon="" @click="() => handleClick()">
         <UserAvatar src="chillgirl_tnjodj.jpg"/>
       </Button>
-      <Button icon="" @click="() => handleClick()" v-if="false">
-        Menu
-      </Button>
     </div>
   </div>
   <div class="haze i-length center" :class="{open}"></div>
@@ -75,7 +72,7 @@ function handleClick() {
     justify-content: center;
     align-items: center;
     padding: var(--space-xs) var(--space-xs);
-    width: min-content;
+    width: max-content;
   }
 
   #island .main button {

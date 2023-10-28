@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/devtools',
     '@unocss/nuxt',
     '@vue-macros/nuxt',
-    '@vueuse/nuxt'
+    '@vueuse/nuxt',
   ],
 
   image: {

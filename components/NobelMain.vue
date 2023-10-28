@@ -1,19 +1,33 @@
 <script setup lang="ts">
   import { Post } from '@/types/post'
   import { useTiptap } from '@/composables/useTiptap'
+  import { useCounter, useEditor } from '@/store/editor'
   import { EditorContent  } from '@tiptap/vue-3'
 
   defineProps<{post: Post}>()
   const avatarSize = ref(90)
+  const count = useCounter()
+  const editor = useEditor()
 
-  const editor = useTiptap({
-    limit: 4000,
-    placeholder: 'Write your post here...',
-    onChange: (e) => {
-      console.log(e.getHTML())
-    },
-  })
+  // const editor = useTiptap({
+  //   limit: 4000,
+  //   placeholder: 'Write your post here...',
+  // })
 
+  // onMounted(() => {
+  //   console.log("rex: ", useEditor)
+  //   console.log(editor.value)
+  // })
+
+  // onMounted(() => {
+  //   console.log("rex: ", count.value)
+  //   console.log("rex22: ", editorx.value)
+  // })
+
+  // watch(editorx, () => {
+  //   console.log("rex: ", editorx)
+  //   console.log(editor.value)
+  // })
 </script>
 
 <template>
@@ -26,7 +40,7 @@
         <EditorContent :editor="editor"/>
         <TextMenuFloating :editor="editor" />
         <TextMenuBubble :editor="editor" />
-      </div>
+      </div> 
       <div class="author">
         <UserAvatar
           :size="avatarSize"

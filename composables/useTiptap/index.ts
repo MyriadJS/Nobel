@@ -1,17 +1,38 @@
-  import { useEditor  } from '@tiptap/vue-3'
-  import { Editor } from '@tiptap/core'
-  import Document from '@tiptap/extension-document'
-  import Text from '@tiptap/extension-text'
-  import Paragraph from '@tiptap/extension-paragraph'
-  import Bold from '@tiptap/extension-bold'
-  import Italic from '@tiptap/extension-italic'
-  import Heading from '@tiptap/extension-heading'
-  import History from '@tiptap/extension-history'
-  import CharacterCount from '@tiptap/extension-character-count'
-  import Placeholder from '@tiptap/extension-placeholder'
-  import { Overflow, validateOverflow } from './Overflow'
-  import NobleParagraph from './VueParagraph'
-  import { Slugline } from './Slugline'
+import { defineStore } from 'pinia'
+import { useEditor as tiptap  } from '@tiptap/vue-3'
+import { Editor } from '@tiptap/core'
+import Document from '@tiptap/extension-document'
+import Text from '@tiptap/extension-text'
+import Paragraph from '@tiptap/extension-paragraph'
+import Bold from '@tiptap/extension-bold'
+import Italic from '@tiptap/extension-italic'
+import Heading from '@tiptap/extension-heading'
+import History from '@tiptap/extension-history'
+import CharacterCount from '@tiptap/extension-character-count'
+import Placeholder from '@tiptap/extension-placeholder'
+import { Overflow, validateOverflow } from './Overflow'
+import NobleParagraph from './VueParagraph'
+import { Slugline } from './Slugline'
+
+export const useEditor = defineStore('editor', () => {
+  const editor = shallowRef<Editor | undefined>()
+
+  onMounted(() => {
+    editor.value = useTiptap({
+      limit: 4000,
+      placeholder: 'Write your post here...',
+    }).value
+    
+    watch(editor, (editor) => {
+      console.log("rexex:", editor)
+    })
+  })
+
+
+  return {
+    editor
+  }
+})
 
 interface useTiptapProps {
   limit?: number
@@ -24,7 +45,7 @@ export function useTiptap({
   placeholder = 'Write something...',
   onChange = () => {}
 }: useTiptapProps) {
-  const editor = useEditor({
+  const editor = tiptap({
     content: `
       <h1>THE RUBIK'S CUBE IS THE WORLD’S BEST SELLING PUZZLE TOY</h1>
       <vue-post>Nuxt layers are a powerful feature that you can use to share and reuse <strong>partial</strong> Nuxt applications within a monorepo, or from a git repository or npm package. The layers structure is almost identical to a standard Nuxt application, which makes them easy to author and maintain.</vue-post>
