@@ -2,14 +2,34 @@
   import { Post } from '@/types/post'
   import { useEditor } from '@/store/editor'
   import { EditorContent  } from '@tiptap/vue-3'
-
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+  gsap.registerPlugin(ScrollTrigger)
+  
   defineProps<{post: Post}>()
   const avatarSize = ref(90)
   const editor = useEditor()
+
+  const wrapper = ref<HTMLElement | null>(null)
+
+  onMounted(() => {
+    if(!wrapper.value) return
+    ScrollTrigger.create({
+      trigger: wrapper.value,
+      start: 'top top',
+      end: 'bottom bottom',
+      markers: false,
+      onEnter: () => {
+      },
+      onLeaveBack: () => {
+      }
+    })
+  })
+
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="wrapper" ref="wrapper">
     <section class="page compact-panel">
       <TextMenu :editor="editor" />
     </section>

@@ -2,7 +2,8 @@
 import { NodeViewContent, NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
 import { getCurrentBlock } from "@/composables/useTiptap/Overflow"
 import { user1 } from "@/dummydata/posts"
-import { useFile, useIsland } from "@/store/editor"
+import { useFile } from "@/store/editor"
+import { useIsland } from '@/store/island'
 
 const post = {
   id: "1",

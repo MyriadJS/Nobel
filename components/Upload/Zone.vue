@@ -8,22 +8,17 @@
   <div class="zone">
     <UploadInput @change="$emit('change', $event)">
       <template #default="{onClick}">
-        <Button
+        <ButtonIcon
           icon="i-pixelarticons:image"
-          :hover="false"
-          type="button"
-          class="primary"
           @click="onClick"
-        >
-          Add Image
-        </Button>
+        />
       </template>
     </UploadInput>
   </div>
 </template>
 
 <style lang="scss">
-.zone button {
-  width: 200px;
+.zone {
+
 }
 </style>

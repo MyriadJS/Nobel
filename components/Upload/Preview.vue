@@ -20,9 +20,6 @@
     })
   }
 
-  //const { upload, uploading } = useUpload()
-  //const url = await upload(target.files![0])
-
   const urls = computed(() => {
     return props.files.map((file) => URL.createObjectURL(file))
   })

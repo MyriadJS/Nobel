@@ -1,52 +1,61 @@
 <script setup lang="ts">
-  import { user1 } from "@/dummydata/posts"
-  import { useTheme } from "@/composables/useTheme"
+import { user1 } from "@/dummydata/posts"
+import { useTheme } from "@/composables/useTheme"
+import { gsap } from "gsap"
+import { ScrollSmoother } from "gsap/ScrollSmoother"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-  const post = {
-    id: "1",
-    user: user1,
-    content: 'Nuxt layers are a powerful feature that you can use to share and reuse Nuxt applications within a monorepo, or from a git repository or npm package. The layers structure is almost identical to a standard Nuxt application, which makes them easy to author and maintain.',
-    cover: [],
-    parent: null,
-    reactions: {
-      pro: 100,
-      con: 100,
-      replies: 100,
-    }
+const post = {
+  id: "1",
+  user: user1,
+  content: 'Nuxt layers are a powerful feature that you can use to share and reuse Nuxt applications within a monorepo, or from a git repository or npm package. The layers structure is almost identical to a standard Nuxt application, which makes them easy to author and maintain.',
+  cover: [],
+  parent: null,
+  reactions: {
+    pro: 100,
+    con: 100,
+    replies: 100,
   }
+}
   
-  useTheme()
-  
-  const colorIndex = ref(0)
-  const app = ref<HTMLElement | null>(null)
+useTheme()
 
-  function rainbowColor(element = app.value, time = 4000) {
-    if(!element) return
-    const colors = ["#ff0000", "#ff7f00", "#ffff00", "#00ff00", "#0000ff", "#4b0082", "#9400d3"]
-    setProperty("--rainbow", colors[colors.length - 1], element)
-    setInterval(() => {
-      setProperty("--rainbow", colors[colorIndex.value], element)
-      colorIndex.value = (colorIndex.value + 1) % colors.length
-    }, time)
+const colorIndex = ref(0)
+const app = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother) // register plugins
+    ScrollSmoother.create({
+      smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
+      effects: false, // looks for data-speed and data-lag attributes on elements
+      smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+    });
   }
 
-  const setProperty = (name: string, value: string, element: HTMLElement) => {
-    element.style.setProperty(name, value)
+  if(process.client) {
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother) // register plugins
+    ScrollSmoother.create({
+      smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
+      effects: false, // looks for data-speed and data-lag attributes on elements
+      smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
+    });
   }
-
-  onMounted(() => {
-    rainbowColor(app.value)
-  })
+})
 </script>
 
 <template>
-  <div class="app" ref="app">
-    <Hero/>
-    <MenuIsland v-if="true"/>
-    <LayerLive v-if="false"/>
-    <NobelMain :post="post"/>
-    <PostFeed/>
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <div class="app" ref="app">       
+        <Hero/>
+        <LayerLive v-if="false"/>
+        <NobelMain :post="post"/>
+        <PostFeed/>
+      </div>
+    </div>
   </div>
+  <MenuIsland v-if="true"/>
 </template>
 
 <style lang="scss">

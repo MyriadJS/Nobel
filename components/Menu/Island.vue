@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useFile, useIsland } from '@/store/editor'
+import { useFile } from '@/store/editor'
+import { useIsland } from '@/store/island'
 const { data } = await useFetch('/api/test')
 
 const island = useIsland()
@@ -17,7 +18,6 @@ onMounted(() => {
   if(!main.value) return
   islandWidth.value = main.value?.offsetWidth
 })
-
 
 function handleClick() {
   open.value = !open.value
