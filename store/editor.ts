@@ -1,5 +1,16 @@
 import { useTiptap } from '@/composables/useTiptap'
 
+export const useIsland = () => {
+  const active = ref(false)
+  const hover = ref(false)
+  return useState('island', () => hover)
+}
+
+export const useFile = () => {
+  const files = ref<File[]>([])
+  return useState('file', () => files)
+}
+
 export const useEditor = () => {
   const editor = useTiptap({
     limit: 4000,

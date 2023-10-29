@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { useFile, useIsland } from '@/store/editor'
 const { data } = await useFetch('/api/test')
+
+const island = useIsland()
+
 const open = ref(false)
 const main = ref<HTMLDivElement | null>(null)
 const islandWidth = ref<false | number>(false)
@@ -14,16 +18,29 @@ onMounted(() => {
   islandWidth.value = main.value?.offsetWidth
 })
 
+
 function handleClick() {
   open.value = !open.value
   if (!open.value) return
   if (!main.value) return
   islandWidth.value = main.value.offsetWidth
 }
+
+const storedFiles = useFile()
+function addFiles(e: Event) {
+  const target = e.target as HTMLInputElement
+  storedFiles.value = Array.from(target.files!)
+}
 </script>
 
 <template>
-  <div id="island" class="island i-length rounded center" :class="{open}">
+  <div 
+    id="island" 
+    class="island i-length rounded center" 
+    :class="{open}" 
+    @mouseover="() => island = true"
+    @mouseleave="() => island = false" 
+  >
     <div class="menu_panel">
       <div class="panel rounded">
         <Button icon="">Settings</Button>
@@ -35,6 +52,7 @@ function handleClick() {
       <Button icon="" @click="() => handleClick()">
         <UserAvatar src="chillgirl_tnjodj.jpg"/>
       </Button>
+      <UploadZone @change="addFiles" />
     </div>
   </div>
   <div class="haze i-length center" :class="{open}"></div>
