@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useFile } from '@/store/editor'
 import { useIsland } from '@/store/island'
-// const { data } = await useFetch('/api/test')
 
 const island = useIsland()
 
@@ -35,13 +34,7 @@ function addFiles(e: Event) {
 </script>
 
 <template>
-  <div 
-    id="island"
-    class="island i-length rounded center" 
-    :class="{open}"
-    @mouseover="() => island.hover = true"
-    @mouseleave="() => island.hover = false"
-  >
+  <MenuWrapper :width="width" :open="open">
     <MenuPanel />
     <div class="main" ref="main">
       <Button icon="" @click="() => handleClick()">
@@ -49,36 +42,10 @@ function addFiles(e: Event) {
       </Button>
       <UploadZone @change="addFiles" v-if="island.mode === 'text'" />
     </div>
-  </div>
-  <div class="haze i-length center" :class="{open}"></div>
+  </MenuWrapper>
 </template>
 
 <style lang="scss" scoped>
-  .center {
-    left: 50%;
-    transform: translate(-50%, 0);
-  }
-
-  .i-length {
-    width: v-bind(width);
-    transition: 0.2s ;
-  }
-
-  .i-length.open {
-    width: 20em;
-  }
-
-  #island {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    position: fixed;
-    bottom: var(--space-s);
-    background: var(--foreground);
-    z-index: 100;
-  }
-
   #island .main {
     display: flex;
     gap: var(--space-xs);
@@ -92,21 +59,6 @@ function addFiles(e: Event) {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .haze {
-    position: fixed;
-    bottom: var(--space-s);
-    height: 3rem;
-    background: var(--accent);
-    box-shadow: -0px 22px 105px 18px var(--accent);
-    border-radius: 12rem;
-    z-index: 99;
-    opacity: 0.4;
-  }
-
-  #island:hover ~ .haze {
-    opacity: 1;
   }
 </style>
 
