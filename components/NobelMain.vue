@@ -42,25 +42,20 @@
 </script>
 
 <template>
-  <div class="wrapper" ref="wrapper">
-    <section class="page compact-panel">
-      <TextMenu :editor="editor" />
-    </section>
-    <main id="open" class="page panel">
-      <div class="content post">
-        <EditorContent :editor="editor"/>
-        <TextMenuFloating :editor="editor" />
-        <TextMenuBubble :editor="editor" />
-      </div> 
-      <div class="author">
-        <UserAvatar
-          :size="avatarSize"
-          :src="post.user.author.avatar"
-          :resolution="200"
-        />
-      </div>
-    </main>
-  </div>
+  <main id="open" class="wrapper page panel" ref="wrapper">
+    <div class="content post">
+      <EditorContent :editor="editor"/>
+      <TextMenuFloating :editor="editor" />
+      <TextMenuBubble :editor="editor" />
+    </div> 
+    <div class="author">
+      <UserAvatar
+        :size="avatarSize"
+        :src="post.user.author.avatar"
+        :resolution="200"
+      />
+    </div>
+  </main>
 </template>
 
 <style lang="scss">

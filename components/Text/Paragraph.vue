@@ -33,6 +33,7 @@ function addFiles(e: Event) {
   files.value = [...files.value, ...Array.from(target.files!)]
 }
 
+const island = useIsland()
 const storedFiles = useFile()
 const watched = watchPausable(storedFiles, (values) => {
   files.value = [...files.value, ...values]
@@ -45,22 +46,25 @@ props.editor.on('selectionUpdate', ({ editor }) => {
   const current = getCurrentBlock(editor)
   const isCurrent = props.getPos() === current.start
   isCurrent 
-  ? turnActiveOn()
-  : turnActiveOff()
+    ? turnActiveOn()
+    : turnActiveOff()
 })
 
 function turnActiveOn() {
   storedFiles.value = []
   selected.value = true
   watched.resume()
+  //island mode
+  island.value.mode2 = 'text'
 }
 
 function turnActiveOff() {
   selected.value = false
   watched.pause()
+  //island mode
+  island.value.mode2 = 'default'
 }
 
-const island = useIsland()
 const cooldown = useCooldown(selected)
 const postElement = ref<HTMLElement | null>(null)
 onClickOutside(postElement, () => {
