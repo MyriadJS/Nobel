@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useFile } from '@/store/editor'
 import { useIsland } from '@/store/island'
-const { data } = await useFetch('/api/test')
+// const { data } = await useFetch('/api/test')
 
 const island = useIsland()
 
@@ -37,7 +37,7 @@ function addFiles(e: Event) {
   <div 
     id="island" 
     class="island i-length rounded center" 
-    :class="{open}" 
+    :class="{open}"
     @mouseover="() => island = true"
     @mouseleave="() => island = false" 
   >
