@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { user1 } from "@/dummydata/posts"
 import { useTheme } from "@/composables/useTheme"
-import { gsap } from "gsap"
-import { ScrollSmoother } from "gsap/ScrollSmoother"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 const post = {
   id: "1",
@@ -21,31 +18,18 @@ const post = {
 useTheme()
 
 const app = ref<HTMLElement | null>(null)
-
-onMounted(() => {
-  if(process.client) {
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother) // register plugins
-    ScrollSmoother.create({
-      smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
-      effects: false, // looks for data-speed and data-lag attributes on elements
-      smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-    });
-  }
-})
 </script>
 
 <template>
-  <div id="smooth-wrapper">
-    <div id="smooth-content">
-      <div class="app" ref="app">       
-        <Hero/>
-        <LayerLive v-if="false"/>
-        <NobelMain :post="post"/>
-        <PostFeed/>
-      </div>
+  <SmoothScroll>
+    <div class="app" ref="app">
+      <Hero/>
+      <NobelMain :post="post"/>
+      <PostFeed/>
     </div>
-  </div>
-  <MenuIsland v-if="true"/>
+  </SmoothScroll>
+  <MenuIsland />
+  <!-- <LayerLive/> -->
 </template>
 
 <style lang="scss">
