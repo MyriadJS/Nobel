@@ -46,19 +46,13 @@ function addFiles(e: Event) {
 </template>
 
 <style lang="scss" scoped>
-  #island .main {
-    display: flex;
-    gap: var(--space-xs);
-    justify-content: center;
-    align-items: center;
-    padding: var(--space-xs) var(--space-xs);
-    width: max-content;
-  }
-
-  #island .main button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+#island .main {
+  display: flex;
+  gap: var(--space-xs);
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xs) var(--space-xs);
+  width: max-content;
+}
 </style>
 
