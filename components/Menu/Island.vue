@@ -20,6 +20,10 @@ function calculateWidth() {
   islandWidth.value = main.value.offsetWidth
 }
 
+watch(() => island.value.mode, () => {
+  nextTick(() => calculateWidth())
+})
+
 function handleClick() {
   open.value = !open.value
   if (!open.value) return

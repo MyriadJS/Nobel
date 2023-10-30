@@ -33,7 +33,6 @@
       trigger: wrapper.value,
       start: 'top bottom',
       end: 'bottom center',
-      markers: true,
       onToggle: (self) => {
         island.value.mode = self.isActive ? 'text' : 'default'
       }
