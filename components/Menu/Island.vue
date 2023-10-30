@@ -14,16 +14,17 @@ const width = computed(() => {
   return islandWidth.value + 'px'
 })
 
-onMounted(() => {
-  if(!main.value) return
-  islandWidth.value = main.value?.offsetWidth
-})
+onMounted(() => calculateWidth())
+
+function calculateWidth() {
+  if (!main.value) return
+  islandWidth.value = main.value.offsetWidth
+}
 
 function handleClick() {
   open.value = !open.value
   if (!open.value) return
-  if (!main.value) return
-  islandWidth.value = main.value.offsetWidth
+  calculateWidth()
 }
 
 const storedFiles = useFile()
@@ -35,24 +36,18 @@ function addFiles(e: Event) {
 
 <template>
   <div 
-    id="island" 
+    id="island"
     class="island i-length rounded center" 
     :class="{open}"
-    @mouseover="() => island = true"
-    @mouseleave="() => island = false" 
+    @mouseover="() => island.hover = true"
+    @mouseleave="() => island.hover = false"
   >
-    <div class="menu_panel">
-      <div class="panel rounded">
-        <Button icon="">Settings</Button>
-        <Button icon="">Profile</Button>
-        <Button icon="">Logout</Button>
-      </div>
-    </div>
+    <MenuPanel />
     <div class="main" ref="main">
       <Button icon="" @click="() => handleClick()">
         <UserAvatar src="chillgirl_tnjodj.jpg"/>
       </Button>
-      <UploadZone @change="addFiles" />
+      <UploadZone @change="addFiles" v-if="island.mode === 'text'" />
     </div>
   </div>
   <div class="haze i-length center" :class="{open}"></div>
@@ -97,36 +92,6 @@ function addFiles(e: Event) {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  #island .menu_panel {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-
-    padding: 0px var(--space-xs);
-    padding-bottom: 0px;
-    max-height: 0px;
-    width: 100%;
-
-    overflow: hidden;
-    transition: max-height .2s, padding .1s .1s;
-  }
-  
-  #island.open .menu_panel {
-    padding: var(--space-xs);
-    padding-bottom: 0px;
-    max-height: 50vh;
-    transition: max-height .2s, padding .1s;
-  }
-
-  #island .panel {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
-    background: var(--base-40);
-    padding: var(--space-xs);
   }
   
   .haze {

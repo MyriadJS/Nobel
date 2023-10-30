@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { user1 } from "@/dummydata/posts"
   import { useEditor } from '@/store/editor'
+  import { useIsland } from '@/store/island'
   import { EditorContent  } from '@tiptap/vue-3'
   import { gsap } from 'gsap'
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -20,6 +21,7 @@
   
   const avatarSize = ref(90)
   const editor = useEditor()
+  const island = useIsland()
   
   const wrapper = ref<HTMLElement | null>(null)
   
@@ -29,12 +31,11 @@
     gsap.registerPlugin(ScrollTrigger)
     ScrollTrigger.create({
       trigger: wrapper.value,
-      start: 'top top',
-      end: 'bottom bottom',
-      markers: false,
-      onEnter: () => {
-      },
-      onLeaveBack: () => {
+      start: 'top bottom',
+      end: 'bottom center',
+      markers: true,
+      onToggle: (self) => {
+        island.value.mode = self.isActive ? 'text' : 'default'
       }
     })
   })

@@ -64,7 +64,7 @@ const island = useIsland()
 const cooldown = useCooldown(selected)
 const postElement = ref<HTMLElement | null>(null)
 onClickOutside(postElement, () => {
-  if(island.value) return
+  if(island.value.hover) return
   if(cooldown.value) return
   selected.value = false
 })

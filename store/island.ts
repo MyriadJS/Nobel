@@ -1,4 +1,5 @@
 export const useIsland = () => {
   const hover = ref(false)
-  return useState('island', () => hover)
+  const mode = ref<'default' | 'text'>('default')
+  return useState('island', () => ({hover: hover.value, mode: mode.value}))
 }
