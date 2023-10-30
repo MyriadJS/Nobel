@@ -1,19 +1,32 @@
 <script setup lang="ts">
-  import { Post } from '@/types/post'
+  import { user1 } from "@/dummydata/posts"
   import { useEditor } from '@/store/editor'
   import { EditorContent  } from '@tiptap/vue-3'
   import { gsap } from 'gsap'
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
-  gsap.registerPlugin(ScrollTrigger)
   
-  defineProps<{post: Post}>()
+  const post = {
+    id: "1",
+    user: user1,
+    content: 'Nuxt layers are a powerful feature that you can use to share and reuse Nuxt applications within a monorepo, or from a git repository or npm package. The layers structure is almost identical to a standard Nuxt application, which makes them easy to author and maintain.',
+    cover: [],
+    parent: null,
+    reactions: {
+      pro: 100,
+      con: 100,
+      replies: 100,
+    }
+  }
+  
   const avatarSize = ref(90)
   const editor = useEditor()
-
+  
   const wrapper = ref<HTMLElement | null>(null)
-
+  
   onMounted(() => {
     if(!wrapper.value) return
+    if(!process.client) return
+    gsap.registerPlugin(ScrollTrigger)
     ScrollTrigger.create({
       trigger: wrapper.value,
       start: 'top top',

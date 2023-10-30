@@ -1,6 +1,3 @@
-import {
-  myriad
-} from "@myriadjs/core"
 import { umbra } from "@umbrajs/core"
 
 const success = {
@@ -38,7 +35,7 @@ function darkToggle() {
   }
 }
 
-export function useTheme(element?: HTMLElement) {
+export function useTheme() {
   watch(theme, (val) => {
     const html = document.querySelector('html')
     if(!html) return
