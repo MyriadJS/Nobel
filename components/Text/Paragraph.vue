@@ -54,8 +54,6 @@ function turnActiveOn() {
   storedFiles.value = []
   selected.value = true
   watched.resume()
-  //island mode
-  island.value.mode2 = 'text'
 }
 
 function turnActiveOff() {
@@ -69,9 +67,6 @@ onClickOutside(postElement, () => {
   if(island.value.hover) return
   if(cooldown.value) return
   selected.value = false
-  //island mode
-  console.log('turning off')
-  //island.value.mode2 = 'default'
 })
 </script>
 

@@ -40,6 +40,12 @@ function addFiles(e: Event) {
   const target = e.target as HTMLInputElement
   storedFiles.value = Array.from(target.files!)
 }
+
+const textBtns = computed(() => {
+  const text = island.value.mode2 === 'text'
+  const inside = island.value.mode === 'text'
+  return text && inside
+})
 </script>
 
 <template>
@@ -51,7 +57,7 @@ function addFiles(e: Event) {
         @click="() => editor!.chain().focus().toggleBold().run()"
         :disabled="!editor?.can().chain().focus().toggleBold().run()"
         :class="{active: editor?.isActive('bold')}"
-        v-if="island.mode2 === 'text'"
+        v-if="textBtns"
       />
 
       <ButtonIcon
@@ -59,26 +65,26 @@ function addFiles(e: Event) {
         @click="() => editor!.chain().focus().toggleItalic().run()"
         :disabled="!editor?.can().chain().focus().toggleItalic().run()"
         :class="{active: editor?.isActive('italic')}"
-        v-if="island.mode2 === 'text'"
+        v-if="textBtns"
       />
 
       <Divider 
         :vertical="true"
         foreground="var(--foreground-20)"
         style="margin: 0px;"
-        v-if="island.mode2 === 'text'"
+        v-if="textBtns"
       />
 
       <Button icon="" @click="() => handleClick()">
         <UserAvatar src="chillgirl_tnjodj.jpg"/>
       </Button>
-      <UploadZone @change="addFiles" v-if="island.mode === 'text'" />
+      <UploadZone @change="addFiles" v-if="textBtns" />
 
       <Divider 
         :vertical="true"
         foreground="var(--foreground-20)"
         style="margin: 0px;"
-        v-if="island.mode2 === 'text'"
+        v-if="textBtns"
       />
 
 
@@ -86,14 +92,14 @@ function addFiles(e: Event) {
         icon="i-pixelarticons:corner-up-left"
         @click="() => editor?.commands.undo()"
         :disabled="!editor?.can().undo()"
-        v-if="island.mode2 === 'text'"
+        v-if="textBtns"
       />
 
       <ButtonIcon 
         icon="i-pixelarticons:corner-up-right"  
         @click="() => editor?.commands.redo()"
         :disabled="!editor?.can().redo()"
-        v-if="island.mode2 === 'text'"
+        v-if="textBtns"
       />
     </div>
   </MenuWrapper>
