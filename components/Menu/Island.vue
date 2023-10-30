@@ -46,18 +46,6 @@ function addFiles(e: Event) {
   <MenuWrapper :width="width" :open="open">
     <MenuPanel />
     <div class="main" ref="main">
-      <Button icon="" @click="() => handleClick()">
-        <UserAvatar src="chillgirl_tnjodj.jpg"/>
-      </Button>
-      <UploadZone @change="addFiles" v-if="island.mode === 'text'" />
-
-      <Divider 
-        :vertical="true"
-        foreground="var(--foreground-20)"
-        style="margin: 0px;"
-        v-if="island.mode2 === 'text'"
-      />
-
       <ButtonIcon 
         icon="i-mdi:format-bold"  
         @click="() => editor!.chain().focus().toggleBold().run()"
@@ -80,6 +68,19 @@ function addFiles(e: Event) {
         style="margin: 0px;"
         v-if="island.mode2 === 'text'"
       />
+
+      <Button icon="" @click="() => handleClick()">
+        <UserAvatar src="chillgirl_tnjodj.jpg"/>
+      </Button>
+      <UploadZone @change="addFiles" v-if="island.mode === 'text'" />
+
+      <Divider 
+        :vertical="true"
+        foreground="var(--foreground-20)"
+        style="margin: 0px;"
+        v-if="island.mode2 === 'text'"
+      />
+
 
       <ButtonIcon 
         icon="i-pixelarticons:corner-up-left"

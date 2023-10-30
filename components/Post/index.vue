@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { Post } from '@/types/post'
+  import type { Post } from '@/types/post'
   const props = defineProps<{post: Post, loading: boolean}>()
   const content = randomText(props.loading, props.post.content)
   const contentParent = randomText(props.loading, props.post.parent?.content)

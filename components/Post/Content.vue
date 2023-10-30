@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { Post } from '@/types/post'
+  import type { Post } from '@/types/post'
   const props = defineProps<{post: Post, loading: boolean, class?: string, img?: boolean, size?: string }>()
 
   const texts = [
