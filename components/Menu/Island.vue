@@ -25,6 +25,10 @@ watch(() => island.value.mode, () => {
   nextTick(() => calculateWidth())
 })
 
+watch(() => island.value.mode2, () => {
+  nextTick(() => calculateWidth())
+})
+
 function handleClick() {
   open.value = !open.value
   if (!open.value) return

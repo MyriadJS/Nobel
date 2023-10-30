@@ -61,8 +61,6 @@ function turnActiveOn() {
 function turnActiveOff() {
   selected.value = false
   watched.pause()
-  //island mode
-  island.value.mode2 = 'default'
 }
 
 const cooldown = useCooldown(selected)
@@ -71,6 +69,9 @@ onClickOutside(postElement, () => {
   if(island.value.hover) return
   if(cooldown.value) return
   selected.value = false
+  //island mode
+  console.log('turning off')
+  //island.value.mode2 = 'default'
 })
 </script>
 
