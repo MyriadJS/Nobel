@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTheme } from "@/composables/useTheme"
+import { useTheme } from '@/composables/useTheme'
 
 useTheme()
 const app = ref<HTMLElement | null>(null)
@@ -8,9 +8,9 @@ const app = ref<HTMLElement | null>(null)
 <template>
   <SmoothScroll>
     <div class="app" ref="app">
-      <Hero/>
+      <!-- <Hero/> -->
       <NobelMain />
-      <PostFeed/>
+      <PostFeed />
     </div>
   </SmoothScroll>
   <MenuIsland />
@@ -18,5 +18,5 @@ const app = ref<HTMLElement | null>(null)
 </template>
 
 <style lang="scss">
-@import "./css";
+@import './css';
 </style>

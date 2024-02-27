@@ -1,29 +1,30 @@
 <script setup lang="ts">
 import { NodeViewContent, NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
-import { getCurrentBlock } from "@/composables/useTiptap/Overflow"
-import { user1 } from "@/dummydata/posts"
-import { useFile } from "@/store/editor"
+import { getCurrentBlock } from '@/composables/useTiptap/Overflow'
+import { user1 } from '@/dummydata/posts'
+import { useFile } from '@/store/editor'
 import { useIsland } from '@/store/island'
 
 const post = {
-  id: "1",
+  id: '1',
   user: user1,
-  content: 'Nuxt layers are a powerful feature that you can use to share and reuse Nuxt applications within a monorepo, or from a git repository or npm package. The layers structure is almost identical to a standard Nuxt application, which makes them easy to author and maintain.',
+  content:
+    'Nuxt layers are a powerful feature that you can use to share and reuse Nuxt applications within a monorepo, or from a git repository or npm package. The layers structure is almost identical to a standard Nuxt application, which makes them easy to author and maintain.',
   cover: [],
   parent: undefined,
   reactions: {
     pro: 100,
     con: 100,
     replies: 100,
-  }
+  },
 }
 
 const props = defineProps(nodeViewProps)
 defineComponent({
   components: {
     NodeViewContent,
-    NodeViewWrapper
-  }
+    NodeViewWrapper,
+  },
 })
 
 const files = ref<File[]>([])
@@ -45,9 +46,7 @@ const selected = ref(false)
 props.editor.on('selectionUpdate', ({ editor }) => {
   const current = getCurrentBlock(editor)
   const isCurrent = props.getPos() === current.start
-  isCurrent 
-    ? turnActiveOn()
-    : turnActiveOff()
+  isCurrent ? turnActiveOn() : turnActiveOff()
 })
 
 function turnActiveOn() {
@@ -64,22 +63,18 @@ function turnActiveOff() {
 const cooldown = useCooldown(selected)
 const postElement = ref<HTMLElement | null>(null)
 onClickOutside(postElement, () => {
-  if(island.value.hover) return
-  if(cooldown.value) return
+  if (island.value.hover) return
+  if (cooldown.value) return
   selected.value = false
 })
 </script>
 
 <template>
   <node-view-wrapper class="vue-component">
-    <Post
-      ref="postElement"
-      :post="post" 
-      :loading="false" 
-      :class="{selected: selected}"
-    >
+    <Post ref="postElement" :post="post" :loading="false">
       <p><node-view-content class="content" /></p>
-      <div class="footer" contenteditable="false" v-if="true">
+      <div class="vail" :class="{ selected: selected }" />
+      <div class="footer" contenteditable="false" v-if="false">
         <div class="attachment">
           <UploadPreview
             :files="files"
@@ -95,15 +90,31 @@ onClickOutside(postElement, () => {
 
 <style lang="scss">
 .post-wrapper {
-  transition: padding .4s, background-color .4s;
+  position: relative;
+  transition:
+    padding 0.4s,
+    background-color 0.4s;
 }
 
-.post-wrapper.selected {
-  background: var(--background);
-  padding: var(--space-m) var(--space-m);
+.post-wrapper .vail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
   border-radius: var(--radius);
-  padding-top: 0px;
-  padding-bottom: 0px;
+  transform: scale(1.05, 1.2);
+  background: var(--background);
+  transition: width 0.1s;
+  &.selected {
+    width: 100%;
+  }
+}
+
+.post-wrapper p {
+  position: relative;
+  z-index: 1;
 }
 
 .post-wrapper .footer {
@@ -123,7 +134,7 @@ onClickOutside(postElement, () => {
   height: 100%;
   display: flex;
   justify-content: center;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 button.divider {

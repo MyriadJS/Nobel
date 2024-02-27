@@ -9,7 +9,7 @@ export default Node.create({
   group: 'block',
   content: 'inline*',
   parseHTML() {
-    return [{tag: 'vue-post'}]
+    return [{ tag: 'vue-post' }]
   },
   renderHTML({ HTMLAttributes }) {
     return ['vue-post', mergeAttributes(HTMLAttributes), 0]

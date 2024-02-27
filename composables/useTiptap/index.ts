@@ -1,4 +1,4 @@
-import { useEditor as tiptap  } from '@tiptap/vue-3'
+import { useEditor as tiptap } from '@tiptap/vue-3'
 import { Editor } from '@tiptap/core'
 import Document from '@tiptap/extension-document'
 import Text from '@tiptap/extension-text'
@@ -22,7 +22,7 @@ interface useTiptapProps {
 export function useTiptap({
   limit = 280,
   placeholder = 'Write something...',
-  onChange = () => {}
+  onChange = () => {},
 }: useTiptapProps) {
   const editor = tiptap({
     content: `
@@ -50,8 +50,8 @@ export function useTiptap({
       Slugline,
       History,
       Overflow,
-      Placeholder.configure({placeholder}),
-      CharacterCount.configure({limit}),
+      Placeholder.configure({ placeholder }),
+      CharacterCount.configure({ limit }),
     ],
   })
 
@@ -62,16 +62,16 @@ export function useTiptap({
     currentNodeLength.value = nodeSize
   }
 
-  function onUpdate({editor}: {editor: Editor}) {
+  function onUpdate({ editor }: { editor: Editor }) {
     onChange(editor)
     countNodeLength(editor)
     validateOverflow(editor, {
-      limit: 280
+      limit: 280,
     })
   }
 
   onBeforeUnmount(() => {
-    if(!editor.value) return
+    if (!editor.value) return
     editor.value.destroy()
   })
 
