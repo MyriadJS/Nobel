@@ -129,7 +129,6 @@ onClickOutside(postElement, () => {
   max-height: 600px;
   padding-bottom: var(--space);
   padding-top: var(--space-xs);
-  overflow: hidden;
   width: 100%;
   height: 100%;
   display: flex;

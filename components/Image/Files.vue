@@ -66,8 +66,8 @@ function removeFile(index: number) {
   align-items: center;
   gap: var(--space-s);
   background: var(--background);
+  background: var(--background-10);
   padding: var(--space-xs);
-  padding-right: 0px;
   border-radius: var(--radius);
   width: 100%;
 }

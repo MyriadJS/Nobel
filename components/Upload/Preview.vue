@@ -12,7 +12,6 @@ const props = defineProps<{
 const uploadWrapper = useFlip({ disabled: false })
 
 const layout = ref(true)
-const compact = ref(false)
 
 function changeLayout(bool = !layout.value) {
   uploadWrapper.flip(() => {
@@ -39,16 +38,10 @@ const urls = computed(() => {
     </div>
 
     <div class="images" :class="{ empty: !files.length }" v-if="urls">
-      <ImageGallery
-        v-if="layout"
-        :images="urls"
-        :nuxt="false"
-        :compact="compact"
-      />
+      <ImageGallery v-if="layout" :images="urls" :nuxt="false" />
       <ImageFiles v-else :files="files" @delete="emit('delete', $event)" />
+      <slot></slot>
     </div>
-
-    <slot></slot>
   </div>
 </template>
 
