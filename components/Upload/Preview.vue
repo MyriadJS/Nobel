@@ -1,80 +1,51 @@
 <script setup lang="ts">
-  const emit = defineEmits<{
-    (e: 'change', event: Event): void
-    (e: 'delete', index: number): void
-  }>()
+const emit = defineEmits<{
+  (e: 'change', event: Event): void
+  (e: 'delete', index: number): void
+}>()
 
-  const props = defineProps<{
-    files: File[],
-    controls: boolean
-  }>()
+const props = defineProps<{
+  files: File[]
+  controls: boolean
+}>()
 
-  const uploadWrapper = useFlip({disabled: false})
+const uploadWrapper = useFlip({ disabled: false })
 
-  const layout = ref(true)
-  const compact = ref(false)
+const layout = ref(true)
+const compact = ref(false)
 
-  function changeLayout(bool = !layout.value) {
-    uploadWrapper.flip(() => {
-      layout.value = bool
-    })
-  }
-
-  const urls = computed(() => {
-    return props.files.map((file) => URL.createObjectURL(file))
+function changeLayout(bool = !layout.value) {
+  uploadWrapper.flip(() => {
+    layout.value = bool
   })
+}
+
+const urls = computed(() => {
+  return props.files.map((file) => URL.createObjectURL(file))
+})
 </script>
 
 <template>
   <div class="upload" :ref="uploadWrapper.element">
-    <div
-      class="layout"
-      :class="layout" 
-      v-if="files.length && controls"
-    >
-      <p class="caption"> <span>Files</span></p>
-      <div class="buttons">
-        <Corner side="left" v-if="layout" />
-        <UploadInput
-          :interactive="false"
-          @change="$emit('change', $event)"
-        />
-
-        <Divider
-          style="margin-bottom: 0px"
-          foreground="var(--foreground-20)"
-          space="0px"
-          :vertical="true"
-        />
-
-        <Switch
-          :value="layout"
-          :onChange="(value) => changeLayout(value)"
-          onIcon="i-pixelarticons:image-multiple" 
-          offIcon="i-pixelarticons:view-list"
-        />
-
-        <Corner side="bottom" v-if="layout"/>
-      </div>
+    <div class="layout" :class="layout" v-if="files.length && controls">
+      <h3 id="title">Files</h3>
+      <UploadInput :interactive="false" @change="$emit('change', $event)" />
+      <Switch
+        :value="layout"
+        :onChange="(value) => changeLayout(value)"
+        onIcon="i-pixelarticons:image-multiple"
+        offIcon="i-pixelarticons:view-list"
+      />
     </div>
 
-    <div
-      class="images" 
-      :class="{empty: !files.length}"
-      v-if="urls"
-    >
+    <div class="images" :class="{ empty: !files.length }" v-if="urls">
       <ImageGallery
         v-if="layout"
         :images="urls"
         :nuxt="false"
         :compact="compact"
       />
-
-      <ImageFiles 
-        v-else
-        :files="files"
-        @delete="emit('delete', $event)"
-      />
+      <ImageFiles v-else :files="files" @delete="emit('delete', $event)" />
     </div>
 
     <slot></slot>
@@ -89,37 +60,17 @@
   gap: var(--space-xs);
   width: 100%;
 }
-
-.buttons {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
-}
-
 .layout {
-  position: absolute;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
   gap: var(--space-xs);
-  justify-content: space-between;
-  align-items: center;
-  height: var(--block-size);
-  width: 100%;
+  background: var(--background);
 }
 
-.layout > * {
-  box-sizing: content-box;
+.upload .layout h3#title {
   display: flex;
   align-items: center;
-  background-color: var(--background);
-  height: var(--block-inner-size);
-  padding: 0px var(--space-xs) var(--space-s) var(--space-s);
-}
-
-.layout > *:nth-child(2) {
-  position: relative;
-  z-index: 5;
-  border-bottom-left-radius: var(--outer-radius);
+  text-align: left;
 }
 
 .layout .icon {
@@ -146,6 +97,6 @@
 .images .files {
   position: relative;
   z-index: 4;
-  margin-top: var(--block-size);
+  //margin-top: var(--block-size);
 }
 </style>

@@ -18,9 +18,7 @@ function fileName(file: File) {
 }
 
 function fileSize(file: File) {
-  return file.size > 1000000
-    ? valueInMB(file)
-    : valueInKB(file)
+  return file.size > 1000000 ? valueInMB(file) : valueInKB(file)
 }
 
 function valueInKB(file: File) {
@@ -41,13 +39,13 @@ function removeFile(index: number) {
     <div v-for="(file, index) in files" :key="0" class="file">
       <img :src="getSrc(file)" />
       <div class="meta">
-        <p>{{ fileName(file) }}</p>
+        <p class="caption">{{ fileName(file) }}</p>
         <p class="caption">{{ fileSize(file) }} - {{ file.type }}</p>
       </div>
       <Icon
-        class="focus" 
-        icon="i-pixelarticons:close" 
-        @click="() => removeFile(index)" 
+        class="focus"
+        icon="i-pixelarticons:close"
+        @click="() => removeFile(index)"
         @keyup.enter="() => removeFile(index)"
         tabindex="0"
       />
@@ -69,6 +67,7 @@ function removeFile(index: number) {
   gap: var(--space-s);
   background: var(--background);
   padding: var(--space-xs);
+  padding-right: 0px;
   border-radius: var(--radius);
   width: 100%;
 }
@@ -78,9 +77,8 @@ function removeFile(index: number) {
 }
 
 img {
-  width: 50px;
-  height: 50px;
+  aspect-ratio: 1 / 1;
+  width: var(--block-inner-size);
   border-radius: var(--radius);
 }
-
 </style>

@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@vue-macros/nuxt',
     '@vueuse/nuxt',
+    "@nuxt/image"
   ],
 
   image: {

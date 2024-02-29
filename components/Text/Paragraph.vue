@@ -74,7 +74,7 @@ onClickOutside(postElement, () => {
     <Post ref="postElement" :post="post" :loading="false">
       <p><node-view-content class="content" /></p>
       <div class="vail" :class="{ selected: selected }" />
-      <div class="footer" contenteditable="false" v-if="false">
+      <div class="footer" contenteditable="false" v-if="true">
         <div class="attachment">
           <UploadPreview
             :files="files"

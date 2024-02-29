@@ -21,13 +21,19 @@ function calculateWidth() {
   islandWidth.value = main.value.offsetWidth
 }
 
-watch(() => island.value.mode, () => {
-  nextTick(() => calculateWidth())
-})
+watch(
+  () => island.value.mode,
+  () => {
+    nextTick(() => calculateWidth())
+  }
+)
 
-watch(() => island.value.mode2, () => {
-  nextTick(() => calculateWidth())
-})
+watch(
+  () => island.value.mode2,
+  () => {
+    nextTick(() => calculateWidth())
+  }
+)
 
 function handleClick() {
   open.value = !open.value
@@ -44,7 +50,13 @@ function addFiles(e: Event) {
 const textBtns = computed(() => {
   const text = island.value.mode2 === 'text'
   const inside = island.value.mode === 'text'
+  return true
   return text && inside
+})
+
+const can = computed(() => {
+  if (!editor.value) return false
+  return editor.value.can()
 })
 </script>
 
@@ -52,54 +64,52 @@ const textBtns = computed(() => {
   <MenuWrapper :width="width" :open="open">
     <MenuPanel />
     <div class="main" ref="main">
-      <ButtonIcon 
-        icon="i-mdi:format-bold"  
-        @click="() => editor!.chain().focus().toggleBold().run()"
-        :disabled="!editor?.can().chain().focus().toggleBold().run()"
-        :class="{active: editor?.isActive('bold')}"
+      <!-- <ButtonIcon
+        icon="i-mdi:format-bold"
+        @click="() => editor.value!.chain().focus().toggleBold().run()"
+        :disabled="!editor.value?.can().chain().focus().toggleBold().run()"
+        :class="{ active: editor.value?.isActive('bold') }"
         v-if="textBtns"
       />
 
       <ButtonIcon
-        icon="i-mdi:format-italic"  
-        @click="() => editor!.chain().focus().toggleItalic().run()"
-        :disabled="!editor?.can().chain().focus().toggleItalic().run()"
-        :class="{active: editor?.isActive('italic')}"
+        icon="i-mdi:format-italic"
+        @click="() => editor.value!.chain().focus().toggleItalic().run()"
+        :disabled="!editor.value?.can().chain().focus().toggleItalic().run()"
+        :class="{ active: editor.value?.isActive('italic') }"
         v-if="textBtns"
-      />
+      /> -->
 
-      <Divider 
+      <Divider
         :vertical="true"
         foreground="var(--foreground-20)"
-        style="margin: 0px;"
+        style="margin: 0px"
         v-if="textBtns"
       />
 
       <Button icon="" @click="() => handleClick()">
-        <UserAvatar src="chillgirl_tnjodj.jpg"/>
+        <UserAvatar src="chillgirl_tnjodj.jpg" />
       </Button>
       <UploadZone @change="addFiles" v-if="textBtns" />
 
-      <Divider 
+      <Divider
         :vertical="true"
         foreground="var(--foreground-20)"
-        style="margin: 0px;"
+        style="margin: 0px"
         v-if="textBtns"
       />
 
-
-      <ButtonIcon 
+      <!-- <ButtonIcon
         icon="i-pixelarticons:corner-up-left"
-        @click="() => editor?.commands.undo()"
-        :disabled="!editor?.can().undo()"
+        @click="() => editor.value?.commands.undo()"
+        :disabled="!editor.value?.can().undo()"
         v-if="textBtns"
-      />
+      /> -->
 
-      <ButtonIcon 
-        icon="i-pixelarticons:corner-up-right"  
+      <ButtonIcon
+        icon="i-pixelarticons:corner-up-right"
         @click="() => editor?.commands.redo()"
-        :disabled="!editor?.can().redo()"
-        v-if="textBtns"
+        :disabled="can && !can.redo()"
       />
     </div>
   </MenuWrapper>
@@ -115,4 +125,3 @@ const textBtns = computed(() => {
   width: max-content;
 }
 </style>
-
