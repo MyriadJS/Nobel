@@ -1,35 +1,31 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
-  images: string[]
-  compact?: boolean
-  max?: number,
-  nuxt?: boolean
-}>(), {
-  nuxt: true
-})
+const props = withDefaults(
+  defineProps<{
+    images: string[]
+    compact?: boolean
+    max?: number
+    nuxt?: boolean
+  }>(),
+  {
+    nuxt: true,
+  }
+)
 
 const defaultMax = props.compact ? 2 : 4
 const max = props.max ? props.max : defaultMax
 const maxReached = props.images.length > max
 
-const sliced = computed(() => {
-  return props.images.slice(0, max)
-})
-
-const imgHeight = computed(() => {
-  return props.compact ? 50 : 300
-})
+const sliced = computed(() => props.images.slice(0, max))
+const imgHeight = computed(() => (props.compact ? 50 : 300))
 </script>
 
 <template>
-  <div class="gallery" :class="{ maxReached: maxReached }">
+  <div class="gallery" :class="{ maxReached }">
     <div class="image" v-for="src in sliced" :key="src">
       <div class="meta" v-if="maxReached">
         <p class="h1">{{ images.length }}</p>
       </div>
-      <ImageTest
-        :src="src" 
-        :nuxt="nuxt"/>
+      <ImageTest :src="src" :nuxt="nuxt" />
     </div>
   </div>
 </template>
@@ -44,7 +40,6 @@ const imgHeight = computed(() => {
   height: calc(v-bind(imgHeight) * 1px);
   border-radius: var(--radius);
 }
-
 
 .gallery:empty {
   display: none;

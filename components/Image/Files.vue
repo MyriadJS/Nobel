@@ -36,20 +36,25 @@ function removeFile(index: number) {
 
 <template>
   <div class="files">
-    <div v-for="(file, index) in files" :key="0" class="file">
-      <img :src="getSrc(file)" />
-      <div class="meta">
-        <p class="caption">{{ fileName(file) }}</p>
-        <p class="caption">{{ fileSize(file) }} - {{ file.type }}</p>
-      </div>
-      <Icon
-        class="focus"
-        icon="i-pixelarticons:close"
-        @click="() => removeFile(index)"
-        @keyup.enter="() => removeFile(index)"
-        tabindex="0"
-      />
+    <div class="items">
+      <ScrollArea>
+        <div v-for="(file, index) in files" :key="0" class="file">
+          <img :src="getSrc(file)" />
+          <div class="meta">
+            <p class="caption">{{ fileName(file) }}</p>
+            <p class="caption">{{ fileSize(file) }} - {{ file.type }}</p>
+          </div>
+          <Icon
+            class="focus"
+            icon="i-pixelarticons:close"
+            @click="() => removeFile(index)"
+            @keyup.enter="() => removeFile(index)"
+            tabindex="0"
+          />
+        </div>
+      </ScrollArea>
     </div>
+    <slot />
   </div>
 </template>
 
@@ -58,6 +63,19 @@ function removeFile(index: number) {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+.files .items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  opacity: 0.9;
+  background: var(--foreground);
+  border-radius: var(--radius);
+  height: 100%;
+  overflow: hidden;
 }
 
 .file {

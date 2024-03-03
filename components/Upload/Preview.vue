@@ -9,6 +9,10 @@ const props = defineProps<{
   controls: boolean
 }>()
 
+const controls = computed(() =>
+  props.files.length > 0 ? props.controls : false
+)
+
 const uploadWrapper = useFlip({ disabled: false })
 
 const layout = ref(true)
@@ -26,7 +30,7 @@ const urls = computed(() => {
 
 <template>
   <div class="upload" :ref="uploadWrapper.element">
-    <div class="layout" :class="layout" v-if="files.length && controls">
+    <div class="layout" :class="{ visible: controls }">
       <h3 id="title">Files</h3>
       <UploadInput :interactive="false" @change="$emit('change', $event)" />
       <Switch
@@ -39,7 +43,9 @@ const urls = computed(() => {
 
     <div class="images" :class="{ empty: !files.length }" v-if="urls">
       <ImageGallery v-if="layout" :images="urls" :nuxt="false" />
-      <ImageFiles v-else :files="files" @delete="emit('delete', $event)" />
+      <ImageFiles v-else :files="files" @delete="emit('delete', $event)">
+        <ImageGallery :images="urls" :nuxt="false" />
+      </ImageFiles>
       <slot></slot>
     </div>
   </div>
@@ -53,11 +59,19 @@ const urls = computed(() => {
   gap: var(--space-xs);
   width: 100%;
 }
+
 .layout {
   display: grid;
   grid-template-columns: 1fr auto auto;
   gap: var(--space-xs);
-  background: var(--background);
+  max-height: 0px;
+  overflow: hidden;
+  transition: 0.2s;
+}
+
+.layout.visible {
+  overflow: visible;
+  max-height: 300px;
 }
 
 .upload .layout h3#title {
@@ -90,6 +104,5 @@ const urls = computed(() => {
 .images .files {
   position: relative;
   z-index: 4;
-  //margin-top: var(--block-size);
 }
 </style>
