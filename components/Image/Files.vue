@@ -38,19 +38,21 @@ function removeFile(index: number) {
   <div class="files">
     <div class="items">
       <ScrollArea>
-        <div v-for="(file, index) in files" :key="0" class="file">
-          <img :src="getSrc(file)" />
-          <div class="meta">
-            <p class="caption">{{ fileName(file) }}</p>
-            <p class="caption">{{ fileSize(file) }} - {{ file.type }}</p>
+        <div class="scrollfiles">
+          <div v-for="(file, index) in files" :key="0" class="file">
+            <img :src="getSrc(file)" />
+            <div class="meta">
+              <p class="caption">{{ fileName(file) }}</p>
+              <p class="caption">{{ fileSize(file) }} - {{ file.type }}</p>
+            </div>
+            <Icon
+              class="focus"
+              icon="i-pixelarticons:close"
+              @click="() => removeFile(index)"
+              @keyup.enter="() => removeFile(index)"
+              tabindex="0"
+            />
           </div>
-          <Icon
-            class="focus"
-            icon="i-pixelarticons:close"
-            @click="() => removeFile(index)"
-            @keyup.enter="() => removeFile(index)"
-            tabindex="0"
-          />
         </div>
       </ScrollArea>
     </div>
@@ -64,6 +66,7 @@ function removeFile(index: number) {
   flex-direction: column;
   width: 100%;
 }
+
 .files .items {
   display: flex;
   flex-direction: column;
@@ -78,13 +81,18 @@ function removeFile(index: number) {
   overflow: hidden;
 }
 
+.files .scrollfiles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
 .file {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--space-s);
   background: var(--background);
-  background: var(--background-10);
   padding: var(--space-xs);
   border-radius: var(--radius);
   width: 100%;
