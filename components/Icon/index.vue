@@ -4,7 +4,7 @@ interface Props {
 }
 
 withDefaults(defineProps<Props>(), {
-  icon: 'i-pixelarticons:chevron-right'
+  icon: 'i-pixelarticons:chevron-right',
 })
 </script>
 
@@ -19,9 +19,7 @@ withDefaults(defineProps<Props>(), {
   display: flex;
   justify-content: center;
   align-items: center;
-
   border-radius: var(--radius);
-
   background-color: var(--background-20);
   aspect-ratio: 1/1;
 }

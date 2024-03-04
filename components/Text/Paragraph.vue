@@ -102,9 +102,8 @@ onClickOutside(postElement, () => {
   left: 0;
   width: 0%;
   height: 100%;
-  background: rgba(0, 0, 0, 0);
   border-radius: var(--radius);
-  transform: scale(1.05, 1.2);
+  transform: scale(1.05, 1.1);
   background: var(--background);
   transition: width 0.1s;
   &.selected {
@@ -127,8 +126,6 @@ onClickOutside(postElement, () => {
 
 .post-wrapper .footer .attachment {
   max-height: 600px;
-  padding-bottom: var(--space);
-  padding-top: var(--space-xs);
   width: 100%;
   height: 100%;
   display: flex;
